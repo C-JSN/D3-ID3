@@ -17,20 +17,29 @@ export default class TextEditor extends Component {
       }
       return encodeURI('file://' + pathName);
     }
+
+    // uriFromPath needs to take in a path including the main folder
+    // __dirname doesn't reach ID3-React
     amdRequire.config({
-      baseUrl: uriFromPath(path.resolve(__dirname, '../node_modules/monaco-editor/min'))
+      baseUrl: uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/'))
     });
+
+    // console.log('amdRequire', uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/')));
     // workaround monaco-css not understanding the environment
     self.module = undefined;
     // workaround monaco-typescript not understanding the environment
     self.process.browser = true;
     var editor;
-    console.log('editor', editor);
-    console.log('amdRequire', amdRequire);
-    amdRequire(['./vs/editor/editor.main.js'], () => {
-      console.log('inside amdRequire');
+    // console.log('editor', editor);
+    // console.log('amdRequire', amdRequire.config.baseUrl);
+    amdRequire(['vs/editor/editor.main'], () => {
+      // console.log('inside amdRequire');
       editor = monaco.editor.create(document.getElementById('one'), {
-        value: file,
+        value: [
+					'function x() {',
+					'\tconsole.log("Hello world!");',
+					'}'
+				].join('\n'),
         language: 'javascript',
         theme: "vs-dark",
       });
@@ -44,7 +53,7 @@ export default class TextEditor extends Component {
           <div
             className="editor-container"
             id="one"
-            style={{ height: '100%', width: '100%' }}
+            style={{ height: '600px', width: '400px' }}
           ></div>
         </div>
       </div>

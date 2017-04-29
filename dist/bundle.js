@@ -10729,13 +10729,36 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// import styles from './App.css';
+
 var App = function (_Component) {
   _inherits(App, _Component);
 
-  function App() {
+  function App(props) {
+    var _this;
+
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    (_this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props)), _this), _this.styles = {
+      left: {
+        display: "inline-block",
+        height: "100%",
+        width: "20%"
+      },
+
+      center: {
+        display: "inline-block",
+        height: "100%",
+        width: "50%"
+      },
+
+      right: {
+        display: "inline-block",
+        height: "100%",
+        width: "30%"
+      }
+    };
+    return _this;
   }
 
   _createClass(App, [{
@@ -10744,7 +10767,37 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_textEditor2.default, null)
+        _react2.default.createElement(
+          'div',
+          { className: this.styles.left, 'data-tid': 'left-panel' },
+          _react2.default.createElement(
+            'p',
+            null,
+            'this panel contains',
+            _react2.default.createElement('br', null),
+            'File System',
+            _react2.default.createElement('br', null),
+            'Data Management'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: this.styles.center, 'data-tid': 'center-panel' },
+          _react2.default.createElement(_textEditor2.default, null)
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: this.styles.right, 'data-tid': 'right-panel' },
+          _react2.default.createElement(
+            'p',
+            null,
+            'this panel contains',
+            _react2.default.createElement('br', null),
+            'File System',
+            _react2.default.createElement('br', null),
+            'Data Management'
+          )
+        )
       );
     }
   }]);
@@ -10836,20 +10889,25 @@ var TextEditor = function (_Component) {
         }
         return encodeURI('file://' + pathName);
       }
+
+      // uriFromPath needs to take in a path including the main folder
+      // __dirname doesn't reach ID3-React
       amdRequire.config({
-        baseUrl: uriFromPath(path.resolve(__dirname, '../node_modules/monaco-editor/min'))
+        baseUrl: uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/'))
       });
+
+      // console.log('amdRequire', uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/')));
       // workaround monaco-css not understanding the environment
       self.module = undefined;
       // workaround monaco-typescript not understanding the environment
       self.process.browser = true;
       var editor;
-      console.log('editor', editor);
-      console.log('amdRequire', amdRequire);
-      amdRequire(['./vs/editor/editor.main.js'], function () {
-        console.log('inside amdRequire');
+      // console.log('editor', editor);
+      // console.log('amdRequire', amdRequire.config.baseUrl);
+      amdRequire(['vs/editor/editor.main'], function () {
+        // console.log('inside amdRequire');
         editor = monaco.editor.create(document.getElementById('one'), {
-          value: file,
+          value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
           language: 'javascript',
           theme: "vs-dark"
         });
@@ -10867,7 +10925,7 @@ var TextEditor = function (_Component) {
           _react2.default.createElement('div', {
             className: 'editor-container',
             id: 'one',
-            style: { height: '100%', width: '100%' }
+            style: { height: '600px', width: '400px' }
           })
         )
       );
