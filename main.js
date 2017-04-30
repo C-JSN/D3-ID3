@@ -11,7 +11,22 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+// if (process.env.NODE_ENV === 'development') {
+//     const electronHot = require('electron-hot-loader');
+//     electronHot.install();
+//     electronHot.watchJsx(['src/**/*.js']);
+//     electronHot.watchCss(['src/assets/**/*.css']);
+// }
+
+// We can now require our jsx files, they will be compiled for us
+// require('./app/index.js');
+
+// In production you should not rely on the auto-transform.
+// Pre-compile your react components with your build system instead.
+
+// But, you can do this if your really want to:
+// require('electron-hot-loader').install({doNotInstrument: true});
+
 
 function createWindow () {
   // Create the browser window.

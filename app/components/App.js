@@ -1,47 +1,26 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import TextEditor from './center/textEditor';
-// import styles from './App.css';
+import LiveRender from './center/liveRender';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props),
-    this.styles = {
-      left: {
-        display: "inline-block",
-        height: "100%",
-        width: "20%",
-      },
-
-      center: {
-        display: "inline-block",
-        height: "100%",
-        width: "50%",
-      },
-
-      right: {
-        display: "inline-block",
-        height: "100%",
-        width: "30%",
-      }
-    }
-  }
 
   render() {
     return (
       <div>
-        <div className={this.styles.left} data-tid="left-panel" >
+        <div style={{display: 'inline-block', position: 'relative', width: '20vw', height: '100vh', verticalAlign: 'top'}} data-tid="left-panel" >
           <p>this panel contains<br/>
             File System<br/>
             Data Management</p>
         </div>
-        <div className={this.styles.center} data-tid="center-panel" >
+        <div style={{display: 'inline-block', position: 'relative', width: '50vw', height: '100vh', verticalAlign: 'top'}} data-tid="center-panel" >
           <TextEditor />
+          <LiveRender />
         </div>
-        <div className={this.styles.right} data-tid="right-panel" >
+        <div style={{display: 'inline-block', position: 'relative', width: '25vw', height: '100vh', verticalAlign: 'top'}} data-tid="right-panel" >
           <p>this panel contains<br/>
-            File System<br/>
-            Data Management</p>
+            Global Attribute<br/>
+            Local Attribute</p>
         </div>
       </div>
     );

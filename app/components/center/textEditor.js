@@ -48,15 +48,10 @@ export default class TextEditor extends Component {
 
   render() {
     return (
-      <div className="item-views" style={{ display: (this.props.id == this.props.activeTab ? 'block' : 'none') }}>
-        <div className="styleguide pane-item">
           <div
-            className="editor-container"
             id="one"
-            style={{ height: '600px', width: '400px' }}
+            style={{ height: '50vh' }}
           ></div>
-        </div>
-      </div>
     );
   }
 }
