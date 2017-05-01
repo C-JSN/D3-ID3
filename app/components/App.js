@@ -10,7 +10,7 @@ export default class App extends Component {
       <div>
         <div style={{display: 'inline-block', position: 'relative', width: '20vw', height: '100vh', verticalAlign: 'top'}} data-tid="left-panel" >
           <p>this panel contains<br/>
-            File System<br/>
+            File<br/>
             Data Management</p>
         </div>
         <div style={{display: 'inline-block', position: 'relative', width: '50vw', height: '100vh', verticalAlign: 'top'}} data-tid="center-panel" id="center" >

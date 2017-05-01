@@ -52,7 +52,7 @@ function createWindow () {
     // when you should delete the corresponding element.
     fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), 'Hello World', (err) => {
       if (err) throw err;
-      console.log('The file has been emptied!');
+      // console.log('The file has been emptied!');
     })
     mainWindow = null
   })

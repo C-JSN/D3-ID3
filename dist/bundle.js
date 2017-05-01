@@ -10768,7 +10768,7 @@ var App = function (_Component) {
             null,
             'this panel contains',
             _react2.default.createElement('br', null),
-            'File System',
+            'File',
             _react2.default.createElement('br', null),
             'Data Management'
           )
@@ -11002,7 +11002,7 @@ var TextEditor = function (_Component) {
           id: 'one',
           style: { height: '45vh' }
         }),
-        _react2.default.createElement('webview', { src: this.state.url, style: { height: '45vh' } })
+        _react2.default.createElement('webview', { src: this.state.url, style: { height: '50vh' } })
       );
     }
   }]);

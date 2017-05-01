@@ -6,8 +6,9 @@
   "scripts": {
     "start": "electron .",
     "webpack": "./node_modules/.bin/webpack -w",
-    "webpackServer": "node_modules/.bin/webpack-dev-server --hot --inline",
-    "dev-start": "cross-env NODE_ENV=development electron ."
+    "webpackServer": "node_modules/.bin/webpack-dev-server --hot --inline start",
+    "dev-start": "cross-env NODE_ENV=development electron .",
+    "dev": "concurrently --kill-others \"npm run webpack\" \"npm start\""
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -20,6 +21,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+    "concurrently": "^3.4.0",
     "electron": "~1.6.2"
   },
   "dependencies": {
