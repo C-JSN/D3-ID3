@@ -13,9 +13,8 @@ export default class App extends Component {
             File System<br/>
             Data Management</p>
         </div>
-        <div style={{display: 'inline-block', position: 'relative', width: '50vw', height: '100vh', verticalAlign: 'top'}} data-tid="center-panel" >
+        <div style={{display: 'inline-block', position: 'relative', width: '50vw', height: '100vh', verticalAlign: 'top'}} data-tid="center-panel" id="center" >
           <TextEditor />
-          <LiveRender />
         </div>
         <div style={{display: 'inline-block', position: 'relative', width: '25vw', height: '100vh', verticalAlign: 'top'}} data-tid="right-panel" >
           <p>this panel contains<br/>

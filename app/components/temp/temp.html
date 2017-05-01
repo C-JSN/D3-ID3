@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Egghead D3 v4</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <script>
+    var data = [10,20,30,20];
+    var width = 500;
+    var height = 500;
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
+    var svgContainer = d3.select("body")
+        .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .style("border", "3px solid green");       
+        var arc = d3.arc()
+        .outerRadius(100)
+        .innerRadius(25);
+        var group = svgContainer.append("g")
+        .attr("transform", "translate(" + 200 + "," + 250 + ")");
+        var arcs = d3.pie()(data);
+
+        arcs.forEach(function(d, i){
+        group.append("path")
+            .attr("d", arc(d))
+            .attr("fill", color(i));
+    }) 
+    </script>
+  </body>
+</html>

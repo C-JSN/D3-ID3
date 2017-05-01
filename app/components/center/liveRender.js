@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
-import Iframe from 'react-iframe';
+var path = require('path');
 
 export default class LiveRender extends Component {
   render() {
+    const url = path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html');
+    console.log(url);
     return (
-      <Iframe url="http://www.youtube.com/embed/xDMP3i36naA"
-              width="50vw"
-              height="50vh"
-              display="initial"
-              position="relative"
-              allowFullScreen/>
+      <webview src="/Users/eveafeline/Documents/Codesmith/senior/ID3-React/app/components/temp/temp.html"></webview>
     )
   }
 }

@@ -3,6 +3,7 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+const fs = require('fs');
 
 const path = require('path')
 const url = require('url')
@@ -49,6 +50,10 @@ function createWindow () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
+    fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), 'Hello World', (err) => {
+      if (err) throw err;
+      console.log('The file has been emptied!');
+    })
     mainWindow = null
   })
 }
