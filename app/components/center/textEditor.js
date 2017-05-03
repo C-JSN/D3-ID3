@@ -25,7 +25,7 @@ export default class TextEditor extends Component {
     // uriFromPath needs to take in a path including the main folder
     // __dirname doesn't reach ID3-React
     amdRequire.config({
-      baseUrl: uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/'))
+      baseUrl: uriFromPath(path.resolve(__dirname, 'node_modules/monaco-editor/min/'))
     });
 
     // console.log('amdRequire', uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/')));
@@ -62,6 +62,8 @@ export default class TextEditor extends Component {
           if (err) throw err;
           // console.log('The file has been saved!');
         })
+        // const webview = document.querySelector('webview')
+        // webview.reload();
       }
 
       document.getElementById("one").addEventListener('keypress', function(event) {
