@@ -6,9 +6,9 @@
   "scripts": {
     "start": "electron .",
     "webpack": "./node_modules/.bin/webpack -w",
-    "webpackServer": "node_modules/.bin/webpack-dev-server --hot --inline",
+    "webpackServer": "node_modules/.bin/webpack-dev-server --hot --inline start",
     "dev-start": "cross-env NODE_ENV=development electron .",
-    "dev": "webpack-dev-server --inline --content-base ./app"
+    "dev": "concurrently --kill-others \"npm run webpack\" \"npm start\""
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -21,6 +21,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+    "concurrently": "^3.4.0",
     "electron": "~1.6.2"
   },
   "dependencies": {
@@ -30,18 +31,23 @@
     "babel-preset-react": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^4.0.0",
+    "css-loader": "^0.28.0",
     "electron-devtools-installer": "^2.2.0",
     "electron-hot-loader": "^0.8.0",
     "expect": "^1.20.2",
     "fs": "0.0.1-security",
     "monaco-editor": "^0.8.3",
+    "node-sass": "^4.5.2",
     "path": "^0.12.7",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-iframe": "^1.0.5",
     "react-monaco-editor": "^0.8.1",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
     "redux": "^3.6.0",
+    "sass": "^0.5.0",
+    "sass-loader": "^6.0.3",
     "sinon": "^2.1.0",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.5"

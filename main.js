@@ -3,6 +3,7 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+const fs = require('fs');
 
 const path = require('path')
 const url = require('url')
@@ -11,13 +12,26 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+// if (process.env.NODE_ENV === 'development') {
+//     const electronHot = require('electron-hot-loader');
+//     electronHot.install();
+//     electronHot.watchJsx(['src/**/*.js']);
+//     electronHot.watchCss(['src/assets/**/*.css']);
+// }
+
+// We can now require our jsx files, they will be compiled for us
+// require('./app/index.js');
+
+// In production you should not rely on the auto-transform.
+// Pre-compile your react components with your build system instead.
+
+// But, you can do this if your really want to:
+// require('electron-hot-loader').install({doNotInstrument: true});
+
 
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600})
-
-
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
@@ -36,6 +50,10 @@ function createWindow () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
+    fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), 'Hello World', (err) => {
+      if (err) throw err;
+      // console.log('The file has been emptied!');
+    })
     mainWindow = null
   })
 }

@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import TextEditor from './center/textEditor';
+import LiveRender from './center/liveRender';
 
 export default class App extends Component {
+
   render() {
     return (
       <div>
-        <TextEditor />
+        <div style={{display: 'inline-block', position: 'relative', width: '20vw', height: '100vh', verticalAlign: 'top'}} data-tid="left-panel" >
+          <p>this panel contains<br/>
+            File<br/>
+            Data Management</p>
+        </div>
+        <div style={{display: 'inline-block', position: 'relative', width: '50vw', height: '100vh', verticalAlign: 'top'}} data-tid="center-panel" id="center" >
+          <TextEditor />
+        </div>
+        <div style={{display: 'inline-block', position: 'relative', width: '25vw', height: '100vh', verticalAlign: 'top'}} data-tid="right-panel" >
+          <p>this panel contains<br/>
+            Global Attribute<br/>
+            Local Attribute</p>
+        </div>
       </div>
     );
   };
