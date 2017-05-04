@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
+import path from 'path';
 
 export default class TextEditor extends Component {
   constructor(props) {
     super();
     this.state = {
-      url: '/Users/eveafeline/Documents/Codesmith/senior/ID3-React/app/components/temp/temp.html',
+      url: path.resolve(__dirname, 'app/components/temp/temp.html'),
     }
   }
 
   componentDidMount() {
     let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
-    var path = require('path');
+    // var path = require('path');
     const fs = require('fs');
 
     function uriFromPath(_path) {
@@ -28,57 +29,41 @@ export default class TextEditor extends Component {
       baseUrl: uriFromPath(path.resolve(__dirname, 'node_modules/monaco-editor/min/'))
     });
 
-    // console.log('amdRequire', uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/')));
     // workaround monaco-css not understanding the environment
     self.module = undefined;
     // workaround monaco-typescript not understanding the environment
     self.process.browser = true;
     var editor;
-    // console.log('editor', editor);
-    // console.log('amdRequire', amdRequire.config.baseUrl);
+
     amdRequire(['vs/editor/editor.main'], () => {
-      // console.log('inside amdRequire');
       editor = monaco.editor.create(document.getElementById('one'), {
         value: [
 					'//code here'
 				].join('\n'),
         language: 'javascript',
         theme: "vs-dark",
+        wrappingColumn: 0,
+        scrollBeyondLastLine: false,
+        wrappingIndent: "indent",
       });
 
       window.onresize = () => {
         editor.layout();
       }
 
-      document.getElementById("one").onkeyup = () => {
-        fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), editor.getValue(), (err) => {
+      setInterval(function(){
+        fs.writeFile(path.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), (err) => {
           if (err) throw err;
           // console.log('The file has been saved!');
         })
-      }
+      }, 300);
 
-      document.getElementById("one").onkeyup = () => {
-        fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), editor.getValue(), (err) => {
-          if (err) throw err;
-          // console.log('The file has been saved!');
-        })
-        // const webview = document.querySelector('webview')
-        // webview.reload();
-      }
 
-      document.getElementById("one").addEventListener('keypress', function(event) {
-        // console.log(event.ctrlKey);
-        // console.log(event.which);
-        if (event.ctrlKey && event.which === 19) {
-          // console.log('webview reloaded!')
-          const webview = document.querySelector('webview')
-          webview.reload();
-        }
-      })
-
+      setInterval(function(){
+        const webview = document.querySelector('webview');
+        webview.reload();
+      }, 300);
     });
-
-
 
   }
 

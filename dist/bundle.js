@@ -10904,6 +10904,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _electron = __webpack_require__(94);
 
+var _path2 = __webpack_require__(95);
+
+var _path3 = _interopRequireDefault(_path2);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10921,7 +10925,7 @@ var TextEditor = function (_Component) {
     var _this = _possibleConstructorReturn(this, (TextEditor.__proto__ || Object.getPrototypeOf(TextEditor)).call(this));
 
     _this.state = {
-      url: '/Users/eveafeline/Documents/Codesmith/senior/ID3-React/app/components/temp/temp.html'
+      url: _path3.default.resolve(__dirname, 'app/components/temp/temp.html')
     };
     return _this;
   }
@@ -10930,11 +10934,11 @@ var TextEditor = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
-      var path = __webpack_require__(95);
+      // var path = require('path');
       var fs = __webpack_require__(226);
 
       function uriFromPath(_path) {
-        var pathName = path.resolve(_path).replace(/\\/g, '/');
+        var pathName = _path3.default.resolve(_path).replace(/\\/g, '/');
         if (pathName.length > 0 && pathName.charAt(0) !== '/') {
           pathName = '/' + pathName;
         }
@@ -10944,54 +10948,40 @@ var TextEditor = function (_Component) {
       // uriFromPath needs to take in a path including the main folder
       // __dirname doesn't reach ID3-React
       amdRequire.config({
-        baseUrl: uriFromPath(path.resolve(__dirname, 'node_modules/monaco-editor/min/'))
+        baseUrl: uriFromPath(_path3.default.resolve(__dirname, 'node_modules/monaco-editor/min/'))
       });
 
-      // console.log('amdRequire', uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/')));
       // workaround monaco-css not understanding the environment
       self.module = undefined;
       // workaround monaco-typescript not understanding the environment
       self.process.browser = true;
       var editor;
-      // console.log('editor', editor);
-      // console.log('amdRequire', amdRequire.config.baseUrl);
+
       amdRequire(['vs/editor/editor.main'], function () {
-        // console.log('inside amdRequire');
         editor = monaco.editor.create(document.getElementById('one'), {
           value: ['//code here'].join('\n'),
           language: 'javascript',
-          theme: "vs-dark"
+          theme: "vs-dark",
+          wrappingColumn: 0,
+          scrollBeyondLastLine: false,
+          wrappingIndent: "indent"
         });
 
         window.onresize = function () {
           editor.layout();
         };
 
-        document.getElementById("one").onkeyup = function () {
-          fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), editor.getValue(), function (err) {
+        setInterval(function () {
+          fs.writeFile(_path3.default.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), function (err) {
             if (err) throw err;
             // console.log('The file has been saved!');
           });
-        };
+        }, 300);
 
-        document.getElementById("one").onkeyup = function () {
-          fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), editor.getValue(), function (err) {
-            if (err) throw err;
-            // console.log('The file has been saved!');
-          });
-          // const webview = document.querySelector('webview')
-          // webview.reload();
-        };
-
-        document.getElementById("one").addEventListener('keypress', function (event) {
-          // console.log(event.ctrlKey);
-          // console.log(event.which);
-          if (event.ctrlKey && event.which === 19) {
-            // console.log('webview reloaded!')
-            var webview = document.querySelector('webview');
-            webview.reload();
-          }
-        });
+        setInterval(function () {
+          var webview = document.querySelector('webview');
+          webview.reload();
+        }, 300);
       });
     }
   }, {
