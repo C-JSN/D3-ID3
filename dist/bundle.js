@@ -10846,8 +10846,62 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var path = __webpack_require__(235);
-var fs = __webpack_require__(234);
+var path = __webpack_require__(95);
+
+var LiveRender = function (_Component) {
+  _inherits(LiveRender, _Component);
+
+  function LiveRender() {
+    _classCallCheck(this, LiveRender);
+
+    return _possibleConstructorReturn(this, (LiveRender.__proto__ || Object.getPrototypeOf(LiveRender)).apply(this, arguments));
+  }
+
+  _createClass(LiveRender, [{
+    key: 'render',
+    value: function render() {
+      var url = path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html');
+      console.log(url);
+      return _react2.default.createElement('webview', { src: '/Users/eveafeline/Documents/Codesmith/senior/ID3-React/app/components/temp/temp.html' });
+    }
+  }]);
+
+  return LiveRender;
+}(_react.Component);
+
+exports.default = LiveRender;
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _electron = __webpack_require__(94);
+
+var _path2 = __webpack_require__(95);
+
+var _path3 = _interopRequireDefault(_path2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 var TextEditor = function (_Component) {
   _inherits(TextEditor, _Component);
@@ -10867,9 +10921,11 @@ var TextEditor = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
+      // var path = require('path');
+      var fs = __webpack_require__(226);
 
       function uriFromPath(_path) {
-        var pathName = path.resolve(_path).replace(/\\/g, '/');
+        var pathName = _path3.default.resolve(_path).replace(/\\/g, '/');
         if (pathName.length > 0 && pathName.charAt(0) !== '/') {
           pathName = '/' + pathName;
         }
@@ -10879,54 +10935,42 @@ var TextEditor = function (_Component) {
       // uriFromPath needs to take in a path including the main folder
       // __dirname doesn't reach ID3-React
       amdRequire.config({
-        baseUrl: uriFromPath(path.resolve(__dirname, 'node_modules/monaco-editor/min/'))
+        baseUrl: uriFromPath(_path3.default.resolve(__dirname, 'node_modules/monaco-editor/min/'))
       });
 
-      // console.log('amdRequire', uriFromPath(path.resolve(__dirname, '../ID3-React/node_modules/monaco-editor/min/')));
       // workaround monaco-css not understanding the environment
       self.module = undefined;
       // workaround monaco-typescript not understanding the environment
       self.process.browser = true;
       var editor;
-      // console.log('editor', editor);
-      // console.log('amdRequire', amdRequire.config.baseUrl);
+
       amdRequire(['vs/editor/editor.main'], function () {
         // console.log('inside amdRequire');
         editor = monaco.editor.create(document.getElementById('editor'), {
           value: ['//code here'].join('\n'),
           language: 'javascript',
-          theme: "vs-dark"
+          theme: "vs-dark",
+          wrappingColumn: 0,
+          scrollBeyondLastLine: false,
+          wrappingIndent: "indent"
         });
 
         window.onresize = function () {
           editor.layout();
         };
 
-        document.getElementById("editor").onkeyup = function () {
-          fs.writeFile(path.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), function (err) {
+        setInterval(function () {
+          fs.writeFile(_path3.default.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), function (err) {
+
             if (err) throw err;
             // console.log('The file has been saved!');
           });
-        };
+        }, 300);
 
-        // document.getElementById("editor").onkeyup = () => {
-        //   fs.writeFile(path.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), (err) => {
-        //     if (err) throw err;
-        //     // console.log('The file has been saved!');
-        //   })
-        //   // const webview = document.querySelector('webview')
-        //   // webview.reload();
-        // }
-
-        document.getElementById("editor").addEventListener('keypress', function (event) {
-          // console.log(event.ctrlKey);
-          // console.log(event.which);
-          if (event.ctrlKey && event.which === 19) {
-            // console.log('webview reloaded!')
-            var webview = document.querySelector('webview');
-            webview.reload();
-          }
-        });
+        setInterval(function () {
+          var webview = document.querySelector('webview');
+          webview.reload();
+        }, 300);
       });
     }
   }, {
