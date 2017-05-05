@@ -24,8 +24,8 @@ module.exports = {
           presets: ['es2015', 'react'],
         },
       }, {
-        test: /(\.css|\.scss)$/,
-        loaders: ['style', 'css', 'sass'],
+        test: /(\.css)$|(\.scss$)/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
       }, {
         test: /\.(eot|woff)$/,
         loader: 'file-loader',
