@@ -58,7 +58,6 @@ export default class TextEditor extends Component {
         })
       }, 300);
 
-
       setInterval(function(){
         const webview = document.querySelector('webview');
         webview.reload();
