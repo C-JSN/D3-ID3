@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
 import path from 'path';
 
+const path = require('path');
+const fs = require('fs');
+
 export default class TextEditor extends Component {
   constructor(props) {
     super();
@@ -15,8 +18,9 @@ export default class TextEditor extends Component {
     // var path = require('path');
     const fs = require('fs');
 
+
     function uriFromPath(_path) {
-      var pathName = path.resolve(_path).replace(/\\/g, '/');
+      let pathName = path.resolve(_path).replace(/\\/g, '/');
       if (pathName.length > 0 && pathName.charAt(0) !== '/') {
         pathName = '/' + pathName;
       }
@@ -36,7 +40,7 @@ export default class TextEditor extends Component {
     var editor;
 
     amdRequire(['vs/editor/editor.main'], () => {
-      editor = monaco.editor.create(document.getElementById('one'), {
+      editor = monaco.editor.create(document.getElementById('editor'), {
         value: [
 					'//code here'
 				].join('\n'),
@@ -58,24 +62,19 @@ export default class TextEditor extends Component {
         })
       }, 300);
 
-
       setInterval(function(){
         const webview = document.querySelector('webview');
         webview.reload();
       }, 300);
     });
-
   }
 
   render() {
     return (
-      <div>
-        <div
-          id="one"
-          style={{ height: '45vh' }}
-        >
+      <div id="center-panel">
+        <div id="editor">
         </div>
-        <webview src={this.state.url} style={{height: '50vh'}}>
+        <webview id="render-window" src={this.state.url}>
         </webview>
       </div>
     );

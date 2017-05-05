@@ -1,0 +1,142 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#panels-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+/*#panel-container > * {
+  flex: 1;
+}*/
+
+/*#left-sizer{
+  background-color: red;
+  width: 5px;
+  cursor: col-resize;
+  flex: none;
+}
+
+#right-sizer{
+  background-color: red;
+  width: 5px;
+  cursor: col-resize;
+  flex: none;
+}*/
+
+/*Left Panel Styling*/
+
+#left-panel {
+  width: 10%;
+  /*padding: 10px;*/
+  background-color: lightgrey;
+}
+
+#file-system {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*border: 1px solid ;*/
+  text-align: center;
+}
+
+#data-management {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*border: 1px solid;
+  border-top: none;*/
+  text-align: center;
+}
+
+/*Center Panel Styling*/
+
+#center-panel {
+  width: 65%;
+  height: 100%;
+  /*border: 1px solid;*/
+}
+
+#editor {
+  width: 100%;
+  height: 50%;
+  /*border: 1px solid;*/
+}
+
+#render-window {
+  width: 100%;
+  height: 50%;
+}
+
+/*Right Panel Styling*/
+
+#right-panel {
+  width: 25%;
+  padding: 10px;
+  background-color: lightgrey;
+}
+
+#attr-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*border: 1px solid ;*/
+  text-align: center;
+}
+
+/*Template Dropdown Menu*/
+
+.button {
+  width: 100px;
+  height: 35px;
+  margin-top: 5px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  font-size: 10px;
+  border: none;
+  border-radius: 2px;
+}
+
+.button:hover, .button:focus {
+  background-color: lightblue;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: lightgrey;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 5px;
+  text-decoration: none;
+  text-align: left;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: lightblue;
+}
+
+.show {
+  display: block;
+}

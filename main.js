@@ -3,8 +3,8 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
-const fs = require('fs');
 
+const fs = require('fs');
 const path = require('path')
 const url = require('url')
 
@@ -15,8 +15,8 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 // if (process.env.NODE_ENV === 'development') {
 //     const electronHot = require('electron-hot-loader');
 //     electronHot.install();
-//     electronHot.watchJsx(['src/**/*.js']);
-//     electronHot.watchCss(['src/assets/**/*.css']);
+//     electronHot.watchJsx(['app/**/*.js']);
+//     electronHot.watchCss(['app/assets/**/*.css']);
 // }
 
 // We can now require our jsx files, they will be compiled for us
@@ -31,8 +31,10 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
-
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600
+  })
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
   // mainWindow.loadURL(url.format({
