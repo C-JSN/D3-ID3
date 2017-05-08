@@ -14,8 +14,6 @@ export default class TextEditor extends Component {
 
   componentDidMount() {
     let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
-    // var path = require('path');
-
 
     function uriFromPath(_path) {
       let pathName = path.resolve(_path).replace(/\\/g, '/');
@@ -53,17 +51,56 @@ export default class TextEditor extends Component {
         editor.layout();
       }
 
-      setInterval(function(){
+      // import files into text-editor
+      let importBtn = document.getElementById('import-btn');
+      let fileUpLoadBtn = document.getElementById('upload-file');
+      fileUpLoadBtn.setAttribute("accept", ".html,.csv,.tsv");
+
+      function openFile() {
+        fileUpLoadBtn.click();
+      }
+
+      fileUpLoadBtn.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          console.log(event.target.result);
+          editor.setValue(event.target.result)
+          // console.log(window.editor.setValue());
+        };
+        reader.readAsText(file);
+      })
+
+      importBtn.addEventListener('click', (event) => {
+        openFile();
+      });
+
+      // setInterval(function(){
+      //   fs.writeFile(path.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), (err) => {
+      //     if (err) throw err;
+      //     // console.log('The file has been saved!');
+      //   })
+      // }, 300);
+      //
+      // setInterval(function(){
+      //   const webview = document.querySelector('webview');
+      //   webview.reload();
+      // }, 300);
+
+      document.getElementById("editor").onkeyup = () => {
         fs.writeFile(path.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), (err) => {
           if (err) throw err;
-          // console.log('The file has been saved!');
+          console.log('The file has been saved!');
         })
-      }, 300);
+      }
 
-      setInterval(function(){
-        const webview = document.querySelector('webview');
-        webview.reload();
-      }, 300);
+      document.getElementById("editor").addEventListener('keypress', function(event) {
+        if (event.ctrlKey && event.which === 19) {
+          // console.log('webview reloaded!')
+          const webview = document.querySelector('webview')
+          webview.reload();
+        }
+      })
     });
   }
 
