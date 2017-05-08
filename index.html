@@ -3,10 +3,54 @@
   <head>
     <meta charset="UTF-8">
     <title>ID3</title>
-    <link rel="stylesheet" href="./style/styles.css"> 
+    <link rel="stylesheet" href="./photon/css/photon.css">
+    <link rel="stylesheet" href="./style/styles.css">
   </head>
   <body>
-    <div class="container"></div>
+    <div class="window">
+      <header class="toolbar toolbar-header">
+        <h1 class="title">Header with actions</h1>
+        <div class="toolbar-actions">
+          <div class="btn-group">
+            <button class="btn btn-default">
+              <span class="icon icon-folder icon-text"></span>
+              New
+            </button>
+            <button class="btn btn-default">
+              <span class="icon icon-download icon-text"></span>
+              Import
+            </button>
+            <button class="btn btn-default">
+              <span class="icon icon-upload icon-text"></span>
+              Export
+            </button>
+            <button class="btn btn-default btn-dropdown">
+              <span class="icon icon-layout icon-text"></span>
+              Templates
+            </button>
+          </div>
+
+          <div class="btn-group pull-right">
+            <button class="btn btn-default">
+              <span class="icon icon-database icon-text"></span>
+              Data Management
+            </button>
+            <button class="btn btn-default btn-dropdown">
+              <span class="icon icon-popup icon-text"></span>
+              Pop Window
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="window-content"></div>
+      <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+          <button class="btn btn-primary pull-right">
+            Save
+          </button>
+        </div>
+      </footer>
+    </div>
     <script src="dist/bundle.js"></script>
     <!-- <script type='text/javascript'>
       if (process.env.NODE_ENV === 'development') {

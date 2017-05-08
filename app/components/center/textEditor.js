@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
-import path from 'path';
 
 const path = require('path');
 const fs = require('fs');
@@ -16,7 +15,6 @@ export default class TextEditor extends Component {
   componentDidMount() {
     let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
     // var path = require('path');
-    const fs = require('fs');
 
 
     function uriFromPath(_path) {
