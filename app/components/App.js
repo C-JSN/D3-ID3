@@ -42,14 +42,24 @@ export default class App extends Component {
   //   });
   // }
 
+  // render() {
+  //   return (
+  //     <div className="main-container" id="panels-container">
+  //       <LeftPanel />
+  //       {/* <div id="left-sizer"></div> */}
+  //       <TextEditor />
+  //       {/* <div id="right-sizer"></div> */}
+  //       <RightPanel />
+  //     </div>
+  //   );
+  // };
   render() {
     return (
-      <div className="main-container" id="panels-container">
-        <LeftPanel />
-        {/* <div id="left-sizer"></div> */}
-        <TextEditor />
-        {/* <div id="right-sizer"></div> */}
-        <RightPanel />
+      <div className="pane-group">
+        <div className="pane">
+          <TextEditor />
+        </div>
+        <div className="pane-one-fourth"></div>
       </div>
     );
   };

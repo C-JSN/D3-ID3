@@ -65,7 +65,7 @@ html, body {
 /*Center Panel Styling*/
 
 #center-panel {
-  width: 65%;
+  width: 100%;
   height: 100%;
   /*border: 1px solid;*/
 }
@@ -79,6 +79,7 @@ html, body {
 #render-window {
   width: 100%;
   height: 50%;
+  background-color: white;
 }
 
 /*Right Panel Styling*/
