@@ -518,14 +518,14 @@ h6 {
 }
 
 .toolbar-header {
-  border-bottom: 1px solid #c2c0c2;
+  border-bottom: 1px solid black;
 }
 .toolbar-header .title {
   margin-top: 1px;
 }
 
 .toolbar-footer {
-  border-top: 1px solid #c2c0c2;
+  border-top: 1px solid black;
   -webkit-app-region: drag;
 }
 
@@ -671,6 +671,7 @@ textarea {
   width: 25%;
   flex: none;
   background-color: #31373B;
+  border-left: 1px solid black;
 }
 
 .pane-one-third {
