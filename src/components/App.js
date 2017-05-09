@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import TextEditor from './center/textEditor';
-import LeftPanel from './left/LeftPanel';
-import RightPanel from './right/RightPanel';
+import TextEditor from './editor/textEditor';
 
 
 export default class App extends Component {

@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './app/index.js',
+  entry: './src/index.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',

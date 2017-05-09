@@ -8,7 +8,7 @@ export default class TextEditor extends Component {
   constructor(props) {
     super();
     this.state = {
-      url: path.resolve(__dirname, 'app/components/temp/temp.html'),
+      url: path.resolve(__dirname, 'src/components/temp/temp.html'),
     }
   }
 
@@ -76,7 +76,7 @@ export default class TextEditor extends Component {
       });
 
       // setInterval(function(){
-      //   fs.writeFile(path.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), (err) => {
+      //   fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
       //     if (err) throw err;
       //     // console.log('The file has been saved!');
       //   })
@@ -88,7 +88,7 @@ export default class TextEditor extends Component {
       // }, 300);
 
       document.getElementById("editor").onkeyup = () => {
-        fs.writeFile(path.resolve(__dirname, 'app/components/temp/temp.html'), editor.getValue(), (err) => {
+        fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
           if (err) throw err;
           console.log('The file has been saved!');
         })
