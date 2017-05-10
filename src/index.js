@@ -16,4 +16,4 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <App />
   </Provider>
-  , document.querySelector('.window-content'));
+  , document.querySelector('.main-container'));
