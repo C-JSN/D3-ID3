@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getScatterPlot } from '../actions/ScatterPlotActions';
-import { ScatterPlotReducer } from '../reducers/index';
+// import { getScatterPlot } from '../actions/ScatterPlotActions';
+// import { ScatterPlotReducer } from '../reducers/index';
 
 class AttributesPanel extends Component {
   render() {
@@ -14,12 +14,13 @@ class AttributesPanel extends Component {
   }
 }
 
-function mapStateToProps({ ScatterPlotReducer }) {
-  return { ScatterPlotReducer }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getScatterPlot }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);
+// function mapStateToProps({ ScatterPlotReducer }) {
+//   return { ScatterPlotReducer }
+// }
+//
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ getScatterPlot }, dispatch);
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);
+export default AttributesPanel
