@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import TextEditor from './editor/textEditor';
+import AttributesPanel from '../containers/AttributesPanel'
 
 
 export default class App extends Component {
@@ -40,24 +41,15 @@ export default class App extends Component {
   //   });
   // }
 
-  // render() {
-  //   return (
-  //     <div className="main-container" id="panels-container">
-  //       <LeftPanel />
-  //       {/* <div id="left-sizer"></div> */}
-  //       <TextEditor />
-  //       {/* <div id="right-sizer"></div> */}
-  //       <RightPanel />
-  //     </div>
-  //   );
-  // };
   render() {
     return (
       <div className="pane-group">
         <div className="pane">
           <TextEditor />
         </div>
-        <div className="pane-one-fourth"></div>
+        <div className="pane-one-fourth">
+          <AttributesPanel />
+        </div>
       </div>
     );
   };
