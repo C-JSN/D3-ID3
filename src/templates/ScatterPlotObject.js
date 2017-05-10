@@ -1,4 +1,4 @@
-{
+export default {
   "margin": {
     "top": 30,
     "right": 30,
