@@ -106,11 +106,9 @@ export default class TextEditor extends Component {
 
   render() {
     return (
-      <div id="center-panel">
-        <div id="editor">
-        </div>
-        <webview id="render-window" src={this.state.url}>
-        </webview>
+      <div className="pane">
+        <div id="editor"></div>
+        <webview id="render-window" src={this.state.url}></webview>
       </div>
     );
   }
