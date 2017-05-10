@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import HeaderToolbar from './HeaderToolbar';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getScatterPlot } from '../actions/ScatterPlotActions';
+import { ScatterPlotReducer } from '../reducers/index';
+import HeaderToolbar from '../components/header/HeaderToolbar';
 
-export default class Header extends Component {
+class Header extends Component {
+  toggleDropDown(event) {
+    document.getElementById("template-menu").classList.toggle("show");
+  }
+
   render() {
     return (
       <header className="toolbar toolbar-header">
         <h1 className="title">Project Name</h1>
-        <HeaderToolbar />
+        <HeaderToolbar getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown} />
       </header>
     );
   }
 }
+
+function mapStateToProps({ ScatterPlotReducer }) {
+  return { ScatterPlotReducer }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getScatterPlot }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 // componentDidMount() {
 //   const dropDownMenu = document.getElementById('templates');
