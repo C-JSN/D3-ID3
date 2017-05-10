@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default (props) => {
+  const toggleDropDown = props.toggleDropDown;
+  const getScatterPlot = props.getScatterPlotAction;
+
   return (
     <div className="toolbar-actions">
       <div className="btn-group">
@@ -17,12 +20,12 @@ export default (props) => {
           <span className="icon icon-upload icon-text"></span>
           Export
         </button>
-        <button className="btn btn-default btn-dropdown" id="templates">
+        <button className="btn btn-default btn-dropdown" id="templates" onClick={toggleDropDown}>
           <span className="icon icon-layout icon-text"></span>
           Templates
         </button>
         <div id="template-menu" className="dropdown-menu">
-          <a id="scatter-plot" href="#">Scatter Plot</a>
+          <a id="scatter-plot" onClick={getScatterPlot} href="#">Scatter Plot</a>
           <a href="#">Area Graph</a>
           <a href="#">Line Graph</a>
           <a href="#">Bar Chart</a>
