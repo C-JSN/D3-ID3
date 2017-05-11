@@ -8,7 +8,9 @@ class AttributesPanel extends Component {
   render() {
     return (
       <div className="pane-one-fourth">
-        <h3>Attributes Panel</h3>
+        <div id="attr-panel">
+          <h3>Attributes Panel</h3>
+        </div>
       </div>
     );
   }
@@ -23,4 +25,4 @@ class AttributesPanel extends Component {
 // }
 //
 // export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);
-export default AttributesPanel
+export default AttributesPanel;

@@ -8,7 +8,11 @@
   </head>
   <body>
     <div class="main-container"></div>
-
+    <script>
+      if (typeof module === 'object') {
+        window.module = module; module = undefined;
+      }
+    </script>
     <script src="dist/bundle.js"></script>
     <!-- <script type='text/javascript'>
       if (process.env.NODE_ENV === 'development') {

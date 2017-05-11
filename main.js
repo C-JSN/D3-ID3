@@ -3,10 +3,10 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
-
+// file system module
 const fs = require('fs');
-const path = require('path')
-const url = require('url')
+const path = require('path');
+const url = require('url');
 
 const isDevelopment = (process.env.NODE_ENV === 'development');
 
@@ -32,8 +32,8 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600
+    width: 1200,
+    height: 800
   })
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
@@ -44,22 +44,25 @@ function createWindow () {
   // }))
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   global.mainWindow = mainWindow;
-  // Emitted when the window is closed.
+
+  // Require mainmenu from mainmenu.js
+  require('./menu/mainmenu');
+
+  // Emitted when the window is closed
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    fs.writeFile(path.resolve(__dirname, '../ID3-React/app/components/temp/temp.html'), 'Hello World', (err) => {
+    fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), 'Hello World', (err) => {
       if (err) throw err;
       // console.log('The file has been emptied!');
     })
     mainWindow = null
   })
 }
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.

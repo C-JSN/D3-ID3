@@ -7,6 +7,8 @@ import { ScatterPlotReducer } from '../reducers/index';
 import HeaderToolbar from '../components/header/HeaderToolbar';
 
 class Header extends Component {
+
+  // event handler for toggling the dropdown menu
   toggleDropDown(event) {
     document.getElementById("template-menu").classList.toggle("show");
   }
