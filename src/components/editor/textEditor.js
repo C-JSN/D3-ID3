@@ -64,7 +64,6 @@ export default class TextEditor extends Component {
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = function(event) {
-          console.log(event.target.result);
           editor.setValue(event.target.result)
           // console.log(window.editor.setValue());
         };
