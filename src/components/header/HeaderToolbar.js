@@ -4,6 +4,20 @@ export default (props) => {
   const toggleDropDown = props.toggleDropDown;
   const getScatterPlot = props.getScatterPlotAction;
 
+  window.onclick = function(event) {
+    if (!event.target.matches('.btn-dropdown')) {
+
+      let dropdowns = document.getElementsByClassName("dropdown-menu");
+
+      for (let i = 0; i < dropdowns.length; i += 1) {
+        let openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
   return (
     <div className="toolbar-actions">
       <div className="btn-group">
@@ -20,15 +34,33 @@ export default (props) => {
           <span className="icon icon-upload icon-text"></span>
           Export
         </button>
-        <button className="btn btn-default btn-dropdown" id="templates" onClick={toggleDropDown}>
-          <span className="icon icon-layout icon-text"></span>
-          Templates
-        </button>
-        <div id="template-menu" className="dropdown-menu">
-          <a id="scatter-plot" onClick={getScatterPlot} href="#">Scatter Plot</a>
-          <a href="#">Area Graph</a>
-          <a href="#">Line Graph</a>
-          <a href="#">Bar Chart</a>
+        <div className="dropdown">
+          <button className="btn btn-default btn-dropdown" onClick={toggleDropDown}>
+            <span className="icon icon-layout icon-text"></span>
+            Templates
+          </button>
+          <div id="template-menu" className="dropdown-menu">
+            <p id="scatter-plot" onClick={getScatterPlot}>
+              <span className="icon icon-chart-line icon-text"></span>
+              Scatter Plot
+            </p>
+            <p>
+              <span className="icon icon-chart-area icon-text"></span>
+              Area Graph
+            </p>
+            <p>
+              <span className="icon icon-chart-line icon-text"></span>
+              Line Graph
+            </p>
+            <p>
+              <span className="icon icon-chart-bar icon-text"></span>
+              Bar Chart
+            </p>
+            <p>
+              <span className="icon icon-chart-pie icon-text"></span>
+              Pie Chart
+            </p>
+          </div>
         </div>
       </div>
 

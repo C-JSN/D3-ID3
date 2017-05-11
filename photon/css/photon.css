@@ -669,6 +669,7 @@ textarea {
 
 .pane-one-fourth {
   width: 25%;
+  padding: 10px;
   flex: none;
   background-color: #31373B;
   border-left: 1px solid black;
