@@ -1,11 +1,25 @@
 import { SCATTER_PLOT } from '../actions/ScatterPlotActions';
+import ScatterPlotObject from '../templates/ScatterPlotObject';
 
-export default function reducer(state = {}, action) {
-  // console.log('action payload', action.payload);
-  console.log('REDUCER CALLED!');
+const initialState = {
+  margin: {},
+  width: null,
+  height: null,
+  responsiveResize: null,
+  axes: {},
+  gridLines: {},
+  regressionLine: {},
+  toolTip: {},
+  scatterPlot: {},
+  data: []
+}
+
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SCATTER_PLOT:
-      return { ...state, SCATTER_PLOT: action.payload }
+      // return state;
+      return action.payload;
+      // return {...state, payload: action.payload}
     default:
       return state;
   }

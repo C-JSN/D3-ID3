@@ -1,8 +1,9 @@
 import React from 'react';
+import ScatterPlotObject from '../../templates/ScatterPlotObject';
 
 export default (props) => {
   const toggleDropDown = props.toggleDropDown;
-  const getScatterPlot = props.getScatterPlotAction;
+  const getScatterPlotAction = props.getScatterPlotAction;
 
   window.onclick = function(event) {
     if (!event.target.matches('.btn-dropdown')) {
@@ -40,7 +41,7 @@ export default (props) => {
             Templates
           </button>
           <div id="template-menu" className="dropdown-menu">
-            <p id="scatter-plot" onClick={getScatterPlot}>
+            <p id="scatter-plot" onClick={(e)=>getScatterPlotAction(ScatterPlotObject)}>
               <span className="icon icon-chart-line icon-text"></span>
               Scatter Plot
             </p>
