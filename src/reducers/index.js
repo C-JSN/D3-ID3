@@ -3,4 +3,4 @@ import ScatterPlotReducer from './ScatterPlotReducer';
 
 export default combineReducers({
   ScatterPlotReducer
-})
+});
