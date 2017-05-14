@@ -5,10 +5,9 @@ import { getScatterPlot } from '../actions/ScatterPlotActions';
 import { ScatterPlotReducer } from '../reducers/index';
 import Dimensions from '../components/attributes/scatter-plot/Dimensions';
 import Axes from '../components/attributes/scatter-plot/Axes';
+import LocalAttributes from '../components/attributes/scatter-plot/LocalAttributes';
 import Data from '../components/attributes/scatter-plot/Data';
-import GridLines from '../components/attributes/scatter-plot/GridLines';
-import RegressionLine from '../components/attributes/scatter-plot/RegressionLine';
-import ScatterPlotAttr from '../components/attributes/scatter-plot/ScatterPlotAttr';
+
 
 class AttributesPanel extends Component {
 
@@ -27,7 +26,7 @@ class AttributesPanel extends Component {
     const toolTip = ScatterPlotObj.toolTip;
     const scatterPlot = ScatterPlotObj.scatterPlot;
     const data = ScatterPlotObj.data;
-
+    
     return(
       <div className="pane-one-fourth">
         <div id="attr-panel">
@@ -38,10 +37,12 @@ class AttributesPanel extends Component {
             height={height}
             responsiveResize={responsiveResize} />
           <Axes axes={axes} />
-          <GridLines gridLines={gridLines} />
-          <RegressionLine regressionLine={regressionLine} />
-          <ScatterPlotAttr scatterPlot={scatterPlot} />
-          <Data data={data} />
+          <LocalAttributes
+            gridLines={gridLines}
+            regressionLine={regressionLine}
+            tooTip={toolTip}
+            scatterPlot={scatterPlot} />
+          <Data />
         </div>
       </div>
     );
