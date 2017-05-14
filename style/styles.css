@@ -89,9 +89,8 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   color: lightgrey;
-  text-align: center;
   border: 1px solid purple;
   border-radius: 5px;
 }
@@ -145,4 +144,11 @@ html, body {
 
 .show {
   display: block;
+}
+
+/* Styling For Attribute Panel Buttons*/
+
+.attr-input {
+  margin-top: 5px;
+  display: flex;
 }
