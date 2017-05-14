@@ -36,7 +36,8 @@ class AttributesPanel extends Component {
             margin={margin}
             width={width}
             height={height}
-            responsiveResize={responsiveResize} />
+            responsiveResize={responsiveResize}
+            />
           <Axes axes={axes} />
           <GridLines gridLines={gridLines} />
           <RegressionLine regressionLine={regressionLine} />
