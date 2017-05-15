@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+// import { updateWidth } from '../../../actions/ScatterPlotActions'
 
 export default class Dimensions extends Component {
   constructor(props){
     super(props);
     this.state={};
 
+    this.controlWidth = this.props.controlWidth;
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.updateWidth = this.updateWidth.bind(this);
     this.updateHeight = this.updateHeight.bind(this);
@@ -13,7 +15,9 @@ export default class Dimensions extends Component {
     this.update_right = this.update_right.bind(this);
     this.update_left = this.update_left.bind(this);
     this.updateResponsive = this.updateResponsive.bind(this);
+    // this.controlWidth = props.controlWidth.bind(this);
   }
+  
   updateWidth(e){
     this.setState({
       width: parseInt(e.target.value)
@@ -56,14 +60,14 @@ export default class Dimensions extends Component {
     })
   }
    handleFormSubmit(e){
-    console.log('--inside handle submit')
+    console.log('--inside handleFormSubmit')
     e.preventDefault();
-    console.log('---the new state', this.state)
+    console.log('---the new state, view component', this.state)
+    this.controlWidth(this.state.width);
     // we can set 
   }
 
   render(){
-
     const margin = Object.keys(this.props.margin).map((attr, i) => {
       let func = 'update_'+ attr;
       return <div className="form-group" key={i}>

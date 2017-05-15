@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getScatterPlot } from '../actions/ScatterPlotActions';
+import { getScatterPlot, updateWidth } from '../actions/ScatterPlotActions';
 import { ScatterPlotReducer } from '../reducers/index';
 import Dimensions from '../components/attributes/scatter-plot/Dimensions';
 import Axes from '../components/attributes/scatter-plot/Axes';
@@ -14,7 +14,6 @@ class AttributesPanel extends Component {
   render() {
     // State from ScatterPlotReducer
     const ScatterPlotObj = this.props.ScatterPlotReducer;
-    console.log('Scatter', ScatterPlotObj);
     // Attributes For Scatter Plot
     const margin = ScatterPlotObj.margin;
     const width = ScatterPlotObj.width;
@@ -36,6 +35,7 @@ class AttributesPanel extends Component {
             width={width}
             height={height}
             responsiveResize={responsiveResize}
+            controlWidth={this.props.updateWidth}
             />
           <Axes axes={axes} />
           <LocalAttributes
@@ -55,7 +55,22 @@ function mapStateToProps({ ScatterPlotReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getScatterPlot }, dispatch);
+  return bindActionCreators({ getScatterPlot, updateWidth }, dispatch);
 }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(Object.assign({}, getScatterPlot, updateWidth), dispatch)
+//   }
+// }
+
+//example from react-redux api
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(Object.assign({}, todoActionCreators, counterActionCreators), dispatch)
+//   }
+// }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);
