@@ -14,6 +14,10 @@ class Header extends Component {
     document.getElementById("template-menu").classList.toggle("show");
   }
 
+  // testfunc(){
+  //   console.log('---------checking if we can call two functions onclick')
+  // }
+
   render() {
     return (
       <header className="toolbar toolbar-header">

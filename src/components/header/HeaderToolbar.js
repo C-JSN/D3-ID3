@@ -6,6 +6,7 @@ export default (props) => {
   const toggleDropDown = props.toggleDropDown;
   const getScatterPlotAction = props.getScatterPlotAction;
   const getD3ParserObj = props.getD3ParserObj;
+  // const testfunc = props.testfunc;
 
   window.onclick = function(event) {
     if (!event.target.matches('.btn-dropdown')) {

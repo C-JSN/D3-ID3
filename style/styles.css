@@ -89,11 +89,11 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /*align-items: right;*/
   color: lightgrey;
-  text-align: center;
   border: 1px solid purple;
   border-radius: 5px;
+  overflow-y: scroll;
 }
 
 .panel-headers {
@@ -145,4 +145,21 @@ html, body {
 
 .show {
   display: block;
+}
+
+/* Styling For Attribute Panel Buttons*/
+
+.attr-input {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/*.dimensions-display {
+  display: inline-table;
+}*/
+
+.input-group {
+  display: flex;
 }
