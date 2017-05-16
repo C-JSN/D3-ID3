@@ -23,16 +23,16 @@ class AttributesPanel extends Component {
     // State from ScatterPlotReducer
     const ScatterPlotObj = this.props.ScatterPlotReducer;
     // Attributes For Scatter Plot
-    // const margin = ScatterPlotObj.margin;
-    // const width = ScatterPlotObj.width;
-    // const height = ScatterPlotObj.height;
-    // const responsiveResize = ScatterPlotObj.responsiveResize;
-    // const axes = ScatterPlotObj.axes;
-    // const gridLines = ScatterPlotObj.gridLines;
-    // const regressionLine = ScatterPlotObj.regressionLine;
-    // const toolTip = ScatterPlotObj.toolTip;
-    // const scatterPlot = ScatterPlotObj.scatterPlot;
-    // const data = ScatterPlotObj.data;
+    const margin = ScatterPlotObj.margin;
+    const width = ScatterPlotObj.width;
+    const height = ScatterPlotObj.height;
+    const responsiveResize = ScatterPlotObj.responsiveResize;
+    const axes = ScatterPlotObj.axes;
+    const gridLines = ScatterPlotObj.gridLines;
+    const regressionLine = ScatterPlotObj.regressionLine;
+    const toolTip = ScatterPlotObj.toolTip;
+    const scatterPlot = ScatterPlotObj.scatterPlot;
+    const data = ScatterPlotObj.data;
 
     const D3ParserObj = this.props.D3ParserReducer;
 
@@ -47,7 +47,7 @@ class AttributesPanel extends Component {
       return (
         <div className="pane-one-fourth">
           <div id="attr-panel">
-            <h4>D3 Parsed</h4>
+            <h4>D3 Parser</h4>
             <form onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
               {attrList}
               <input type="submit" />
