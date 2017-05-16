@@ -24,42 +24,64 @@ class ToolTip extends Component {
   render() {
     let toolTipDisplay = <div id="tooltip-display"></div>
 
-    if (this.state.checkbox) {
-      toolTipDisplay = <div id="tooltip-display">
-                  <div className="attr-input">
+    const text = <div className="input-container">
                     <label>
                       Text:
                       <input type="text" className="form-control"></input>
                     </label>
-                  </div>
-                  <h6>Border</h6>
-                  <div className="attr-input">
+                 </div>
+
+    const width = <div className="input-container">
                     <label>
                       Width:
                       <input type="number" className="form-control"></input>
                     </label>
-                    Style:
-                    <select className="form-control select-input">
-                      <option>dotted</option>
-                      <option>dashed</option>
-                      <option>solid</option>
-                      <option>groove</option>
-                      <option>ridge</option>
-                      <option>inset</option>
-                      <option>outset</option>
-                      <option>none</option>
-                      <option>hidden</option>
-                    </select>
                   </div>
-                  <div className="attr-input">
+
+    const borderStyles = <div className="input-container">
+                          <label>
+                            Style:
+                            <select className="form-control select-input">
+                               <option>dotted</option>
+                               <option>dashed</option>
+                               <option>solid</option>
+                               <option>groove</option>
+                               <option>ridge</option>
+                               <option>inset</option>
+                               <option>outset</option>
+                               <option>none</option>
+                               <option>hidden</option>
+                            </select>
+                          </label>
+                        </div>
+
+    const color = <div className="input-container">
                     <label>
                       Color:
-                      <input className="form-control"></input>
+                      <input type="text" className="form-control"></input>
                     </label>
+                  </div>
+
+    const padding= <div className="input-container">
                     <label>
-                      Padding:
-                      <input className="form-control"></input>
+                      Color:
+                      <input type="number" className="form-control"></input>
                     </label>
+                  </div>
+
+    if (this.state.checkbox) {
+      toolTipDisplay = <div id="tooltip-display">
+                  <div className="input-group">
+                    {text}
+                  </div>
+                  <h6 className="panel-headers">Border</h6>
+                  <div className="input-group">
+                    {width}
+                    {borderStyles}
+                  </div>
+                  <div className="input-group">
+                    {color}
+                    {padding}
                   </div>
                   <hr></hr>
                 </div>
