@@ -89,10 +89,11 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  /*align-items: right;*/
   color: lightgrey;
   border: 1px solid purple;
   border-radius: 5px;
+  overflow-y: scroll;
 }
 
 .panel-headers {
