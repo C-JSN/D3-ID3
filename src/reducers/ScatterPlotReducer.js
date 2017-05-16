@@ -1,18 +1,7 @@
 import { SCATTER_PLOT } from '../actions/ScatterPlotActions';
 import ScatterPlotObject from '../templates/ScatterPlotObject';
 
-const initialState = {
-  margin: {},
-  width: null,
-  height: null,
-  responsiveResize: null,
-  axes: {},
-  gridLines: {},
-  regressionLine: {},
-  toolTip: {},
-  scatterPlot: {},
-  data: []
-}
+const initialState = [];
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

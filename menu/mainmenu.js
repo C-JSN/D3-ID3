@@ -200,7 +200,7 @@ const template = [
     //     role: 'front'
     //   }
     // ]
-  }
+  // }
 
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
