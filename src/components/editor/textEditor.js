@@ -40,7 +40,7 @@ export default class TextEditor extends Component {
         value: [
 					'//code here'
 				].join('\n'),
-        language: 'javascript',
+        language: 'html',
         theme: "vs-dark",
         wrappingColumn: 0,
         scrollBeyondLastLine: false,
@@ -54,7 +54,7 @@ export default class TextEditor extends Component {
       // import files into text-editor
       let importBtn = document.getElementById('import-btn');
       let fileUpLoadBtn = document.getElementById('upload-file');
-      fileUpLoadBtn.setAttribute("accept", ".html,.csv,.tsv");
+      fileUpLoadBtn.setAttribute("accept", ".html,.csv,.tsv,.js,.txt");
 
       function openFile() {
         fileUpLoadBtn.click();
@@ -64,8 +64,9 @@ export default class TextEditor extends Component {
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = function(event) {
+
           editor.setValue(event.target.result)
-          // console.log(window.editor.setValue());
+
         };
         reader.readAsText(file);
       })
@@ -73,6 +74,7 @@ export default class TextEditor extends Component {
       importBtn.addEventListener('click', (event) => {
         openFile();
       });
+
 
       // setInterval(function(){
       //   fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
@@ -86,20 +88,41 @@ export default class TextEditor extends Component {
       //   webview.reload();
       // }, 300);
 
-      document.getElementById("editor").onkeyup = () => {
-        fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
-          if (err) throw err;
-          console.log('The file has been saved!');
-        })
-      }
 
-      document.getElementById("editor").addEventListener('keypress', function(event) {
+      // document.getElementById("editor").onkeyup = () => {
+
+      //   fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), startHtml + editor.getValue() + endHtml, (err) => {
+
+      //   // fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
+
+      //     if (err) throw err;
+      //     console.log('The file has been saved!');
+      //   })
+      // }
+
+      window.addEventListener('keypress', function(event) {
         if (event.ctrlKey && event.which === 19) {
-          // console.log('webview reloaded!')
+            fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
+            if (err) throw err;
+            console.log('The file has been saved!');
+          })
           const webview = document.querySelector('webview')
           webview.reload();
         }
       })
+      
+      let scatterPlot_button = document.querySelector('#scatter-plot');
+      scatterPlot_button.addEventListener('click', function(e){
+        console.log('---ok you are calling a second method on click')
+        var scatterPlot_code = fs.readFileSync(path.resolve(__dirname, 'src/templates/ScatterPlot.html'), 'utf8');
+        editor.setValue(scatterPlot_code);
+        fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
+            if (err) throw err;
+          })
+        document.querySelector('webview').reload();
+
+      });
+
     });
   }
 
@@ -112,3 +135,6 @@ export default class TextEditor extends Component {
     );
   }
 }
+
+
+

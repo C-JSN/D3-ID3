@@ -78,13 +78,21 @@ class Dimensions extends Component {
 
   // Action Handlers
    handleFormSubmit(e){
-    console.log('--inside handleFormSubmit')
+    // console.log('--inside handleFormSubmit')
+    // e.preventDefault();
+    // if(e.which === 13){
+    // this.controlWidth(this.state.width);
+    // }
+    
+  console.log('--inside handleFormSubmit')
     e.preventDefault();
     if (e.which === 13) {
       console.log('---the new state, view component', this.state)
       this.controlWidth(this.state.width);
       // we can set
     }
+    this.controlWidth(this.state.width);
+
   }
 
   render(){
