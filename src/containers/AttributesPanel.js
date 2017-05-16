@@ -25,11 +25,10 @@ class AttributesPanel extends Component {
     const toolTip = ScatterPlotObj.toolTip;
     const scatterPlot = ScatterPlotObj.scatterPlot;
     const data = ScatterPlotObj.data;
-    
+
     return(
       <div className="pane-one-fourth">
         <div id="attr-panel">
-          <h4>Scatter Plot</h4>
           <Dimensions
             margin={margin}
             width={width}
