@@ -152,4 +152,14 @@ html, body {
 .attr-input {
   margin-top: 5px;
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/*.dimensions-display {
+  display: inline-table;
+}*/
+
+.input-group {
+  display: flex;
 }

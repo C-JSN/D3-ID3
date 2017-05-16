@@ -584,11 +584,10 @@ input[type="checkbox"] {
 }
 
 .form-control {
-  display: inline-block;
+  color: black;
+  display: list-item;
   width: 50%;
-  height: 90%;
   min-height: 25px;
-  margin-left: 5px;
   padding: 0px 5px;
   font-size: 13px;
   line-height: 1.6;

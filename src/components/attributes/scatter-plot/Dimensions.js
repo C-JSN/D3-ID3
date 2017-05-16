@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 // import { updateWidth } from '../../../actions/ScatterPlotActions'
 
 class Dimensions extends Component {
@@ -10,7 +11,6 @@ class Dimensions extends Component {
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
     this.controlWidth = this.props.controlWidth;
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.updateWidth = this.updateWidth.bind(this);
@@ -22,9 +22,6 @@ class Dimensions extends Component {
     this.updateResponsive = this.updateResponsive.bind(this);
     // this.controlWidth = props.controlWidth.bind(this);
   }
-<<<<<<< HEAD
-
-=======
 
   onSubmit(event) {
     event.preventDefault();
@@ -36,10 +33,10 @@ class Dimensions extends Component {
     });
   }
 
->>>>>>> workbranch
   updateWidth(e){
+    e.preventDefault();
     this.setState({
-      width: parseInt(e.target.value)
+      width: parseInt(e.target.value) || ''
     })
   }
   updateHeight(e){
@@ -78,16 +75,19 @@ class Dimensions extends Component {
       responsiveSize: e.target.checked
     })
   }
+
+  // Action Handlers
    handleFormSubmit(e){
     console.log('--inside handleFormSubmit')
     e.preventDefault();
-    console.log('---the new state, view component', this.state)
-    this.controlWidth(this.state.width);
-    // we can set
+    if (e.which === 13) {
+      console.log('---the new state, view component', this.state)
+      this.controlWidth(this.state.width);
+      // we can set
+    }
   }
 
   render(){
-
     // const margin = Object.keys(this.props.margin).map((attr, i) => {
     //   let func = 'update_'+ attr;
     //   return <div className="form-group" key={i}>
@@ -100,55 +100,57 @@ class Dimensions extends Component {
 
     const top = <label>
                   Top:
-                  <input type="text" className="form-control width-input" onChange={this.updateWidth} ></input>
+                  <input type="number" className="form-control width-input" onChange={this.update_top} />
                 </label>
 
     const right = <label>
                   Right:
-                  <input type="text" className="form-control width-input" onChange={this.updateWidth} ></input>
+                  <input type="number" className="form-control width-input" onChange={this.update_right} />
                 </label>
 
     const bottom = <label>
                   Bottom:
-                  <input type="text" className="form-control width-input" onChange={this.updateWidth} ></input>
+                  <input type="number" className="form-control width-input" onChange={this.update_bottom} />
                 </label>
 
     const left = <label>
                   Left:
-                  <input type="text" className="form-control width-input" onChange={this.updateWidth} ></input>
+                  <input type="number" className="form-control width-input" onChange={this.update_left} />
                 </label>
 
     const width = <label>
                   Width:
-                  <input type="text" className="form-control width-input" onChange={this.updateWidth} ></input>
+                  <input type="number" className="form-control width-input" onChange={this.updateWidth} />
                 </label>
 
     const height = <label>
                   Height:
-                  <input type="text" className="form-control height-input" onChange={this.updateHeight}></input>
+                  <input type="number" className="form-control height-input" onChange={this.updateHeight} />
                 </label>
     const responsiveSize = <div className="checkbox">
                 <label>
                   {/* this checkbox will still need it's own handler */}
-                  <input type="checkbox"></input>
+                  <input type="checkbox" />
                   Responsive Resize
                 </label>
             </div>
 
     if (this.state.checkbox) {
       dimensionsDisplay = <div className="dimensions-display">
-        <div className="attr-input">
-          {width}
-          {height}
+        <div className="input-group">
+            {width}
+            {height}
         </div>
         <h6 className="panel-headers">Margin</h6>
-        <div className ="attr-input">
-          {top}
-          {right}
-        </div>
-        <div className ="attr-input">
-          {bottom}
-          {left}
+        <div className="input-group">
+          <div className ="attr-input">
+            {top}
+            {right}
+          </div>
+          <div className ="attr-input">
+            {bottom}
+            {left}
+          </div>
         </div>
         {responsiveSize}
           <hr></hr>
@@ -159,12 +161,14 @@ class Dimensions extends Component {
         <div className="checkbox">
           <form onSubmit={this.onSubmit}>
             <label>
-              <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}></input>
+              <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}/>
               SVG Dimensions
             </label>
           </form>
         </div>
-        {dimensionsDisplay}
+        <form onKeyUp={this.handleFormSubmit}>
+          {dimensionsDisplay}
+        </form>
       </div>
     );
   }
