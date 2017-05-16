@@ -110,7 +110,7 @@ export default class TextEditor extends Component {
           webview.reload();
         }
       })
-      
+
       let scatterPlot_button = document.querySelector('#scatter-plot');
       scatterPlot_button.addEventListener('click', function(e){
         console.log('---ok you are calling a second method on click')
@@ -129,12 +129,9 @@ export default class TextEditor extends Component {
   render() {
     return (
       <div className="pane">
-        <div id="editor"></div>
         <webview id="render-window" src={this.state.url}></webview>
+        <div id="editor"></div>
       </div>
     );
   }
 }
-
-
-

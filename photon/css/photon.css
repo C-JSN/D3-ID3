@@ -565,7 +565,8 @@ h6 {
 }
 
 label {
-  display: inline-block;
+  display: flex;
+  /*display: inline-block;*/
   font-size: 13px;
   margin: 0px;
   white-space: nowrap;
@@ -585,8 +586,10 @@ input[type="checkbox"] {
 
 .form-control {
   color: black;
-  display: list-item;
-  width: 50%;
+  /*display: list-item;*/
+  display: flex;
+  width: 50px;
+  margin-left: 5px;
   min-height: 25px;
   padding: 0px 5px;
   font-size: 13px;
@@ -668,7 +671,7 @@ textarea {
 }
 
 .pane-one-fourth {
-  width: 25%;
+  width: 315px;
   padding: 10px;
   flex: none;
   background-color: #31373B;

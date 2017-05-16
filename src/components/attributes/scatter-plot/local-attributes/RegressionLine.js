@@ -23,17 +23,25 @@ class RegressionLine extends Component {
   render() {
     let regressionLineDisplay = <div id="regressionline-display"></div>
 
+    const width = <div className="input-container">
+                    <label>
+                      Width:
+                      <input type="number" className="form-control"></input>
+                    </label>
+                  </div>
+
+    const color = <div className="input-container">
+                    <label>
+                      Color:
+                      <input type="text" className="form-control"></input>
+                    </label>
+                  </div>
+
     if (this.state.checkbox) {
       regressionLineDisplay = <div id="regressionline-display">
-                <div className="attr-input">
-                  <label>
-                    Width:
-                    <input type="number" className="form-control"></input>
-                  </label>
-                  <label>
-                    Color:
-                    <input type="text" className="form-control"></input>
-                  </label>
+                <div className="input-group">
+                  {width}
+                  {color}
                 </div>
                 <hr></hr>
               </div>
