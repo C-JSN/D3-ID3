@@ -1,9 +1,11 @@
 import React from 'react';
 import ScatterPlotObject from '../../templates/ScatterPlotObject';
+//import d3ParserObj from '../../d3ParserObj';
 
 export default (props) => {
   const toggleDropDown = props.toggleDropDown;
   const getScatterPlotAction = props.getScatterPlotAction;
+  const getD3ParserObj = props.getD3ParserObj;
   // const testfunc = props.testfunc;
 
   window.onclick = function(event) {
@@ -64,6 +66,10 @@ export default (props) => {
             </p>
           </div>
         </div>
+          <button className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
+              <span className="icon icon-chart-line icon-text"></span>
+              D3 Parser
+          </button>
       </div>
 
       <div className="btn-group pull-right">

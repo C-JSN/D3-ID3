@@ -3,7 +3,8 @@ import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getScatterPlot } from '../actions/ScatterPlotActions';
-import { ScatterPlotReducer } from '../reducers/index';
+import { getD3ParserObj } from '../actions/D3ParserActions';
+import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import HeaderToolbar from '../components/header/HeaderToolbar';
 
 class Header extends Component {
@@ -21,18 +22,18 @@ class Header extends Component {
     return (
       <header className="toolbar toolbar-header">
         <h1 className="title">Project Name</h1>
-        <HeaderToolbar getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown}/>
+        <HeaderToolbar getD3ParserObj={this.props.getD3ParserObj} getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown} />
       </header>
     );
   }
 }
 
-function mapStateToProps({ ScatterPlotReducer }) {
-  return { ScatterPlotReducer }
+function mapStateToProps({ ScatterPlotReducer, D3ParserReducer }) {
+  return { ScatterPlotReducer, D3ParserReducer }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getScatterPlot }, dispatch);
+  return bindActionCreators({ getScatterPlot, getD3ParserObj }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
