@@ -3,9 +3,9 @@ import ScatterPlotObject from '../templates/ScatterPlotObject';
 
 const initialState = {
   margin: {},
-  width: null,
-  height: null,
-  responsiveResize: null,
+  width: '',
+  height: '',
+  responsiveResize: '',
   axes: {},
   gridLines: {},
   regressionLine: {},
@@ -15,9 +15,11 @@ const initialState = {
 }
 
 export default function reducer(state = initialState, action) {
-   console.log('REDUCER CALLED!, check the width',action.width);
+  // console.log('action in reducer', action);
+  //  console.log('REDUCER CALLED!, check the width',action.payload);
   switch (action.type) {
     case SCATTER_PLOT:
+    // console.log('inside action', action.payload);
       // return state;
       return action.payload;
       // return {...state, payload: action.payload}

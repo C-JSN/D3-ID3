@@ -118,7 +118,7 @@ export default class Axes extends Component {
         </label>
       </div>
     </div>
-    
+
     const yAxis = <div className="y-axis-display">
       <div className="attr-input">
         <label>
@@ -145,10 +145,16 @@ export default class Axes extends Component {
     if (this.state.checkbox) {
       axesDisplay = <div className="axes-display">
         <form onSubmit={this.handleFormSubmit} >
-          <h6 className="panel-headers">X-Axis</h6>
-          {xAxis}
-          <h6 className="panel-headers">Y-Axis</h6>
-          {yAxis}
+          <div className="input-group">
+            <div>
+              <h6 className="panel-headers">X-Axis</h6>
+              {xAxis}
+            </div>
+            <div>
+              <h6 className="panel-headers">Y-Axis</h6>
+              {yAxis}
+            </div>
+          </div>
         </form>
         <hr></hr>
       </div>
