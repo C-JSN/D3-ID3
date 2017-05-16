@@ -60,11 +60,15 @@ export default class Dimensions extends Component {
     })
   }
    handleFormSubmit(e){
-    console.log('--inside handleFormSubmit')
+    // console.log('--inside handleFormSubmit')
+    // e.preventDefault();
+    // if(e.which === 13){
+    // this.controlWidth(this.state.width);
+    // }
+    
+  console.log('--inside handleFormSubmit')
     e.preventDefault();
-    console.log('---the new state, view component', this.state)
     this.controlWidth(this.state.width);
-    // we can set 
   }
 
   render(){
