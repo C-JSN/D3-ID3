@@ -24,32 +24,34 @@ class GridLines extends Component {
   render() {
     let gridLineDisplay = <div id="gridline-display"></div>
 
+    const width = <div className="input-container">
+                    <label>
+                      Width:
+                      <input type="number" className="form-control"></input>
+                    </label>
+                  </div>
+
+    const color = <div className="input-container">
+                    <label>
+                      Color:
+                      <input  type="text" className="form-control"></input>
+                    </label>
+                  </div>
+
     if (this.state.checkbox) {
       gridLineDisplay = <div id="gridline-display">
-                <h6>X-GridLines</h6>
-                <div className="attr-input">
-                  <label>
-                    Width:
-                    <input type="number" className="form-control"></input>
-                  </label>
-                  <label>
-                    Color:
-                    <input  type="text" className="form-control"></input>
-                  </label>
-                </div>
-                <h6>Y-Gridlines</h6>
-                <div className="attr-input">
-                  <label>
-                    Width:
-                    <input type="number" className="form-control"></input>
-                  </label>
-                  <label>
-                    Color:
-                    <input type="text" className="form-control"></input>
-                  </label>
-                </div>
-                <hr></hr>
-              </div>
+                          <h6 className="panel-headers">X-GridLines</h6>
+                          <div className="input-group">
+                            {width}
+                            {color}
+                          </div>
+                          <h6 className="panel-headers">Y-Gridlines</h6>
+                          <div className="input-group">
+                            {width}
+                            {color}
+                          </div>
+                          <hr></hr>
+                        </div>
     }
     return(
       <div className="gridlines-container">
