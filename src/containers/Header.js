@@ -13,11 +13,15 @@ class Header extends Component {
     document.getElementById("template-menu").classList.toggle("show");
   }
 
+  // testfunc(){
+  //   console.log('---------checking if we can call two functions onclick')
+  // }
+
   render() {
     return (
       <header className="toolbar toolbar-header">
         <h1 className="title">Project Name</h1>
-        <HeaderToolbar getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown} />
+        <HeaderToolbar getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown}/>
       </header>
     );
   }

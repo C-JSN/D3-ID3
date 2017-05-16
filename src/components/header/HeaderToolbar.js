@@ -4,6 +4,7 @@ import ScatterPlotObject from '../../templates/ScatterPlotObject';
 export default (props) => {
   const toggleDropDown = props.toggleDropDown;
   const getScatterPlotAction = props.getScatterPlotAction;
+  // const testfunc = props.testfunc;
 
   window.onclick = function(event) {
     if (!event.target.matches('.btn-dropdown')) {

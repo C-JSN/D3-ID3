@@ -15,8 +15,7 @@ const initialState = {
 }
 
 export default function reducer(state = initialState, action) {
-  // console.log('action in reducer', action);
-  //  console.log('REDUCER CALLED!, check the width',action.payload);
+
   switch (action.type) {
     case SCATTER_PLOT:
     // console.log('inside action', action.payload);
