@@ -32,16 +32,12 @@ export default (props) => {
         <button className="btn btn-default" id="import-btn">
           <input type="file" id="upload-file" hidden></input>
           <span className="icon icon-download icon-text"></span>
-          Import
+          Upload D3
         </button>
         <a className="btn btn-default" id="export-btn">
           <span className="icon icon-upload icon-text"></span>
           Export
         </a>
-        <button className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
-          <span className="icon icon-login icon-text"></span>
-          D3 Parser
-        </button>
         <div className="dropdown">
           <button className="btn btn-default btn-dropdown" onClick={toggleDropDown}>
             <span className="icon icon-layout icon-text"></span>
@@ -73,6 +69,10 @@ export default (props) => {
       </div>
 
       <div className="btn-group pull-right">
+        <button className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
+          <span className="icon icon-login icon-text"></span>
+          Generate Attr
+        </button>
         <button className="btn btn-default">
           <span className="icon icon-database icon-text"></span>
           Data Management
