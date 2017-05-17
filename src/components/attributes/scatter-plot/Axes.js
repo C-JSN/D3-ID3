@@ -94,7 +94,7 @@ export default class Axes extends Component {
     //           </div>
     //   })
 
-    let axesDisplay = <div className="axes-display"></div>
+    let axesDisplay = <div className="attr-display"></div>
     const name = <div className="input-container">
                     <label>
                       Name:
@@ -140,28 +140,29 @@ export default class Axes extends Component {
     </div>
 
     if (this.state.checkbox) {
-      axesDisplay = <div className="axes-display">
+      axesDisplay = <div className="attr-display">
         <form onSubmit={this.handleFormSubmit} >
           <h6 className="panel-headers">X-Axis</h6>
           {xAxis}
           <h6 className="panel-headers">Y-Axis</h6>
           {yAxis}
         </form>
-        <hr></hr>
       </div>
     }
 
 
     return(
-      <div className="axes-container">
-        <div className="checkbox">
-          <form onSubmit={this.onSubmit}>
-            <label>
-              <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}></input>
-              Axes
-            </label>
-          </form>
-        </div>
+      <div className="attr-container">
+        <header className="toolbar toolbar-header attr-header">
+          <div className="checkbox">
+            <form onSubmit={this.onSubmit}>
+              <label>
+                <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}/>
+                Axes
+              </label>
+            </form>
+          </div>
+        </header>
         {axesDisplay}
       </div>
     );
