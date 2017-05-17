@@ -14,7 +14,7 @@ import { editor } from '../components/editor/textEditor';
 import fs from 'fs';
 
 class AttributesPanel extends Component {
-  
+
   handleSubmit(e, obj) {
     e.preventDefault();
     let d3string = JSON.stringify(obj, null, '\t')
@@ -59,7 +59,10 @@ class AttributesPanel extends Component {
       return (
         <div className="pane-one-fourth">
           <div id="attr-panel">
-            <h4>D3 Parser</h4>
+            <header className="toolbar toolbar-header attr-main-header">
+              <span className="icon icon-login attr-main-icon"></span>
+              <h1 className="title main-header">D3 Parser</h1>
+            </header>
             <form id="attrForm" onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
               {attrList}
               <input type="submit" />

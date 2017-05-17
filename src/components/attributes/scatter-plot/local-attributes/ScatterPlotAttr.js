@@ -22,7 +22,7 @@ class Points extends Component {
   }
 
   render() {
-    let points = <div className="points-display"></div>
+    let points = <div className="attr-display"></div>
 
     const radius = <div className="input-container">
                       <label>
@@ -46,7 +46,7 @@ class Points extends Component {
                   </div>
 
     if (this.state.checkbox) {
-      points = <div className="points-display">
+      points = <div className="attr-display">
         <div className="input-group">
           {radius}
           {color}
@@ -63,15 +63,17 @@ class Points extends Component {
     }
 
     return(
-      <div className="scatterplot-attr-container">
-        <div className="checkbox">
-          <form onSubmit={this.onSubmit}>
-            <label>
-              <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}></input>
-              Points
-            </label>
-          </form>
-        </div>
+      <div className="attr-container">
+        <header className="toolbar toolbar-header attr-header">
+          <div className="checkbox">
+            <form onSubmit={this.onSubmit}>
+              <label>
+                <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}/>
+                Points
+              </label>
+            </form>
+          </div>
+        </header>
         {points}
       </div>
     );

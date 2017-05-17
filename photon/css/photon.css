@@ -347,18 +347,18 @@ h6 {
 }
 
 .btn-default {
-  color: #333;
-  border-top-color: #c2c0c2;
-  border-right-color: #c2c0c2;
-  border-bottom-color: #a19fa1;
-  border-left-color: #c2c0c2;
-  background-color: #fcfcfc;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcfcfc), color-stop(100%, #f1f1f1));
-  background-image: -webkit-linear-gradient(top, #fcfcfc 0%, #f1f1f1 100%);
-  background-image: linear-gradient(to bottom, #fcfcfc 0%, #f1f1f1 100%);
+  color: #9C7FF5;
+  border-top-color: #31373b;
+  border-right-color: #31373b;
+  border-bottom-color: #2e3038;
+  border-left-color: #31373b;
+  background-color: #737475;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #737475), color-stop(100%, #737475));
+  background-image: -webkit-linear-gradient(top, #737475 0%, #2e3038 100%);
+  background-image: linear-gradient(to bottom, #737475 0%, #2e3038 100%);
 }
 .btn-default:active {
-  background-color: #ddd;
+  background-color: #737475;
   background-image: none;
 }
 
@@ -436,7 +436,7 @@ h6 {
   height: 14px;
   margin-top: 1px;
   margin-bottom: 1px;
-  color: #737475;
+  color: #ccc;
   font-size: 14px;
   line-height: 1;
 }
@@ -486,7 +486,7 @@ h6 {
   border-radius: 0;
 }
 .btn-group .btn + .btn {
-  border-left: 1px solid #c2c0c2;
+  border-left: 1px solid #39AE70;
 }
 .btn-group .btn + .btn.active {
   border-left: 0;
@@ -585,8 +585,7 @@ input[type="checkbox"] {
 }
 
 .form-control {
-  color: black;
-  /*display: list-item;*/
+  color: white;
   display: flex;
   width: 50px;
   margin-left: 5px;
@@ -594,15 +593,16 @@ input[type="checkbox"] {
   padding: 0px 5px;
   font-size: 13px;
   line-height: 1.6;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 0 #31373b;
+  background-color: #23272a;
+  border: 1px solid black;
   border-radius: 4px;
   outline: none;
 }
-.form-control:focus {
+/*.form-control:focus {
   border-color: #6db3fd;
   box-shadow: 3px 3px 0 #6db3fd, -3px -3px 0 #6db3fd, -3px 3px 0 #6db3fd, 3px -3px 0 #6db3fd;
-}
+}*/
 
 textarea {
   height: auto;
@@ -671,8 +671,8 @@ textarea {
 }
 
 .pane-one-fourth {
-  width: 315px;
-  padding: 10px;
+  width: 275px;
+  /*padding: 10px;*/
   flex: none;
   background-color: #31373B;
   border-left: 1px solid black;
