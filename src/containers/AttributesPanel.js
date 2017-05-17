@@ -9,14 +9,20 @@ import Dimensions from '../components/attributes/scatter-plot/Dimensions';
 import Axes from '../components/attributes/scatter-plot/Axes';
 import LocalAttributes from '../components/attributes/scatter-plot/LocalAttributes';
 import Data from '../components/attributes/scatter-plot/Data';
+import * as d3parser from '../d3-parser/d3parser';
+import { editor } from '../components/editor/textEditor';
 import fs from 'fs';
 
 class AttributesPanel extends Component {
   
   handleSubmit(e, obj) {
     e.preventDefault();
-    let string = JSON.stringify(obj, null, '\t')
-    fs.writeFileSync('./src/d3ParserObj.js', string);
+    let d3string = JSON.stringify(obj, null, '\t')
+    fs.writeFileSync('./src/d3ParserObj.js', d3string);
+    let htmlString = d3parser.reCode(JSON.parse(d3string));
+    fs.writeFileSync('./src/components/temp/temp.html', htmlString);
+    editor.setValue(htmlString);
+    document.querySelector('webview').reload();
   }
 
   render() {
@@ -41,14 +47,20 @@ class AttributesPanel extends Component {
     // }
 
     if (D3ParserObj.length > 0) {
-      const attrList = D3ParserObj.map((obj, i) => {
-        return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={[obj, i]} />
+      const attrObj = D3ParserObj.filter((el, i) => {
+        if (typeof el === 'object' && el.hasOwnProperty('args')) {
+          el.id = i;
+          return true;
+        }
+      });
+      const attrList = attrObj.map(obj => {
+        return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={obj} />
       });
       return (
         <div className="pane-one-fourth">
           <div id="attr-panel">
             <h4>D3 Parser</h4>
-            <form onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
+            <form id="attrForm" onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
               {attrList}
               <input type="submit" />
             </form>
