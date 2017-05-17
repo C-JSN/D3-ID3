@@ -34,14 +34,14 @@ export default (props) => {
           <span className="icon icon-download icon-text"></span>
           Import
         </button>
-        <button className="btn btn-default" id="export-btn">
+        <a className="btn btn-default" id="export-btn">
           <span className="icon icon-upload icon-text"></span>
           Export
-        </button>
-        <a className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
+        </a>
+        <button className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
           <span className="icon icon-login icon-text"></span>
           D3 Parser
-        </a>
+        </button>
         <div className="dropdown">
           <button className="btn btn-default btn-dropdown" onClick={toggleDropDown}>
             <span className="icon icon-layout icon-text"></span>
