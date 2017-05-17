@@ -17,9 +17,9 @@
     var graphContainer = document.getElementById('graphContainer');
     var svgContainer = d3.select("#graphContainer")
       .append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .style("border", "3px solid #736084");
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "3px solid #736084");
     var arc = d3.arc()
       .outerRadius(100)
       .innerRadius(50);
