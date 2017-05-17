@@ -21,7 +21,7 @@ class RegressionLine extends Component {
   }
 
   render() {
-    let regressionLineDisplay = <div id="regressionline-display"></div>
+    let regressionLineDisplay = <div className="attr-display"></div>
 
     const width = <div className="input-container">
                     <label>
@@ -38,25 +38,26 @@ class RegressionLine extends Component {
                   </div>
 
     if (this.state.checkbox) {
-      regressionLineDisplay = <div id="regressionline-display">
+      regressionLineDisplay = <div className="attr-display">
                 <div className="input-group">
                   {width}
                   {color}
                 </div>
-                <hr></hr>
               </div>
     }
 
     return(
-      <div className="regressionline-container">
-        <div className="checkbox">
-          <form onSubmit={this.onSubmit}>
-            <label>
-              <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}></input>
-              Regression Line
-            </label>
-          </form>
-        </div>
+      <div className="attr-container">
+        <header className="toolbar toolbar-header attr-header">
+          <div className="checkbox">
+            <form onSubmit={this.onSubmit}>
+              <label>
+                <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}/>
+                Regression Line
+              </label>
+            </form>
+          </div>
+        </header>
         {regressionLineDisplay}
       </div>
     );

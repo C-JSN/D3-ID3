@@ -22,7 +22,7 @@ class ToolTip extends Component {
 
 
   render() {
-    let toolTipDisplay = <div id="tooltip-display"></div>
+    let toolTipDisplay = <div className="attr-display"></div>
 
     const text = <div className="input-container">
                     <label>
@@ -70,7 +70,7 @@ class ToolTip extends Component {
                   </div>
 
     if (this.state.checkbox) {
-      toolTipDisplay = <div id="tooltip-display">
+      toolTipDisplay = <div className="attr-display">
                   <div className="input-group">
                     {text}
                   </div>
@@ -83,21 +83,22 @@ class ToolTip extends Component {
                     {color}
                     {padding}
                   </div>
-                  <hr></hr>
                 </div>
     }
 
     return(
-      <div className='tooltip-container'>
-        <form onSubmit={this.onSubmit}>
+      <div className='attr-container'>
+        <header className="toolbar toolbar-header attr-header">
           <div className="checkbox">
-            <label>
-              <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}></input>
-              Tool Tip
-            </label>
+            <form onSubmit={this.onSubmit}>
+              <label>
+                <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.checkbox}/>
+                Tool Tip
+              </label>
+            </form>
           </div>
-          {toolTipDisplay}
-        </form>
+        </header>
+        {toolTipDisplay}
       </div>
     );
   }
