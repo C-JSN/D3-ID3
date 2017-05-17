@@ -1,88 +1,5 @@
 [
-	"<!DOCTYPE html>\n<html>\n\n<head>\n  <meta charset=\"utf-8\">\n  <title>Pie Chart D3 v4</title>\n  <script src=\"https://d3js.org/d3.v4.min.js\"></script>\n</head>\n\n<body>\n  <div id=\"graphContainer\" style=\"background: white; height: 40vh;\"></div>\n  <script>\n    var data = [10, 20, 30, 20];\n    var width = 576;\n    var height = 320;\n    var color = d3",
-	{
-		"methodObject": "d3",
-		"d3MethodName": ".scaleOrdinal",
-		"name": "",
-		"type": "text",
-		"value": "d3.schemeCategory10",
-		"args": [
-			"d3.schemeCategory10"
-		],
-		"id": 1
-	},
-	{
-		"methodObject": "d3",
-		"methodEnd": true
-	},
-	"\n    var graphContainer = document.getElementById('graphContainer');\n    var svgContainer = d3",
-	{
-		"methodObject": "d3",
-		"d3MethodName": ".select",
-		"name": "",
-		"type": "text",
-		"value": "\"#graphContainer\"",
-		"args": [
-			"\"#graphContainer\""
-		],
-		"id": 4
-	},
-	"\n      ",
-	{
-		"methodObject": "d3.select(\"#graphContainer\")",
-		"d3MethodName": ".append",
-		"name": "",
-		"type": "text",
-		"value": "\"svg\"",
-		"args": [
-			"\"svg\""
-		],
-		"id": 6
-	},
-	"\n      ",
-	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
-		"d3MethodName": ".attr",
-		"name": "\"width\"",
-		"type": "text",
-		"value": " width",
-		"args": [
-			"\"width\"",
-			" width"
-		],
-		"id": 8
-	},
-	"\n      ",
-	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
-		"d3MethodName": ".attr",
-		"name": "\"height\"",
-		"type": "text",
-		"value": " height",
-		"args": [
-			"\"height\"",
-			" height"
-		],
-		"id": 10
-	},
-	"\n      ",
-	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
-		"d3MethodName": ".style",
-		"name": "\"border\"",
-		"type": "text",
-		"value": " \"3px solid #736084\"",
-		"args": [
-			"\"border\"",
-			" \"3px solid #736084\""
-		],
-		"id": 12
-	},
-	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
-		"methodEnd": true
-	},
-	"\n    var arc = d3",
+	"<!DOCTYPE html>\n<meta charset=\"utf-8\">\n<canvas width=\"960\" height=\"500\"></canvas>\n<script src=\"https://d3js.org/d3.v4.min.js\"></script>\n<script>\n\nvar canvas = document.querySelector(\"canvas\"),\n    context = canvas.getContext(\"2d\");\n\nvar width = canvas.width,\n    height = canvas.height,\n    radius = Math.min(width, height) / 2;\n\nvar colors = [\"#98abc5\", \"#8a89a6\", \"#7b6888\", \"#6b486b\", \"#a05d56\", \"#d0743c\", \"#ff8c00\"];\n\nvar arc = d3",
 	{
 		"methodObject": "d3",
 		"d3MethodName": ".arc",
@@ -91,124 +8,125 @@
 		"value": "",
 		"args": [
 			""
-		],
-		"id": 15
+		]
 	},
-	"\n      ",
+	"\n    ",
 	{
 		"methodObject": "d3.arc()",
 		"d3MethodName": ".outerRadius",
 		"name": "",
 		"type": "text",
-		"value": "100",
+		"value": "radius - 10",
 		"args": [
-			"100"
-		],
-		"id": 17
+			"radius - 10"
+		]
 	},
-	"\n      ",
+	"\n    ",
 	{
 		"methodObject": "d3.arc()",
 		"d3MethodName": ".innerRadius",
 		"name": "",
 		"type": "text",
-		"value": "20",
+		"value": "0",
 		"args": [
-			"50"
-		],
-		"id": 19
+			"0"
+		]
+	},
+	"\n    ",
+	{
+		"methodObject": "d3.arc()",
+		"d3MethodName": ".context",
+		"name": "",
+		"type": "text",
+		"value": "context",
+		"args": [
+			"context"
+		]
 	},
 	{
 		"methodObject": "d3.arc()",
 		"methodEnd": true
 	},
-	"\n    var group = svgContainer",
+	"\n\nvar labelArc = d3",
 	{
-		"methodObject": "svgContainer",
-		"d3MethodName": ".append",
+		"methodObject": "d3",
+		"d3MethodName": ".arc",
+		"name": "",
+		"type": "hidden",
+		"value": "",
+		"args": [
+			""
+		]
+	},
+	"\n    ",
+	{
+		"methodObject": "d3.arc()",
+		"d3MethodName": ".outerRadius",
 		"name": "",
 		"type": "text",
-		"value": "\"g\"",
+		"value": "radius - 40",
 		"args": [
-			"\"g\""
-		],
-		"id": 22
+			"radius - 40"
+		]
 	},
-	"\n      ",
+	"\n    ",
 	{
-		"methodObject": "svgContainer.append(\"g\")",
-		"d3MethodName": ".attr",
-		"name": "\"transform\"",
+		"methodObject": "d3.arc()",
+		"d3MethodName": ".innerRadius",
+		"name": "",
 		"type": "text",
-		"value": " \"translate(\" + 576 / 2 + \",\" + 320 / 2 + \")\"",
+		"value": "radius - 40",
 		"args": [
-			"\"transform\"",
-			" \"translate(\" + 576 / 2 + \",\" + 320 / 2 + \")\""
-		],
-		"id": 24
+			"radius - 40"
+		]
+	},
+	"\n    ",
+	{
+		"methodObject": "d3.arc()",
+		"d3MethodName": ".context",
+		"name": "",
+		"type": "text",
+		"value": "context",
+		"args": [
+			"context"
+		]
 	},
 	{
-		"methodObject": "svgContainer.append(\"g\")",
+		"methodObject": "d3.arc()",
 		"methodEnd": true
 	},
-	"\n    var arcs = d3",
+	"\n\nvar pie = d3",
 	{
 		"methodObject": "d3",
 		"d3MethodName": ".pie",
-		"name": ")",
-		"type": "text",
-		"value": "data",
+		"name": "",
+		"type": "hidden",
+		"value": "",
 		"args": [
-			"",
-			"data"
-		],
-		"id": 27
+			""
+		]
 	},
+	"\n    ",
 	{
 		"methodObject": "d3.pie()",
-		"methodEnd": true
-	},
-	"\n\n    arcs.forEach(function (d, i) {\n      group",
-	{
-		"methodObject": "group",
-		"d3MethodName": ".append",
+		"d3MethodName": ".sort",
 		"name": "",
 		"type": "text",
-		"value": "\"path\"",
+		"value": "null",
 		"args": [
-			"\"path\""
-		],
-		"id": 30
+			"null"
+		]
 	},
-	"\n        ",
+	"\n    ",
 	{
-		"methodObject": "group.append(\"path\")",
-		"d3MethodName": ".attr",
-		"name": "\"d\"",
+		"methodObject": "d3.pie()",
+		"d3MethodName": ".value",
+		"name": "",
 		"type": "text",
-		"value": " arc(d)",
+		"value": "function(d) { return d.population",
 		"args": [
-			"\"d\"",
-			" arc(d)"
-		],
-		"id": 32
+			"function(d) { return d.population"
+		]
 	},
-	"\n        ",
-	{
-		"methodObject": "group.append(\"path\")",
-		"d3MethodName": ".attr",
-		"name": "\"fill\"",
-		"type": "text",
-		"value": " color(i)",
-		"args": [
-			"\"fill\"",
-			" color(i)"
-		],
-		"id": 34
-	},
-	{
-		"methodObject": "group.append(\"path\")",
-		"methodEnd": true
-	},
-	"\n    })\n  </script>\n  <script src=\"d3parser.js\"></script>\n</body>\n\n</html>"
+	" });\n\ncontext.translate(width / 2, height / 2);\n\nvar data = [\n{age: '<5',\tpopulation: 2704659},\n{age: '5-13',\tpopulation: 4499890},\n{age: '14-17', population: 2159981},\n{age: '18-24', population: 3853788},\n{age: '25-44', population: 14106543},\n{age: '45-64', population: 8819342},\n{age: '≥65', population: 612463},\n];\n\n  var arcs = pie(data);\n\n  arcs.forEach(function(d, i) {\n    context.beginPath();\n    arc(d);\n    context.fillStyle = colors[i];\n    context.fill();\n  });\n\n  context.beginPath();\n  arcs.forEach(arc);\n  context.strokeStyle = \"#fff\";\n  context.stroke();\n\n  context.textAlign = \"center\";\n  context.textBaseline = \"middle\";\n  context.fillStyle = \"#000\";\n  arcs.forEach(function(d) {\n    var c = labelArc.centroid(d);\n    context.fillText(d.data.age, c[0], c[1]);\n  });\n\n</script>\n<script src=\"d3parser.js\"></script>"
 ]
