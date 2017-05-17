@@ -59,14 +59,30 @@ class AttributesPanel extends Component {
       return (
         <div className="pane-one-fourth">
           <div id="attr-panel">
-            <header className="toolbar toolbar-header attr-main-header">
-              <span className="icon icon-login attr-main-icon"></span>
-              <h1 className="title main-header">D3 Parser</h1>
+            <div>
+              <header className="toolbar toolbar-header attr-main-header">
+                <span className="icon icon-login attr-main-icon"></span>
+                <h1 className="title main-header">D3 Parser</h1>
+              </header>
+            </div>
+            <header className="toolbar toolbar-header attr-header">
+              <div className="d3legend">
+                <div className="legend-header">
+                  <span className="icon icon-stop icon-purple"></span>
+                  <h5 className="title method-object-legend">Method Object</h5>
+                </div>
+                <div className="legend-header">
+                  <span className="icon icon-stop icon-green"></span>
+                  <h5 className="title method-name-legend">Method Name</h5>
+                </div>
+              </div>
             </header>
-            <form id="attrForm" onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
-              {attrList}
-              <input type="submit" />
-            </form>
+            <div className="parsed-attr-container">
+              <form id="attrForm" onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
+                {attrList}
+                <button className="btn btn-default parser-submit-btn" type="submit">Submit</button>
+              </form>
+            </div>
           </div>
         </div>
       )

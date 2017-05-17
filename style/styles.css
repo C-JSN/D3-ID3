@@ -220,3 +220,72 @@ html, body {
 .input-container label {
   color: #8D8B8F;
 }
+
+/*.parsed-attr-container {
+  padding: 5px;
+}*/
+
+.d3legend {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.legend-header {
+  display: flex;
+  justify-content: center;
+}
+
+.d3legend h5 {
+  color: #8D8B8F;
+}
+
+.icon-purple {
+  color: #9C7FF5;
+  margin-right: 4px;
+}
+
+.icon-green {
+  color: #39AE70;
+  margin-right: 4px;
+}
+
+.parser-input {
+  width: auto;
+  margin: 5px 0 5px 0;
+  display: flex;
+  justify-content: center;
+  /*justify-content: flex-end;*/
+}
+
+.parsed-input {
+  width: fit-content;
+  margin: 0 5px 0 5px;
+}
+
+.parsed-header {
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  /*justify-content: flex-end;*/
+  flex-wrap: wrap;
+}
+
+.parsed-method-obj {
+  color: #9C7FF5;
+}
+
+.parsed-method-name {
+  color: #39AE70;
+}
+
+.parser-hr {
+  border-color: black;
+  margin-bottom: 0;
+}
+
+.parser-submit-btn {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+}
