@@ -348,15 +348,23 @@ h6 {
 
 .btn-default {
   color: #9C7FF5;
-  border-top-color: #31373b;
-  border-right-color: #31373b;
-  border-bottom-color: #2e3038;
-  border-left-color: #31373b;
-  background-color: #737475;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #737475), color-stop(100%, #737475));
-  background-image: -webkit-linear-gradient(top, #737475 0%, #2e3038 100%);
-  background-image: linear-gradient(to bottom, #737475 0%, #2e3038 100%);
+  border-top-color: #23272a;
+  border-right-color: #23272a;
+  border-bottom-color: black;
+  border-left-color: black;
+  background-color: #2e3438;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e3438), color-stop(100%, #23272a));
+  background-image: -webkit-linear-gradient(top, #2e3438 0%, #23272a 100%);
+  background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);
 }
+
+/*box-shadow: inset 0 1px 0 #31373b;
+background-color: #2e3438;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e3438), color-stop(100%, #23272a));
+background-image: -webkit-linear-gradient(top, #2e3438 0%, #23272a 100%);
+background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
+
+
 .btn-default:active {
   background-color: #737475;
   background-image: none;
@@ -486,7 +494,7 @@ h6 {
   border-radius: 0;
 }
 .btn-group .btn + .btn {
-  border-left: 1px solid #39AE70;
+  border-left: 1px solid black;
 }
 .btn-group .btn + .btn.active {
   border-left: 0;

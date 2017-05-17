@@ -39,7 +39,7 @@
 		],
 		"id": 6
 	},
-	"\n      ",
+	"\n        ",
 	{
 		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
 		"d3MethodName": ".attr",
@@ -52,7 +52,7 @@
 		],
 		"id": 8
 	},
-	"\n      ",
+	"\n        ",
 	{
 		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
 		"d3MethodName": ".attr",
@@ -65,7 +65,7 @@
 		],
 		"id": 10
 	},
-	"\n      ",
+	"\n        ",
 	{
 		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
 		"d3MethodName": ".style",
@@ -112,7 +112,7 @@
 		"d3MethodName": ".innerRadius",
 		"name": "",
 		"type": "text",
-		"value": "20",
+		"value": "50",
 		"args": [
 			"50"
 		],
@@ -210,5 +210,5 @@
 		"methodObject": "group.append(\"path\")",
 		"methodEnd": true
 	},
-	"\n    })\n  </script>\n  <script src=\"d3parser.js\"></script>\n</body>\n\n</html>"
+	"\n    })\n  </script>\n  <script src=\"d3parser.js\"></script>\n</body>\n\n</html>\n"
 ]
