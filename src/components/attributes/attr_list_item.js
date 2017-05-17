@@ -3,9 +3,9 @@ import React from 'react';
 const AttrListItem = ({info, updateValue}) => {
   return (
       <div>
-        {info[0].source}
+        {info.methodObject}
         <br/>
-        {info[0].method + '(' + info[0].name}<input type={info[0].type} value={info[0].value} onChange={(e) => updateValue(info[1], e.target.value)}></input>{')'}
+        {info.d3MethodName + '(' + info.name}<input type={info.type} value={info.value} onChange={(e) => updateValue(info.id, e.target.value)}></input>{')'}
       </div>
   );
 };

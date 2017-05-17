@@ -1,0 +1,18 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>D3 Parser Testing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.3.0/mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.3.0/mocha.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="http://chaijs.com/chai.js"></script>
+  <script src="./d3parser-test.js"></script>
+  <script src="./test.js"></script>
+  <script>
+    mocha.globals(); mocha.run();
+  </script>
+</body>
+</html>

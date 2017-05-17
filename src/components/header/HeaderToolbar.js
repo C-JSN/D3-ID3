@@ -34,10 +34,10 @@ export default (props) => {
           <span className="icon icon-download icon-text"></span>
           Import
         </button>
-        <button className="btn btn-default">
+        <a className="btn btn-default" id="export-btn">
           <span className="icon icon-upload icon-text"></span>
           Export
-        </button>
+        </a>
         <div className="dropdown">
           <button className="btn btn-default btn-dropdown" onClick={toggleDropDown}>
             <span className="icon icon-layout icon-text"></span>

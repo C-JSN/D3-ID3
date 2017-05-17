@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Header from '../containers/Header';
-import TextEditor from './editor/textEditor';
+import { TextEditor } from './editor/textEditor';
 import AttributesPanel from '../containers/AttributesPanel';
 import Footer from './footer/Footer';
 
