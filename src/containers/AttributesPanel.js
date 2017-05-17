@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getScatterPlot, updateWidth } from '../actions/ScatterPlotActions';
 import { getD3ParserObj, updateValue } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer} from '../reducers/index';
-import AttrListItem from '../components/attributes/attr_list_item';
+import AttrListItem from '../components/attributes/d3-parsed/AttrListItem';
 import Dimensions from '../components/attributes/scatter-plot/Dimensions';
 import Axes from '../components/attributes/scatter-plot/Axes';
 import LocalAttributes from '../components/attributes/scatter-plot/LocalAttributes';
@@ -64,6 +64,10 @@ class AttributesPanel extends Component {
           return true;
         }
       });
+
+      for (let i = 0; i < D3ParserObj.length; i += 1) {
+        console.log("each obj", D3ParserObj[i]);
+      }
       const attrList = attrObj.map(obj => {
         return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={obj} />
       });
