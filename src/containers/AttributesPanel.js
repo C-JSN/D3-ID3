@@ -12,7 +12,6 @@ import Data from '../components/attributes/scatter-plot/Data';
 import * as d3parser from '../d3-parser/d3parser';
 import { editor } from '../components/editor/textEditor';
 import fs from 'fs';
-let bool = false;
 
 class AttributesPanel extends Component {
 
