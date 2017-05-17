@@ -143,8 +143,8 @@ class TextEditor extends Component {
   render() {
     return (
       <div className="pane">
-        <div id="editor"></div>
         <webview id="render-window" src={this.state.url}></webview>
+        <div id="editor"></div>
       </div>
     );
   }

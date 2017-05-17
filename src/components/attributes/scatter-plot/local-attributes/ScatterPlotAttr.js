@@ -24,33 +24,41 @@ class Points extends Component {
   render() {
     let points = <div className="points-display"></div>
 
+    const radius = <div className="input-container">
+                      <label>
+                        Radius:
+                        <input type="number" className="form-control"></input>
+                      </label>
+                    </div>
+
+    const color = <div className="input-container">
+                      <label>
+                        Color:
+                        <input type="text" className="form-control"></input>
+                      </label>
+                    </div>
+
+    const pointDelay = <div className="input-container">
+                    <label>
+                      Delay:
+                      <input type="number" className="form-control"></input>
+                    </label>
+                  </div>
+
     if (this.state.checkbox) {
       points = <div className="points-display">
-        <div className="attr-input">
-          <label>
-            Radius:
-            <input className="form-control"></input>
-          </label>
-          <label>
-            Color:
-            <input className="form-control"></input>
-          </label>
+        <div className="input-group">
+          {radius}
+          {color}
         </div>
         <h6 className="panel-headers">Transitions & Animations</h6>
-        <div className="attr-input">
-          <label>
-            Radius:
-            <input type="number" className="form-control"></input>
-          </label>
-          <label>
-            Color:
-            <input type="text" className="form-control"></input>
-          </label>
+        <div className="input-group">
+          {radius}
+          {color}
         </div>
-        <label>
-          Entry Delay:
-          <input type="number" className="form-control"></input>
-        </label>
+        <div className="input-group">
+          {pointDelay}
+        </div>
       </div>
     }
 

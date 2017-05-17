@@ -83,7 +83,7 @@ class Dimensions extends Component {
     // if(e.which === 13){
     // this.controlWidth(this.state.width);
     // }
-    
+
   console.log('--inside handleFormSubmit')
     e.preventDefault();
     if (e.which === 13) {
@@ -106,35 +106,47 @@ class Dimensions extends Component {
 
     let dimensionsDisplay = <div className="dimensions-display"></div>
 
-    const top = <label>
-                  Top:
-                  <input type="number" className="form-control width-input" onChange={this.update_top} />
-                </label>
+    const width = <div className="input-container">
+                    <label>
+                      Width:
+                      <input type="number" className="form-control width-input" onChange={this.updateWidth} />
+                    </label>
+                  </div>
 
-    const right = <label>
-                  Right:
-                  <input type="number" className="form-control width-input" onChange={this.update_right} />
-                </label>
+    const height = <div className="input-container">
+                      <label>
+                        Height:
+                        <input type="number" className="form-control height-input" onChange={this.updateHeight} />
+                      </label>
+                    </div>
 
-    const bottom = <label>
-                  Bottom:
-                  <input type="number" className="form-control width-input" onChange={this.update_bottom} />
-                </label>
+    const top = <div className="input-container">
+                  <label>
+                    Top:
+                    <input type="number" className="form-control width-input" onChange={this.update_top} />
+                  </label>
+                </div>
 
-    const left = <label>
-                  Left:
-                  <input type="number" className="form-control width-input" onChange={this.update_left} />
-                </label>
+    const right = <div className="input-container">
+                    <label>
+                      Right:
+                      <input type="number" className="form-control width-input" onChange={this.update_right} />
+                    </label>
+                  </div>
 
-    const width = <label>
-                  Width:
-                  <input type="number" className="form-control width-input" onChange={this.updateWidth} />
-                </label>
+    const bottom = <div className="input-container">
+                    <label>
+                      Bottom:
+                      <input type="number" className="form-control width-input" onChange={this.update_bottom} />
+                    </label>
+                  </div>
 
-    const height = <label>
-                  Height:
-                  <input type="number" className="form-control height-input" onChange={this.updateHeight} />
-                </label>
+    const left = <div className="input-container">
+                  <label>
+                    Left:
+                    <input type="number" className="form-control width-input" onChange={this.update_left} />
+                  </label>
+                </div>
     const responsiveSize = <div className="checkbox">
                 <label>
                   {/* this checkbox will still need it's own handler */}
@@ -151,14 +163,12 @@ class Dimensions extends Component {
         </div>
         <h6 className="panel-headers">Margin</h6>
         <div className="input-group">
-          <div className ="attr-input">
             {top}
             {right}
-          </div>
-          <div className ="attr-input">
+        </div>
+        <div className="input-group">
             {bottom}
             {left}
-          </div>
         </div>
         {responsiveSize}
           <hr></hr>

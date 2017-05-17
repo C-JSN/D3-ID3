@@ -95,66 +95,57 @@ export default class Axes extends Component {
     //   })
 
     let axesDisplay = <div className="axes-display"></div>
+    const name = <div className="input-container">
+                    <label>
+                      Name:
+                      <input type="text" className="form-control"></input>
+                    </label>
+                  </div>
+
+    const color = <div className="input-container">
+                    <label>
+                      Color:
+                      <input type="text" className="form-control"></input>
+                    </label>
+                  </div>
+
+    const ticks = <div className="input-container">
+                    <label>
+                      Ticks:
+                      <input type="number" className="form-control"></input>
+                    </label>
+                  </div>
+
 
     const xAxis = <div className="x-axis-display">
-      <div className="attr-input">
-        <label>
-          Name:
-          <input type="text" className="form-control"></input>
-        </label>
-        <label>
-          Color:
-          <input type="text" className="form-control"></input>
-        </label>
+      <div className="input-group">
+        {name}
+        {color}
       </div>
-      <div className="attr-input">
-        <label>
-          Ticks:
-          <input type="number" className="form-control"></input>
-        </label>
-        <label>
-          Color:
-          <input type="text" className="form-control"></input>
-        </label>
+      <div className="input-group">
+        {ticks}
+        {color}
       </div>
     </div>
 
     const yAxis = <div className="y-axis-display">
-      <div className="attr-input">
-        <label>
-          Name:
-          <input type="text" className="form-control"></input>
-        </label>
-        <label>
-          Color:
-          <input type="text" className="form-control"></input>
-        </label>
+      <div className="input-group">
+        {name}
+        {color}
       </div>
-      <div className="attr-input">
-        <label>
-          Ticks:
-          <input type="number" className="form-control"></input>
-        </label>
-        <label>
-          Color:
-          <input type="text" className="form-control"></input>
-        </label>
+      <div className="input-group">
+        {ticks}
+        {color}
       </div>
     </div>
 
     if (this.state.checkbox) {
       axesDisplay = <div className="axes-display">
         <form onSubmit={this.handleFormSubmit} >
-          <div className="input-group">
-            <div>
-              <h6 className="panel-headers">X-Axis</h6>
-              {xAxis}
-            </div>
-            <div>
-              <h6 className="panel-headers">Y-Axis</h6>
-              {yAxis}
-            </div>
-          </div>
+          <h6 className="panel-headers">X-Axis</h6>
+          {xAxis}
+          <h6 className="panel-headers">Y-Axis</h6>
+          {yAxis}
         </form>
         <hr></hr>
       </div>
