@@ -38,10 +38,6 @@ export default (props) => {
           <span className="icon icon-upload icon-text"></span>
           Export
         </a>
-        <button className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
-          <span className="icon icon-login icon-text"></span>
-          D3 Parser
-        </button>
         <div className="dropdown">
           <button className="btn btn-default btn-dropdown" onClick={toggleDropDown}>
             <span className="icon icon-layout icon-text"></span>
