@@ -12,7 +12,6 @@ import Data from '../components/attributes/scatter-plot/Data';
 import * as d3parser from '../d3-parser/d3parser';
 import { editor } from '../components/editor/textEditor';
 import fs from 'fs';
-let bool = false;
 
 class AttributesPanel extends Component {
 
@@ -65,9 +64,6 @@ class AttributesPanel extends Component {
         }
       });
 
-      for (let i = 0; i < D3ParserObj.length; i += 1) {
-        console.log("each obj", D3ParserObj[i]);
-      }
       const attrList = attrObj.map(obj => {
         return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={obj} />
       });

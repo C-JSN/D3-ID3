@@ -767,7 +767,7 @@ function returnD3methods() {
 
     // Joining Data
 
-    '.data': 'exist', //- join elements to data.
+    //'.data': 'exist', //- join elements to data.
     '.enter': 'exist', //- get the enter selection (data missing elements).
     '.exit': 'exist', //- get the exit selection (elements missing data).
     '.datum': 'exist', //- get or set element data (without joining).
@@ -1165,7 +1165,7 @@ function parseD3() {
 
         start = i;
         while (str[i] !== ')') {
-          if (str[i] === ';' || i > str.length) break;
+          if (i > str.length) break;
           if (str[i] === '(') nestedParens += 1;
           if (str[i + 1] === ')' && nestedParens > 0) {
             nestedParens -= 1;
