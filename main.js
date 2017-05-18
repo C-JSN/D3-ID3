@@ -56,10 +56,10 @@ function createWindow () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), 'Hello World', (err) => {
-      if (err) throw err;
-      // console.log('The file has been emptied!');
-    })
+    // fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), 'Hello World', (err) => {
+    //   if (err) throw err;
+    //   // console.log('The file has been emptied!');
+    // })
     mainWindow = null
   })
 }
