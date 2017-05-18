@@ -83,6 +83,16 @@ app.on('ready', () => {
       })
     }
   });
+
+  ipcMain.on('popRender', (event, arg) => {
+    if (!global.newWebView) {
+      let newWebView = new BrowserWindow({ width: 800, height: 600 });
+      newWebView.loadURL('file://' + path.resolve(__dirname, 'src/components/temp/temp.html'))
+      newWebView.on('closed', () => {
+        global.newWebView = null;
+      })
+    }
+  });
 });
 
 

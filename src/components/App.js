@@ -19,6 +19,11 @@ export default class App extends Component {
     openDataWin.addEventListener('click', (event) => {
       ipcRenderer.send('openDataWin');
     })
+
+    let popRender = document.getElementById('popRender');
+    popRender.addEventListener('click', (event) => {
+      ipcRenderer.send('popRender');
+    })
   }
 
   render() {
