@@ -6,6 +6,7 @@ export default (props) => {
   const toggleDropDown = props.toggleDropDown;
   const getScatterPlotAction = props.getScatterPlotAction;
   const getD3ParserObj = props.getD3ParserObj;
+  const openDataWin = props.openDataWin;
   // const testfunc = props.testfunc;
 
   window.onclick = function(event) {
@@ -23,7 +24,7 @@ export default (props) => {
   }
 
   return (
-    <div className="toolbar-action titlebar headerbar">
+    <div className="toolbar-action titlebar">
       <div className="btn-group">
         <button className="btn btn-default">
           <span className="icon icon-folder icon-text"></span>
@@ -73,7 +74,7 @@ export default (props) => {
           <span className="icon icon-login icon-text"></span>
           Generate Attr
         </button>
-        <button className="btn btn-default">
+        <button className="btn btn-default" id="dataWin" onClick={(e) => openDataWin()}>
           <span className="icon icon-database icon-text"></span>
           Data Management
         </button>
