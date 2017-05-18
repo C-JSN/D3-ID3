@@ -74,7 +74,7 @@ export default (props) => {
           <span className="icon icon-login icon-text"></span>
           Generate Attr
         </button>
-        <button className="btn btn-default" id="dataWin" onClick={(e) => openDataWin()}>
+        <button className="btn btn-default" id="dataWin">
           <span className="icon icon-database icon-text"></span>
           Data Management
         </button>

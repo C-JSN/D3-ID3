@@ -21,14 +21,15 @@ Select a template from the dropdown. The data viz and code will be displayed
 ### Attribute Panel
 User the `Attribute Panel` on the right nav-bar to udpate dimensions and attributes  
 You may also change the code directly  
-Reference the data managment section if you have .csv .tsv or .json files to import data
+
+Reference the data managment section if you have .csv .tsv or .json files to import data  
 To Export the final code, click on `Export` on the top nav-bar on the left
 
 Keyboard shortcuts:
-control + s: render code
+control + s = render code
 
 Note: you might need to refresh the Attribute Panel by clicking `Generate Attr` when you switching  
-from updaling a file and using tempaltes
+from uploading a file and using templates
 
 ### Data Management
 ****
