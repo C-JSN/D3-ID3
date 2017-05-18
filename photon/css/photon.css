@@ -210,6 +210,11 @@ h6 {
   -webkit-user-select: text;
 }
 
+.titlebar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
 .text-center {
   text-align: center;
 }
