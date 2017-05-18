@@ -3,6 +3,9 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+// ipcMain module
+const ipcMain = electron.ipcMain;
+
 // file system module
 const fs = require('fs');
 const path = require('path');
@@ -33,7 +36,7 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 // require('electron-hot-loader').install({doNotInstrument: true});
 
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -69,18 +72,26 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
   createWindow();
-  let dataWin = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    // titleBarStyle: 'hidden',
-    frame: false,
-    show: false,
-  })
 
-  // and load the index.html of the app.
-  dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
+  ipcMain.on('popEditor', (event, arg) => {
+    if (!global.newEditor) {
+      let newEditor = new BrowserWindow({ width: 800, height: 600 });
+      newEditor.loadURL(url.format({
+        pathname: path.join(__dirname, 'editor.html'),
+        protocol: 'file:',
+        slashes: true
+      }))
+      global.newEditor = newEditor;
+      // console.log(arg);
+      // let newEditorObj = require('./editorRenderer.js');
+      // newEditorObj.setValue(arg);
+      newEditor.on('closed', () => {
+        global.newEditor = null;
+      });
+    }
+  });
+});
 
-})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

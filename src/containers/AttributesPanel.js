@@ -64,9 +64,6 @@ class AttributesPanel extends Component {
         }
       });
 
-      for (let i = 0; i < D3ParserObj.length; i += 1) {
-        console.log("each obj", D3ParserObj[i]);
-      }
       const attrList = attrObj.map(obj => {
         return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={obj} />
       });
