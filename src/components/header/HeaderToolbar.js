@@ -23,7 +23,7 @@ export default (props) => {
   }
 
   return (
-    <div className="toolbar-actions">
+    <div className="toolbar-action titlebar headerbar">
       <div className="btn-group">
         <button className="btn btn-default">
           <span className="icon icon-folder icon-text"></span>
