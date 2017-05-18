@@ -347,7 +347,7 @@ h6 {
 }
 
 .btn-default {
-  color: #9C7FF5;
+  color: #ccc;
   border-top-color: #23272a;
   border-right-color: #23272a;
   border-bottom-color: black;
@@ -444,7 +444,7 @@ background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
   height: 14px;
   margin-top: 1px;
   margin-bottom: 1px;
-  color: #ccc;
+  color: #d7dae0;
   font-size: 14px;
   line-height: 1;
 }
