@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Header from '../containers/Header';
-import { TextEditor } from './editor/textEditor';
+import { TextEditor, editor } from './editor/textEditor';
 import AttributesPanel from '../containers/AttributesPanel';
 import Footer from './footer/Footer';
 
+const {ipcRenderer} = require('electron');
 
 export default class App extends Component {
+
+  componentDidMount() {
+    let popEditor = document.getElementById('popEditor');
+    popEditor.addEventListener('click', (event) => {
+      ipcRenderer.send('popEditor', editor.getValue());
+    });
+  }
+
   render() {
     return (
       <div className="window">
