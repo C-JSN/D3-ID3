@@ -11,6 +11,9 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
+// set up local express server for python data processing
+var server = require('./server/express');
+
 const isDevelopment = (process.env.NODE_ENV === 'development');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -36,15 +39,13 @@ function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1200,
-    height: 800
+    height: 800,
+    titleBarStyle: 'hidden',
+    frame: false,
+    show: false,
   })
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
-  // mainWindow.loadURL(url.format({
-  //   pathname: path.join(__dirname, 'index.html'),
-  //   protocol: 'file:',
-  //   slashes: true
-  // }))
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -54,15 +55,14 @@ function createWindow() {
   // Require mainmenu from mainmenu.js
   require('./menu/mainmenu');
 
+  // set window to show once renderer process has rendered the page
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
+
   // Emitted when the window is closed
   mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), 'Hello World', (err) => {
-      if (err) throw err;
-      // console.log('The file has been emptied!');
-    })
+
     mainWindow = null
   })
 }
@@ -96,7 +96,10 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit(()=> {
+      var file = fs.readFileSync('./src/components/temp/onload.html');
+      fs.writeFileSync('./src/components/temp/temp.html', file);
+    })
   }
 })
 
