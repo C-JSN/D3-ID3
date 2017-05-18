@@ -6,12 +6,18 @@ import { getScatterPlot } from '../actions/ScatterPlotActions';
 import { getD3ParserObj } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import HeaderToolbar from '../components/header/HeaderToolbar';
+const {ipcRenderer} = require('electron')
 
 class Header extends Component {
 
   // event handler for toggling the dropdown menu
   toggleDropDown(event) {
     document.getElementById("template-menu").classList.toggle("show");
+  }
+
+  openDataWin(event) {
+    console.log(__dirname)
+
   }
 
   // testfunc(){
@@ -22,7 +28,8 @@ class Header extends Component {
     return (
       <header className="toolbar toolbar-header">
         <h1 className="title">Project Name</h1>
-        <HeaderToolbar getD3ParserObj={this.props.getD3ParserObj} getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown} />
+        <HeaderToolbar getD3ParserObj={this.props.getD3ParserObj} getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown}
+        openDataWin={this.openDataWin}/>
       </header>
     );
   }

@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
+const {ipcMain} = require('electron')
 // set up local express server for python data processing
 var server = require('./server/express');
 
@@ -66,7 +67,20 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow();
+  let dataWin = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    // titleBarStyle: 'hidden',
+    frame: false,
+    show: false,
+  })
+
+  // and load the index.html of the app.
+  dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
+
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

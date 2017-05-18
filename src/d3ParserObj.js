@@ -1,34 +1,8 @@
 [
-	"<!DOCTYPE html>\n<html>\n\n<head>\n  <meta charset=\"utf-8\">\n  <title>Pie Chart D3 v4</title>\n  <script src=\"https://d3js.org/d3.v4.min.js\"></script>\n</head>\n\n<body>\n  <div id=\"graphContainer\" style=\"background: white; height: 40vh;\"></div>\n  <script>\n    var data = [10, 20, 30, 20];\n    var width = 576;\n    var height = 320;\n    var color = d3",
-	{
-		"methodObject": "d3",
-		"d3MethodName": ".scaleOrdinal",
-		"name": "",
-		"type": "text",
-		"value": "d3.schemeCategory10",
-		"args": [
-			"d3.schemeCategory10"
-		]
-	},
-	{
-		"methodObject": "d3",
-		"methodEnd": true
-	},
-	"\n    var graphContainer = document.getElementById('graphContainer');\n    var svgContainer = d3",
+	"<!DOCTYPE html>\n<meta charset=\"utf-8\">\n<style>\n\nbody {\n  background: #333;\n  overflow: hidden;\n}\n\ncircle {\n  stroke: #000;\n  stroke-width: 1.5px;\n}\n\n</style>\n<svg width=\"1400\" height=\"480\"><g transform=\"translate(700,240)\"></g></svg>\n<script src=\"http://d3js.org/d3.v4.0.0-alpha.35.min.js\"></script>\n<script>\n\nvar svg = d3",
 	{
 		"methodObject": "d3",
 		"d3MethodName": ".select",
-		"name": "",
-		"type": "text",
-		"value": "\"#graphContainer\"",
-		"args": [
-			"\"#graphContainer\""
-		]
-	},
-	"\n      ",
-	{
-		"methodObject": "d3.select(\"#graphContainer\")",
-		"d3MethodName": ".append",
 		"name": "",
 		"type": "text",
 		"value": "\"svg\"",
@@ -36,164 +10,137 @@
 			"\"svg\""
 		]
 	},
-	"\n        ",
+	",\n    width = +svg",
 	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
+		"methodObject": "d3.select(\"svg\")",
 		"d3MethodName": ".attr",
-		"name": "\"width\"",
+		"name": "",
 		"type": "text",
-		"value": " width",
+		"value": "\"width\"",
 		"args": [
-			"\"width\"",
-			" width"
+			"\"width\""
 		]
 	},
-	"\n        ",
+	",\n    height = +svg",
 	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
+		"methodObject": "d3.select(\"svg\")",
 		"d3MethodName": ".attr",
-		"name": "\"height\"",
+		"name": "",
 		"type": "text",
-		"value": " height",
+		"value": "\"height\"",
 		"args": [
-			"\"height\"",
-			" height"
+			"\"height\""
 		]
 	},
-	"\n        ",
-	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
-		"d3MethodName": ".style",
-		"name": "\"border\"",
-		"type": "text",
-		"value": " \"3px solid #736084\"",
-		"args": [
-			"\"border\"",
-			" \"3px solid #736084\""
-		]
-	},
-	{
-		"methodObject": "d3.select(\"#graphContainer\").append(\"svg\")",
-		"methodEnd": true
-	},
-	"\n    var arc = d3",
+	",\n    size = Math.max(width, height);\n\nvar color = d3.scaleRainbow()\n    .domain([0, 2 * Math.PI]);\n\nvar circles = d3",
 	{
 		"methodObject": "d3",
-		"d3MethodName": ".arc",
-		"name": "",
-		"type": "hidden",
-		"value": "",
-		"args": [
-			""
-		]
-	},
-	"\n      ",
-	{
-		"methodObject": "d3.arc()",
-		"d3MethodName": ".outerRadius",
-		"name": "",
+		"d3MethodName": ".packSiblings",
+		"name": "d3.range(2000)\n    .map(d3.randomUniform(8",
 		"type": "text",
-		"value": "100",
+		"value": " 26)",
 		"args": [
-			"100"
+			"d3.range(2000)\n    .map(d3.randomUniform(8",
+			" 26)"
 		]
 	},
-	"\n      ",
-	{
-		"methodObject": "d3.arc()",
-		"d3MethodName": ".innerRadius",
-		"name": "",
-		"type": "text",
-		"value": "50",
-		"args": [
-			"50"
-		]
-	},
-	{
-		"methodObject": "d3.arc()",
-		"methodEnd": true
-	},
-	"\n    var group = svgContainer",
-	{
-		"methodObject": "svgContainer",
-		"d3MethodName": ".append",
-		"name": "",
-		"type": "text",
-		"value": "\"g\"",
-		"args": [
-			"\"g\""
-		]
-	},
-	"\n      ",
-	{
-		"methodObject": "svgContainer.append(\"g\")",
-		"d3MethodName": ".attr",
-		"name": "\"transform\"",
-		"type": "text",
-		"value": " \"translate(\" + 576 / 2 + \",\" + 320 / 2 + \")\"",
-		"args": [
-			"\"transform\"",
-			" \"translate(\" + 576 / 2 + \",\" + 320 / 2 + \")\""
-		]
-	},
-	{
-		"methodObject": "svgContainer.append(\"g\")",
-		"methodEnd": true
-	},
-	"\n    var arcs = d3",
+	"\n    ",
 	{
 		"methodObject": "d3",
-		"d3MethodName": ".pie",
-		"name": ")",
-		"type": "text",
-		"value": "data",
-		"args": [
-			"",
-			"data"
-		]
-	},
-	{
-		"methodObject": "d3.pie()",
-		"methodEnd": true
-	},
-	"\n\n    arcs.forEach(function (d, i) {\n      group",
-	{
-		"methodObject": "group",
-		"d3MethodName": ".append",
+		"d3MethodName": ".map",
 		"name": "",
 		"type": "text",
-		"value": "\"path\"",
+		"value": "function(r) { return {r: r}",
 		"args": [
-			"\"path\""
+			"function(r) { return {r: r}"
 		]
 	},
-	"\n        ",
+	" }))\n  ",
 	{
-		"methodObject": "group.append(\"path\")",
-		"d3MethodName": ".attr",
-		"name": "\"d\"",
+		"methodObject": "d3",
+		"d3MethodName": ".filter",
+		"name": "",
 		"type": "text",
-		"value": " arc(d)",
+		"value": "function(d) { return -500 < d.x && d.x < 500 && -500 < d.y && d.y < 500",
 		"args": [
-			"\"d\"",
-			" arc(d)"
+			"function(d) { return -500 < d.x && d.x < 500 && -500 < d.y && d.y < 500"
 		]
 	},
-	"\n        ",
+	" });\n\nsvg\n  ",
 	{
-		"methodObject": "group.append(\"path\")",
-		"d3MethodName": ".attr",
-		"name": "\"fill\"",
+		"methodObject": "d3.filter(function(d) { return -500 < d.x && d.x < 500 && -500 < d.y && d.y < 500)",
+		"d3MethodName": ".select",
+		"name": "\"g\")\n  .selectAll(\"circle\")\n  .data(circles)\n  .enter().append(\"circle\")\n    .style(\"fill\"",
 		"type": "text",
-		"value": " color(i)",
+		"value": " function(d) { return color(d.angle = Math.atan2(d.y, d.x)",
 		"args": [
-			"\"fill\"",
-			" color(i)"
+			"\"g\")\n  .selectAll(\"circle\")\n  .data(circles)\n  .enter().append(\"circle\")\n    .style(\"fill\"",
+			" function(d) { return color(d.angle = Math.atan2(d.y, d.x)"
 		]
 	},
 	{
-		"methodObject": "group.append(\"path\")",
+		"methodObject": "d3.filter(function(d) { return -500 < d.x && d.x < 500 && -500 < d.y && d.y < 500).select(\"g\")\n  .selectAll(\"circle\")\n  .data(circles)\n  .enter().append(\"circle\")\n    .style(\"fill\")",
 		"methodEnd": true
 	},
-	"\n    })\n  </script>\n  <script src=\"d3parser.js\"></script>\n</body>\n\n</html>\n"
+	" })\n    ",
+	{
+		"methodObject": "",
+		"d3MethodName": ".attr",
+		"name": "\"cx\"",
+		"type": "text",
+		"value": " function(d) { return Math.cos(d.angle) * (size / Math.SQRT2 + 30)",
+		"args": [
+			"\"cx\"",
+			" function(d) { return Math.cos(d.angle) * (size / Math.SQRT2 + 30)"
+		]
+	},
+	" })\n    ",
+	{
+		"methodObject": "",
+		"d3MethodName": ".attr",
+		"name": "\"cy\"",
+		"type": "text",
+		"value": " function(d) { return Math.sin(d.angle) * (size / Math.SQRT2 + 30)",
+		"args": [
+			"\"cy\"",
+			" function(d) { return Math.sin(d.angle) * (size / Math.SQRT2 + 30)"
+		]
+	},
+	" })\n    ",
+	{
+		"methodObject": "",
+		"d3MethodName": ".attr",
+		"name": "\"r\"",
+		"type": "text",
+		"value": " function(d) { return d.r - 0.25",
+		"args": [
+			"\"r\"",
+			" function(d) { return d.r - 0.25"
+		]
+	},
+	" })\n  .transition()\n    .ease(d3.easeCubicOut)\n    .delay(function(d) { return Math.sqrt(d.x * d.x + d.y * d.y) * 10; })\n    .duration(1000)\n    ",
+	{
+		"methodObject": "",
+		"d3MethodName": ".attr",
+		"name": "\"cx\"",
+		"type": "text",
+		"value": " function(d) { return d.x",
+		"args": [
+			"\"cx\"",
+			" function(d) { return d.x"
+		]
+	},
+	" })\n    ",
+	{
+		"methodObject": "",
+		"d3MethodName": ".attr",
+		"name": "\"cy\"",
+		"type": "text",
+		"value": " function(d) { return d.y",
+		"args": [
+			"\"cy\"",
+			" function(d) { return d.y"
+		]
+	},
+	" });\n\n</script>\n"
 ]
