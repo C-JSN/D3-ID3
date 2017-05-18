@@ -6,6 +6,7 @@ import { getScatterPlot } from '../actions/ScatterPlotActions';
 import { getD3ParserObj } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import HeaderToolbar from '../components/header/HeaderToolbar';
+import {app, BrowserWindow} from 'electron';
 
 class Header extends Component {
 

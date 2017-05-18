@@ -18,22 +18,7 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-// if (process.env.NODE_ENV === 'development') {
-//     const electronHot = require('electron-hot-loader');
-//     electronHot.install();
-//     electronHot.watchJsx(['app/**/*.js']);
-//     electronHot.watchCss(['app/assets/**/*.css']);
-// }
-
-// We can now require our jsx files, they will be compiled for us
-// require('./app/index.js');
-
-// In production you should not rely on the auto-transform.
-// Pre-compile your react components with your build system instead.
-
-// But, you can do this if your really want to:
-// require('electron-hot-loader').install({doNotInstrument: true});
-
+let mainWindow;
 
 function createWindow() {
   // Create the browser window.
@@ -44,11 +29,12 @@ function createWindow() {
     frame: false,
     show: false,
   })
+
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   global.mainWindow = mainWindow;
 
@@ -62,16 +48,17 @@ function createWindow() {
 
   // Emitted when the window is closed
   mainWindow.on('closed', function () {
-
     mainWindow = null
   })
 }
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
+  // create initial main window
   createWindow();
-
+  // pop out editor
   ipcMain.on('popEditor', (event, arg) => {
     if (!global.newEditor) {
       let newEditor = new BrowserWindow({ width: 800, height: 600 });
@@ -81,15 +68,23 @@ app.on('ready', () => {
         slashes: true
       }))
       global.newEditor = newEditor;
-      // console.log(arg);
-      // let newEditorObj = require('./editorRenderer.js');
-      // newEditorObj.setValue(arg);
       newEditor.on('closed', () => {
         global.newEditor = null;
       });
     }
   });
+
+  ipcMain.on('openDataWin', (event, arg) => {
+    if (!global.dataWin) {
+      let dataWin = new BrowserWindow({ width: 800, height: 600 });
+      dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
+      dataWin.on('closed', () => {
+        global.dataWin = null;
+      })
+    }
+  });
 });
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

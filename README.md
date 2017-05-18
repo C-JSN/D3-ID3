@@ -2,12 +2,14 @@
 ID3 is an offline open source IDE for D3.js  
 It allows users to import code and manipulate it either directly or by our attribute panel. Users have the option to update data with our data managemnt system. It also provides the option to export the final code 
 
+
 ## To Use
 Fork or download  
 `npm` install  
 `npm` run webpack  
 `npm` run start
 If you are not a OS X user, please download the latest version of [python](https://www.python.org/downloads/)
+
 
 
 ## Resources

@@ -14,6 +14,11 @@ export default class App extends Component {
     popEditor.addEventListener('click', (event) => {
       ipcRenderer.send('popEditor', editor.getValue());
     });
+
+    let openDataWin = document.getElementById('dataWin');
+    openDataWin.addEventListener('click', (event) => {
+      ipcRenderer.send('openDataWin');
+    })
   }
 
   render() {
