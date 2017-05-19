@@ -45,24 +45,25 @@ export default (props) => {
             Templates
           </button>
           <div id="template-menu" className="dropdown-menu">
-            <p id="scatter-plot" onClick={(e)=>getScatterPlotAction(ScatterPlotObject)}>
-              <span className="icon icon-chart-line icon-text"></span>
-              Scatter Plot
-            </p>
+
             <p>
-              <span className="icon icon-chart-area icon-text"></span>
+              {/* <span className="icon icon-chart-area icon-text"></span> */}
               Area Graph
             </p>
             <p>
-              <span className="icon icon-chart-line icon-text"></span>
+              {/* <span className="icon icon-chart-line icon-text"></span> */}
               Line Graph
             </p>
             <p>
-              <span className="icon icon-chart-bar icon-text"></span>
+              {/* <span className="icon icon-chart-bar icon-text"></span> */}
               Bar Chart
             </p>
+            <p id="scatter-plot" onClick={(e)=>getScatterPlotAction(ScatterPlotObject)}>
+              {/* <span className="icon icon-chart-line icon-text"></span> */}
+              Scatter Plot
+            </p>
             <p>
-              <span className="icon icon-chart-pie icon-text"></span>
+              {/* <span className="icon icon-chart-pie icon-text"></span> */}
               Pie Chart
             </p>
           </div>
@@ -81,10 +82,6 @@ export default (props) => {
         <button className="btn btn-default">
           <span className="icon icon-popup icon-text"></span>
           Pop Editor
-        </button>
-        <button className="btn btn-default">
-          <span className="icon icon-popup icon-text"></span>
-          Pop Render
         </button>
       </div>
     </div>

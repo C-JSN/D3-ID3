@@ -26,21 +26,21 @@ class Points extends Component {
 
     const radius = <div className="input-container">
                       <label>
-                        Radius:
+                        radius
                         <input type="number" className="form-control"></input>
                       </label>
                     </div>
 
     const color = <div className="input-container">
                       <label>
-                        Color:
+                        color
                         <input type="text" className="form-control"></input>
                       </label>
                     </div>
 
     const pointDelay = <div className="input-container">
                     <label>
-                      Delay:
+                      delay
                       <input type="number" className="form-control"></input>
                     </label>
                   </div>
@@ -51,7 +51,7 @@ class Points extends Component {
           {radius}
           {color}
         </div>
-        <h6 className="panel-headers">Transitions & Animations</h6>
+        <h6 className="panel-subheaders">Transitions & Animations</h6>
         <div className="input-group">
           {radius}
           {color}
@@ -64,7 +64,7 @@ class Points extends Component {
 
     return(
       <div className="attr-container">
-        <header className="toolbar toolbar-header attr-header">
+        {/* <header className="toolbar toolbar-header attr-header">
           <div className="checkbox">
             <form onSubmit={this.onSubmit}>
               <label>
@@ -73,7 +73,10 @@ class Points extends Component {
               </label>
             </form>
           </div>
-        </header>
+        </header> */}
+        <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
+          <h5 className="panel-headers">Points</h5>
+        </div>
         {points}
       </div>
     );
