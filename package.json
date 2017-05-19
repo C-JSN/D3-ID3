@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "d3-id3",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "The IDE for D3.js",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -18,8 +18,8 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "the ID3 team",
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^3.4.0",
     "electron": "~1.6.2"
