@@ -3,6 +3,9 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+// ipcMain module
+const ipcMain = electron.ipcMain;
+
 // file system module
 const fs = require('fs');
 const path = require('path');
@@ -15,24 +18,9 @@ const isDevelopment = (process.env.NODE_ENV === 'development');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-// if (process.env.NODE_ENV === 'development') {
-//     const electronHot = require('electron-hot-loader');
-//     electronHot.install();
-//     electronHot.watchJsx(['app/**/*.js']);
-//     electronHot.watchCss(['app/assets/**/*.css']);
-// }
+let mainWindow;
 
-// We can now require our jsx files, they will be compiled for us
-// require('./app/index.js');
-
-// In production you should not rely on the auto-transform.
-// Pre-compile your react components with your build system instead.
-
-// But, you can do this if your really want to:
-// require('electron-hot-loader').install({doNotInstrument: true});
-
-
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -41,6 +29,7 @@ function createWindow () {
     frame: false,
     show: false,
   })
+
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
 
@@ -59,14 +48,60 @@ function createWindow () {
 
   // Emitted when the window is closed
   mainWindow.on('closed', function () {
-
     mainWindow = null
   })
 }
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', () => {
+  // create initial main window
+  createWindow();
+
+  // let editorView = document.getElementById('editor');
+  // let webview = document.getElementById('render-window');
+
+  // pop out editor
+  ipcMain.on('popEditor', (event, arg) => {
+    if (!global.newEditor) {
+      let newEditor = new BrowserWindow({ width: 800, height: 600 });
+      newEditor.loadURL(url.format({
+        pathname: path.join(__dirname, 'editor.html'),
+        protocol: 'file:',
+        slashes: true
+      }))
+      global.newEditor = newEditor;
+      newEditor.on('closed', () => {
+        global.newEditor = null;
+      });
+    }
+  });
+
+  ipcMain.on('openDataWin', (event, arg) => {
+    if (!global.dataWin) {
+      let dataWin = new BrowserWindow({ width: 800, height: 600 });
+      dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
+      global.dataWin = dataWin;
+      dataWin.on('closed', () => {
+        global.dataWin = null;
+      })
+    }
+  });
+
+  // pop out live render window
+  ipcMain.on('popRender', (event, arg) => {
+    if (!global.newWebView) {
+      let newWebView = new BrowserWindow({ width: 800, height: 600 });
+      newWebView.loadURL('file://' + path.resolve(__dirname, 'src/components/temp/temp.html'))
+      global.newWebView = newWebView;
+      newWebView.on('closed', function () {
+        global.newWebView = null;
+      })
+    }
+  });
+});
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

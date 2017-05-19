@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Editor</title>
+    <link rel="stylesheet" href="./photon/css/photon.css">
+    <link rel="stylesheet" href="./style/styles.css">
+  </head>
+
+  <body>
+    <div class="pane">
+      <div id="editor" style="width:100vw;height:100vh"></div>
+    </div>
+  </body>
+  <script>
+		// Monaco uses a custom amd loader that over-rides node's require.
+		// Keep a reference to node's require so we can restore it after executing the amd loader file.
+		var nodeRequire = global.require;
+	</script>
+	<script>
+		// Save Monaco's amd require and restore Node's require
+		let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
+		global.require = nodeRequire;
+	</script>
+  <script>
+    require('./editorRenderer.js')
+  </script>
+
+</html>

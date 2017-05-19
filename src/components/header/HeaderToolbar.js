@@ -74,15 +74,19 @@ export default (props) => {
           <span className="icon icon-login icon-text"></span>
           Generate Attr
         </button>
-        <button className="btn btn-default" id="dataWin" onClick={(e) => openDataWin()}>
+        <button className="btn btn-default" id="dataWin">
           <span className="icon icon-database icon-text"></span>
           Data Management
         </button>
-        <button className="btn btn-default">
+        <button id="resizeView" className="btn btn-default">
+          <span className="icon icon-popup icon-text"></span>
+          Resize View
+        </button>
+        <button id="popEditor" className="btn btn-default">
           <span className="icon icon-popup icon-text"></span>
           Pop Editor
         </button>
-        <button className="btn btn-default">
+        <button id="popRender" className="btn btn-default">
           <span className="icon icon-popup icon-text"></span>
           Pop Render
         </button>

@@ -515,7 +515,10 @@ background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
 }
 
 .toolbar {
-  min-height: 22px;
+  min-height: 55px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
   box-shadow: inset 0 1px 0 #31373b;
   background-color: #2e3438;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e3438), color-stop(100%, #23272a));
