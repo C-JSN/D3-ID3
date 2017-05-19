@@ -73,11 +73,6 @@ app.on('ready', () => {
       }))
       global.newEditor = newEditor;
       newEditor.on('closed', () => {
-        // let editorView = document.getElementById('editor');
-        // let webview = document.getElementById('render-window');
-        // editorView.style.height = '50%';
-        // webview.style.height = '50%';
-        // ipcMain.send('resetView');
         global.newEditor = null;
       });
     }
@@ -87,6 +82,7 @@ app.on('ready', () => {
     if (!global.dataWin) {
       let dataWin = new BrowserWindow({ width: 800, height: 600 });
       dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
+      global.dataWin = dataWin;
       dataWin.on('closed', () => {
         global.dataWin = null;
       })
@@ -98,12 +94,8 @@ app.on('ready', () => {
     if (!global.newWebView) {
       let newWebView = new BrowserWindow({ width: 800, height: 600 });
       newWebView.loadURL('file://' + path.resolve(__dirname, 'src/components/temp/temp.html'))
+      global.newWebView = newWebView;
       newWebView.on('closed', function () {
-        console.log('closed')
-        ipcMain.on('closing', (event, arg) => {
-          console.log(arg)  // prints "ping"
-          event.sender.send('resetView', 'pong')
-        })
         global.newWebView = null;
       })
     }
