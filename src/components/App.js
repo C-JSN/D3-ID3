@@ -10,20 +10,41 @@ const {ipcRenderer} = require('electron');
 export default class App extends Component {
 
   componentDidMount() {
-    let popEditor = document.getElementById('popEditor');
-    popEditor.addEventListener('click', (event) => {
-      ipcRenderer.send('popEditor', editor.getValue());
-    });
-
+    let editorView = document.getElementById('editor');
+    let webview = document.getElementById('render-window');
     let openDataWin = document.getElementById('dataWin');
+    let popRender = document.getElementById('popRender');
+    let popEditor = document.getElementById('popEditor');
+    let resizeView = document.getElementById('resizeView');
+
+    let editorH = editorView.style.height;
+    let webviewH = webview.style.height;
+
     openDataWin.addEventListener('click', (event) => {
       ipcRenderer.send('openDataWin');
     })
 
-    let popRender = document.getElementById('popRender');
+    popEditor.addEventListener('click', (event) => {
+      editorView.style.height = '0%';
+      webview.style.height = '100%';
+      ipcRenderer.send('popEditor', editor.getValue());
+    });
+
     popRender.addEventListener('click', (event) => {
+      editorView.style.height = '100%';
+      webview.style.height = '0%';
       ipcRenderer.send('popRender');
+    })    
+
+    resizeView.addEventListener('click', (event) => {
+      editorView.style.height = editorH;
+      webview.style.height = webviewH;
     })
+    // ipcRenderer.on('resetView', (event) => {
+    //   console.log('inside ipcRenderer receive')
+      // editorView.style.height = '50%';
+      // webview.style.height = '50%';
+    // })
   }
 
   render() {
