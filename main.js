@@ -34,7 +34,7 @@ function createWindow() {
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   global.mainWindow = mainWindow;
 
@@ -93,6 +93,7 @@ app.on('ready', () => {
     }
   });
 
+  // pop out live render window
   ipcMain.on('popRender', (event, arg) => {
     if (!global.newWebView) {
       let newWebView = new BrowserWindow({ width: 800, height: 600 });
