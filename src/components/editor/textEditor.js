@@ -143,7 +143,16 @@ class TextEditor extends Component {
   render() {
     return (
       <div className="pane">
-        <webview id="render-window" src={this.state.url}></webview>
+        <div className="webview-container">
+          <header className="toolbar toolbar-header renderer-header">
+            <span id="render-subheader">Renderer</span>
+            <button className="btn btn-default pop-render-btn pull-right">
+              <span className="icon icon-popup icon-text"></span>
+              Pop Renderer
+            </button>
+          </header>
+          <webview id="render-window" src={this.state.url}></webview>
+        </div>
         <div id="editor"></div>
       </div>
     );
@@ -151,5 +160,3 @@ class TextEditor extends Component {
 }
 
 export { TextEditor, editor }
-
-        // <webview id="render-window" src={this.state.url}></webview>
