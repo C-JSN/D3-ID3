@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getScatterPlot, updateWidth } from '../actions/ScatterPlotActions';
 import { getD3ParserObj, updateValue } from '../actions/D3ParserActions';
-import { ScatterPlotReducer, D3ParserReducer} from '../reducers/index';
+import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import AttrListItem from '../components/attributes/d3-parsed/AttrListItem';
 import Dimensions from '../components/attributes/scatter-plot/Dimensions';
 import Axes from '../components/attributes/scatter-plot/Axes';
 import LocalAttributes from '../components/attributes/scatter-plot/LocalAttributes';
 import Data from '../components/attributes/scatter-plot/Data';
-import * as d3parser from '../d3-parser/d3parser';
+const d3parser = require('../d3-parser/d3parser');
 import { editor } from '../components/editor/textEditor';
 import fs from 'fs';
+
+const { ipcRenderer } = require('electron');
 
 class AttributesPanel extends Component {
 
@@ -22,6 +24,10 @@ class AttributesPanel extends Component {
         this.props.getD3ParserObj();
         this.forceUpdate();
       }, 0)
+    });
+    ipcRenderer.on('updateAttr', (event) => {
+      this.props.getD3ParserObj();
+      this.forceUpdate();
     });
   }
 
@@ -99,7 +105,7 @@ class AttributesPanel extends Component {
       )
     }
 
-    return(
+    return (
       <div className="pane-one-fourth">
         <div id="attr-panel">
           <Dimensions
@@ -108,7 +114,7 @@ class AttributesPanel extends Component {
             height={height}
             responsiveResize={responsiveResize}
             controlWidth={this.props.updateWidth}
-            />
+          />
           <Axes axes={axes} />
           <LocalAttributes
             gridLines={gridLines}

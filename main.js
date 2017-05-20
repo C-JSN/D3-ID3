@@ -11,6 +11,8 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
+let mainWindow;
+
 const isDevelopment = (process.env.NODE_ENV === 'development');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -59,7 +61,7 @@ function createWindow() {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), 'Hello World', (err) => {
+    fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), '//code here', (err) => {
       if (err) throw err;
       // console.log('The file has been emptied!');
     })
@@ -80,14 +82,38 @@ app.on('ready', () => {
         protocol: 'file:',
         slashes: true
       }))
+
       global.newEditor = newEditor;
-      // console.log(arg);
-      // let newEditorObj = require('./editorRenderer.js');
-      // newEditorObj.setValue(arg);
-      newEditor.on('closed', () => {
-        global.newEditor = null;
+
+      setTimeout(() => {
+        newEditor.webContents.send('editorMsg', arg);
+      }, 1000);
+
+      newEditor.on('close', (event) => {
+        newEditor.webContents.send('editorClose');
+      });
+
+      newEditor.on('closed', (event) => {
+        if (mainWindow) {
+          mainWindow.webContents.send('updateMain');
+          global.newEditor = null;
+        }
       });
     }
+  });
+
+  ipcMain.on('fileUpload', (event, arg) => {
+    if (global.newEditor) {
+      global.newEditor.webContents.send('editorMsg', arg);
+    }
+  });
+
+  ipcMain.on('updateMain', (event) => {
+    mainWindow.webContents.send('updateMain');
+  });
+
+  ipcMain.on('updateAttr', (event) => {
+    mainWindow.webContents.send('updateAttr');
   });
 });
 
