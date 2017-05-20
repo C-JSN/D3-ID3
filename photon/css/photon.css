@@ -676,7 +676,7 @@ textarea {
 .pane {
   position: relative;
   overflow-y: auto;
-  padding-right: 8px;
+  padding-right: 9px;
   flex: 1;
   border-left: 1px solid #ddd;
 }
