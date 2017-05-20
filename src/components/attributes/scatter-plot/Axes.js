@@ -97,21 +97,21 @@ export default class Axes extends Component {
     let axesDisplay = <div className="attr-display"></div>
     const name = <div className="input-container">
                     <label>
-                      Name:
+                      name
                       <input type="text" className="form-control"></input>
                     </label>
                   </div>
 
     const color = <div className="input-container">
                     <label>
-                      Color:
+                      color
                       <input type="text" className="form-control"></input>
                     </label>
                   </div>
 
     const ticks = <div className="input-container">
                     <label>
-                      Ticks:
+                      ticks
                       <input type="number" className="form-control"></input>
                     </label>
                   </div>
@@ -142,9 +142,9 @@ export default class Axes extends Component {
     if (this.state.checkbox) {
       axesDisplay = <div className="attr-display">
         <form onSubmit={this.handleFormSubmit} >
-          <h6 className="panel-headers">X-Axis</h6>
+          <h6 className="panel-subheaders">X-Axis</h6>
           {xAxis}
-          <h6 className="panel-headers">Y-Axis</h6>
+          <h6 className="panel-subheaders">Y-Axis</h6>
           {yAxis}
         </form>
       </div>
@@ -153,7 +153,7 @@ export default class Axes extends Component {
 
     return(
       <div className="attr-container">
-        <header className="toolbar toolbar-header attr-header">
+        {/* <header className="toolbar toolbar-header attr-header">
           <div className="checkbox">
             <form onSubmit={this.onSubmit}>
               <label>
@@ -162,7 +162,10 @@ export default class Axes extends Component {
               </label>
             </form>
           </div>
-        </header>
+        </header> */}
+        <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
+          <h5 className="panel-headers">Axes</h5>
+        </div>
         {axesDisplay}
       </div>
     );
