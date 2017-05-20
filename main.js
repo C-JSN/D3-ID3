@@ -91,7 +91,11 @@ app.on('ready', () => {
 
       newEditor.on('closed', (event) => {
         if (mainWindow) {
-          mainWindow.webContents.send('updateMain');
+          if (global.newWebView) {
+            mainWindow.webContents.send('updateMain', '99%');
+          } else {
+            mainWindow.webContents.send('updateMain', '37%');
+          }
           global.newEditor = null;
         }
       });
@@ -102,21 +106,38 @@ app.on('ready', () => {
     if (global.newEditor) {
       global.newEditor.webContents.send('editorMsg', arg);
     }
+    if (global.newWebView) {
+      global.newWebView.reload();
+    }
   });
 
   ipcMain.on('updateMain', (event) => {
     mainWindow.webContents.send('updateMain');
+    if (global.newWebView) {
+      global.newWebView.reload();
+    }
   });
 
   ipcMain.on('updateAttr', (event) => {
     mainWindow.webContents.send('updateAttr');
+    if (global.newWebView) {
+      global.newWebView.reload();
+    }
+  });
+
+  ipcMain.on('updateNewWebView', (event) => {
+    if (global.newWebView) {
+      global.newWebView.reload();
+    }
   });
 
   ipcMain.on('openDataWin', (event, arg) => {
     if (!global.dataWin) {
       let dataWin = new BrowserWindow({ width: 800, height: 600 });
       dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
+      
       global.dataWin = dataWin;
+      
       dataWin.on('closed', () => {
         global.dataWin = null;
       })
@@ -128,10 +149,19 @@ app.on('ready', () => {
     if (!global.newWebView) {
       let newWebView = new BrowserWindow({ width: 800, height: 600 });
       newWebView.loadURL('file://' + path.resolve(__dirname, 'src/components/temp/temp.html'))
+      
       global.newWebView = newWebView;
-      newWebView.on('closed', function () {
-        global.newWebView = null;
-      })
+      
+      newWebView.on('closed', (event) => {
+        if (mainWindow) {
+          if (global.newEditor) {
+            mainWindow.webContents.send('addRender', '99%');
+          } else {
+            mainWindow.webContents.send('addRender', '62%');
+          }
+          global.newWebView = null;
+        }
+      });
     }
   });
 });
@@ -142,7 +172,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit(()=> {
+    app.quit(() => {
       var file = fs.readFileSync('./src/components/temp/onload.html');
       fs.writeFileSync('./src/components/temp/temp.html', file);
     })

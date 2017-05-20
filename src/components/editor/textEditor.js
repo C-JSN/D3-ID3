@@ -52,7 +52,9 @@ class TextEditor extends Component {
         editor.layout();
       }
 
-      ipcRenderer.on('updateMain', (event) => {
+      let editorView = document.getElementById('editor');
+      let webview = document.getElementById('webview-container');
+      ipcRenderer.on('updateMain', (event, arg) => {
         let newEditorString = fs.readFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), 'utf8');
         //console.log(newEditorString);
         editor.setValue(newEditorString);
@@ -60,6 +62,23 @@ class TextEditor extends Component {
         let string = JSON.stringify(d3parser.parseD3(newEditorString), null, '\t');
         fs.writeFileSync('./src/d3ParserObj.js', string);
         ipcRenderer.send('updateAttr');
+        if (arg === '99%') {
+          editorView.style.height = '99%';
+          webview.style.height = '0%';
+        } else if (arg === '37%') {
+          editorView.style.height = '37%';
+          webview.style.height = '62%';
+        }
+      });
+
+      ipcRenderer.on('addRender', (event, arg) => {
+        if (arg === '99%') {
+          editorView.style.height = '0%';
+          webview.style.height = '99%';
+        } else if (arg === '62%') {
+          editorView.style.height = '37%';
+          webview.style.height = '62%';
+        }
       });
 
       // import files into text-editor
@@ -153,10 +172,10 @@ class TextEditor extends Component {
   render() {
     return (
       <div className="pane">
-        <div className="webview-container">
+        <div id="webview-container" className="webview-container">
           <header className="toolbar toolbar-header renderer-header">
             <span id="render-subheader">Renderer</span>
-            <button className="btn btn-default pop-render-btn pull-right">
+            <button id="popRender" className="btn btn-default pop-render-btn pull-right">
               <span className="icon icon-popup icon-text"></span>
               Pop Renderer
             </button>

@@ -39,6 +39,7 @@ class AttributesPanel extends Component {
     fs.writeFileSync('./src/components/temp/temp.html', htmlString);
     editor.setValue(htmlString);
     document.querySelector('webview').reload();
+    ipcRenderer.send('updateNewWebView');
   }
 
   render() {
