@@ -34,7 +34,7 @@ function createWindow() {
   mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   global.mainWindow = mainWindow;
 
@@ -48,6 +48,13 @@ function createWindow() {
 
   // Emitted when the window is closed
   mainWindow.on('closed', function () {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), '//code here', (err) => {
+      if (err) throw err;
+      // console.log('The file has been emptied!');
+    })
     mainWindow = null
   })
 }
@@ -58,6 +65,10 @@ function createWindow() {
 app.on('ready', () => {
   // create initial main window
   createWindow();
+
+  // let editorView = document.getElementById('editor');
+  // let webview = document.getElementById('render-window');
+
   // pop out editor
   ipcMain.on('popEditor', (event, arg) => {
     if (!global.newEditor) {
@@ -67,10 +78,56 @@ app.on('ready', () => {
         protocol: 'file:',
         slashes: true
       }))
+
       global.newEditor = newEditor;
-      newEditor.on('closed', () => {
-        global.newEditor = null;
+
+      setTimeout(() => {
+        newEditor.webContents.send('editorMsg', arg);
+      }, 1000);
+
+      newEditor.on('close', (event) => {
+        newEditor.webContents.send('editorClose');
       });
+
+      newEditor.on('closed', (event) => {
+        if (mainWindow) {
+          if (global.newWebView) {
+            mainWindow.webContents.send('updateMain', '99%');
+          } else {
+            mainWindow.webContents.send('updateMain', '37%');
+          }
+          global.newEditor = null;
+        }
+      });
+    }
+  });
+
+  ipcMain.on('fileUpload', (event, arg) => {
+    if (global.newEditor) {
+      global.newEditor.webContents.send('editorMsg', arg);
+    }
+    if (global.newWebView) {
+      global.newWebView.reload();
+    }
+  });
+
+  ipcMain.on('updateMain', (event) => {
+    mainWindow.webContents.send('updateMain');
+    if (global.newWebView) {
+      global.newWebView.reload();
+    }
+  });
+
+  ipcMain.on('updateAttr', (event) => {
+    mainWindow.webContents.send('updateAttr');
+    if (global.newWebView) {
+      global.newWebView.reload();
+    }
+  });
+
+  ipcMain.on('updateNewWebView', (event) => {
+    if (global.newWebView) {
+      global.newWebView.reload();
     }
   });
 
@@ -78,19 +135,33 @@ app.on('ready', () => {
     if (!global.dataWin) {
       let dataWin = new BrowserWindow({ width: 800, height: 600 });
       dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
+      
+      global.dataWin = dataWin;
+      
       dataWin.on('closed', () => {
         global.dataWin = null;
       })
     }
   });
 
+  // pop out live render window
   ipcMain.on('popRender', (event, arg) => {
     if (!global.newWebView) {
       let newWebView = new BrowserWindow({ width: 800, height: 600 });
       newWebView.loadURL('file://' + path.resolve(__dirname, 'src/components/temp/temp.html'))
-      newWebView.on('closed', () => {
-        global.newWebView = null;
-      })
+      
+      global.newWebView = newWebView;
+      
+      newWebView.on('closed', (event) => {
+        if (mainWindow) {
+          if (global.newEditor) {
+            mainWindow.webContents.send('addRender', '99%');
+          } else {
+            mainWindow.webContents.send('addRender', '62%');
+          }
+          global.newWebView = null;
+        }
+      });
     }
   });
 });
@@ -101,7 +172,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit(()=> {
+    app.quit(() => {
       var file = fs.readFileSync('./src/components/temp/onload.html');
       fs.writeFileSync('./src/components/temp/temp.html', file);
     })

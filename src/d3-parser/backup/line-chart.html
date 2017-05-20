@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  body {
+    margin: auto;
+    width: 960px;
+  }
+
+  text {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+  /*.x.axis path {
+    display: none;
+  }*/
+  /*.line {
+    fill: none;
+    stroke: url(#temperature-gradient);
+    stroke-width: 1.5px;
+  }*/
+</style>
+
+<body>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+
+    var parseDate = d3.timeParse(d3.timeFormat("%Y%m%d"));
+
+    var x = d3.scaleTime()
+      .range([0, width]);
+
+    var y = d3.scaleLinear()
+      .range([height, 0]);
+
+    var line = d3.area()
+      .curve(d3.curveBasis)
+      .x(function (d) { return x(d.date); })
+      .y1(function (d) { return y(d.temperature); });
+
+    var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    let data = getData();
+    //console.log(data);
+    data.forEach(function (d) {
+      d.date = parseDate(d.date);
+      d.temperature = +d.temperature;
+    });
+
+    x.domain(d3.extent(data, function (d) { return d.date; })).nice();
+    //y.domain(d3.extent(data, function (d) { return d.temperature; })).nice();
+    y.domain([0, d3.max(data, function (d) { return d.temperature; })]).nice();
+    line.y0(y(0));
+
+    svg.append("linearGradient")
+      .attr("id", "temperature-gradient")
+      .attr("gradientUnits", "userSpaceOnUse")
+      .attr("x1", 0).attr("y1", y(50))
+      .attr("x2", 0).attr("y2", y(60))
+      .selectAll("stop")
+      .data([
+        { offset: "0%", color: "black" },
+        { offset: "50%", color: "black" },
+        { offset: "50%", color: "red" },
+        { offset: "100%", color: "red" }
+      ])
+      .enter().append("stop")
+      .attr("offset", function (d) { return d.offset; })
+      .attr("stop-color", function (d) { return d.color; });
+
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(d3.axisLeft(y))
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Temperature (ºF)");
+
+    svg.append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("fill", "none")
+      .style("stroke", "url(#temperature-gradient)")
+      .style("stroke-width", "1.5px")
+      .attr("d", line);
+
+    function getData() {
+      return [
+        {
+          "date": "20111001",
+          "temperature": "62.7"
+        },
+        {
+          "date": "20111002",
+          "temperature": "59.9"
+        },
+        {
+          "date": "20111003",
+          "temperature": "59.1"
+        },
+        {
+          "date": "20111004",
+          "temperature": "58.8"
+        },
+        {
+          "date": "20111005",
+          "temperature": "58.7"
+        },
+        {
+          "date": "20111006",
+          "temperature": "57.0"
+        },
+        {
+          "date": "20111007",
+          "temperature": "56.7"
+        },
+        {
+          "date": "20111008",
+          "temperature": "56.8"
+        },
+        {
+          "date": "20111009",
+          "temperature": "56.7"
+        },
+        {
+          "date": "20111010",
+          "temperature": "60.1"
+        },
+        {
+          "date": "20111011",
+          "temperature": "61.1"
+        },
+        {
+          "date": "20111012",
+          "temperature": "61.5"
+        },
+        {
+          "date": "20111013",
+          "temperature": "64.3"
+        },
+        {
+          "date": "20111014",
+          "temperature": "67.1"
+        },
+        {
+          "date": "20111015",
+          "temperature": "64.6"
+        },
+        {
+          "date": "20111016",
+          "temperature": "61.6"
+        },
+        {
+          "date": "20111017",
+          "temperature": "61.1"
+        },
+        {
+          "date": "20111018",
+          "temperature": "59.2"
+        },
+        {
+          "date": "20111019",
+          "temperature": "58.9"
+        },
+        {
+          "date": "20111020",
+          "temperature": "57.2"
+        },
+        {
+          "date": "20111021",
+          "temperature": "56.4"
+        },
+        {
+          "date": "20111022",
+          "temperature": "60.7"
+        },
+        {
+          "date": "20111023",
+          "temperature": "65.1"
+        },
+        {
+          "date": "20111024",
+          "temperature": "60.9"
+        },
+        {
+          "date": "20111025",
+          "temperature": "56.1"
+        },
+        {
+          "date": "20111026",
+          "temperature": "54.6"
+        },
+        {
+          "date": "20111027",
+          "temperature": "56.1"
+        },
+        {
+          "date": "20111028",
+          "temperature": "58.1"
+        },
+        {
+          "date": "20111029",
+          "temperature": "57.5"
+        },
+        {
+          "date": "20111030",
+          "temperature": "57.7"
+        },
+        {
+          "date": "20111031",
+          "temperature": "55.1"
+        },
+        {
+          "date": "20111101",
+          "temperature": "57.9"
+        },
+        {
+          "date": "20111102",
+          "temperature": "64.6"
+        },
+        {
+          "date": "20111103",
+          "temperature": "56.2"
+        },
+        {
+          "date": "20111104",
+          "temperature": "50.5"
+        },
+        {
+          "date": "20111105",
+          "temperature": "51.3"
+        },
+        {
+          "date": "20111106",
+          "temperature": "52.6"
+        },
+        {
+          "date": "20111107",
+          "temperature": "51.4"
+        },
+        {
+          "date": "20111108",
+          "temperature": "50.6"
+        },
+        {
+          "date": "20111109",
+          "temperature": "54.6"
+        },
+        {
+          "date": "20111110",
+          "temperature": "55.6"
+        },
+        {
+          "date": "20111111",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20111112",
+          "temperature": "54.0"
+        },
+        {
+          "date": "20111113",
+          "temperature": "53.8"
+        },
+        {
+          "date": "20111114",
+          "temperature": "53.5"
+        },
+        {
+          "date": "20111115",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20111116",
+          "temperature": "52.2"
+        },
+        {
+          "date": "20111117",
+          "temperature": "52.7"
+        },
+        {
+          "date": "20111118",
+          "temperature": "53.1"
+        },
+        {
+          "date": "20111119",
+          "temperature": "49.0"
+        },
+        {
+          "date": "20111120",
+          "temperature": "50.4"
+        },
+        {
+          "date": "20111121",
+          "temperature": "51.1"
+        },
+        {
+          "date": "20111122",
+          "temperature": "52.3"
+        },
+        {
+          "date": "20111123",
+          "temperature": "54.6"
+        },
+        {
+          "date": "20111124",
+          "temperature": "55.1"
+        },
+        {
+          "date": "20111125",
+          "temperature": "51.5"
+        },
+        {
+          "date": "20111126",
+          "temperature": "53.6"
+        },
+        {
+          "date": "20111127",
+          "temperature": "52.3"
+        },
+        {
+          "date": "20111128",
+          "temperature": "51.0"
+        },
+        {
+          "date": "20111129",
+          "temperature": "49.5"
+        },
+        {
+          "date": "20111130",
+          "temperature": "49.8"
+        },
+        {
+          "date": "20111201",
+          "temperature": "60.4"
+        },
+        {
+          "date": "20111202",
+          "temperature": "62.2"
+        },
+        {
+          "date": "20111203",
+          "temperature": "58.3"
+        },
+        {
+          "date": "20111204",
+          "temperature": "52.7"
+        },
+        {
+          "date": "20111205",
+          "temperature": "51.5"
+        },
+        {
+          "date": "20111206",
+          "temperature": "49.9"
+        },
+        {
+          "date": "20111207",
+          "temperature": "48.6"
+        },
+        {
+          "date": "20111208",
+          "temperature": "46.4"
+        },
+        {
+          "date": "20111209",
+          "temperature": "49.8"
+        },
+        {
+          "date": "20111210",
+          "temperature": "52.1"
+        },
+        {
+          "date": "20111211",
+          "temperature": "48.8"
+        },
+        {
+          "date": "20111212",
+          "temperature": "47.4"
+        },
+        {
+          "date": "20111213",
+          "temperature": "47.2"
+        },
+        {
+          "date": "20111214",
+          "temperature": "46.1"
+        },
+        {
+          "date": "20111215",
+          "temperature": "48.8"
+        },
+        {
+          "date": "20111216",
+          "temperature": "47.9"
+        },
+        {
+          "date": "20111217",
+          "temperature": "49.8"
+        },
+        {
+          "date": "20111218",
+          "temperature": "49.1"
+        },
+        {
+          "date": "20111219",
+          "temperature": "48.3"
+        },
+        {
+          "date": "20111220",
+          "temperature": "49.3"
+        },
+        {
+          "date": "20111221",
+          "temperature": "48.4"
+        },
+        {
+          "date": "20111222",
+          "temperature": "53.3"
+        },
+        {
+          "date": "20111223",
+          "temperature": "47.5"
+        },
+        {
+          "date": "20111224",
+          "temperature": "47.9"
+        },
+        {
+          "date": "20111225",
+          "temperature": "48.9"
+        },
+        {
+          "date": "20111226",
+          "temperature": "45.9"
+        },
+        {
+          "date": "20111227",
+          "temperature": "47.2"
+        },
+        {
+          "date": "20111228",
+          "temperature": "48.9"
+        },
+        {
+          "date": "20111229",
+          "temperature": "50.9"
+        },
+        {
+          "date": "20111230",
+          "temperature": "52.9"
+        },
+        {
+          "date": "20111231",
+          "temperature": "50.1"
+        },
+        {
+          "date": "20120101",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120102",
+          "temperature": "53.1"
+        },
+        {
+          "date": "20120103",
+          "temperature": "49.7"
+        },
+        {
+          "date": "20120104",
+          "temperature": "52.7"
+        },
+        {
+          "date": "20120105",
+          "temperature": "52.6"
+        },
+        {
+          "date": "20120106",
+          "temperature": "49.0"
+        },
+        {
+          "date": "20120107",
+          "temperature": "51.0"
+        },
+        {
+          "date": "20120108",
+          "temperature": "56.8"
+        },
+        {
+          "date": "20120109",
+          "temperature": "52.3"
+        },
+        {
+          "date": "20120110",
+          "temperature": "51.6"
+        },
+        {
+          "date": "20120111",
+          "temperature": "49.8"
+        },
+        {
+          "date": "20120112",
+          "temperature": "51.9"
+        },
+        {
+          "date": "20120113",
+          "temperature": "53.7"
+        },
+        {
+          "date": "20120114",
+          "temperature": "52.9"
+        },
+        {
+          "date": "20120115",
+          "temperature": "49.7"
+        },
+        {
+          "date": "20120116",
+          "temperature": "45.3"
+        },
+        {
+          "date": "20120117",
+          "temperature": "43.6"
+        },
+        {
+          "date": "20120118",
+          "temperature": "45.0"
+        },
+        {
+          "date": "20120119",
+          "temperature": "47.3"
+        },
+        {
+          "date": "20120120",
+          "temperature": "51.4"
+        },
+        {
+          "date": "20120121",
+          "temperature": "53.7"
+        },
+        {
+          "date": "20120122",
+          "temperature": "48.3"
+        },
+        {
+          "date": "20120123",
+          "temperature": "52.9"
+        },
+        {
+          "date": "20120124",
+          "temperature": "49.1"
+        },
+        {
+          "date": "20120125",
+          "temperature": "52.1"
+        },
+        {
+          "date": "20120126",
+          "temperature": "53.6"
+        },
+        {
+          "date": "20120127",
+          "temperature": "50.4"
+        },
+        {
+          "date": "20120128",
+          "temperature": "50.3"
+        },
+        {
+          "date": "20120129",
+          "temperature": "53.8"
+        },
+        {
+          "date": "20120130",
+          "temperature": "51.9"
+        },
+        {
+          "date": "20120131",
+          "temperature": "50.0"
+        },
+        {
+          "date": "20120201",
+          "temperature": "50.0"
+        },
+        {
+          "date": "20120202",
+          "temperature": "51.3"
+        },
+        {
+          "date": "20120203",
+          "temperature": "51.5"
+        },
+        {
+          "date": "20120204",
+          "temperature": "52.0"
+        },
+        {
+          "date": "20120205",
+          "temperature": "53.8"
+        },
+        {
+          "date": "20120206",
+          "temperature": "54.6"
+        },
+        {
+          "date": "20120207",
+          "temperature": "54.3"
+        },
+        {
+          "date": "20120208",
+          "temperature": "51.9"
+        },
+        {
+          "date": "20120209",
+          "temperature": "53.8"
+        },
+        {
+          "date": "20120210",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120211",
+          "temperature": "52.3"
+        },
+        {
+          "date": "20120212",
+          "temperature": "50.1"
+        },
+        {
+          "date": "20120213",
+          "temperature": "49.5"
+        },
+        {
+          "date": "20120214",
+          "temperature": "48.6"
+        },
+        {
+          "date": "20120215",
+          "temperature": "49.9"
+        },
+        {
+          "date": "20120216",
+          "temperature": "52.4"
+        },
+        {
+          "date": "20120217",
+          "temperature": "49.9"
+        },
+        {
+          "date": "20120218",
+          "temperature": "51.6"
+        },
+        {
+          "date": "20120219",
+          "temperature": "47.8"
+        },
+        {
+          "date": "20120220",
+          "temperature": "48.7"
+        },
+        {
+          "date": "20120221",
+          "temperature": "49.7"
+        },
+        {
+          "date": "20120222",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20120223",
+          "temperature": "54.1"
+        },
+        {
+          "date": "20120224",
+          "temperature": "55.9"
+        },
+        {
+          "date": "20120225",
+          "temperature": "51.7"
+        },
+        {
+          "date": "20120226",
+          "temperature": "47.7"
+        },
+        {
+          "date": "20120227",
+          "temperature": "45.4"
+        },
+        {
+          "date": "20120228",
+          "temperature": "47.0"
+        },
+        {
+          "date": "20120229",
+          "temperature": "49.8"
+        },
+        {
+          "date": "20120301",
+          "temperature": "48.9"
+        },
+        {
+          "date": "20120302",
+          "temperature": "48.1"
+        },
+        {
+          "date": "20120303",
+          "temperature": "50.7"
+        },
+        {
+          "date": "20120304",
+          "temperature": "55.0"
+        },
+        {
+          "date": "20120305",
+          "temperature": "48.8"
+        },
+        {
+          "date": "20120306",
+          "temperature": "48.4"
+        },
+        {
+          "date": "20120307",
+          "temperature": "49.9"
+        },
+        {
+          "date": "20120308",
+          "temperature": "49.2"
+        },
+        {
+          "date": "20120309",
+          "temperature": "51.7"
+        },
+        {
+          "date": "20120310",
+          "temperature": "49.3"
+        },
+        {
+          "date": "20120311",
+          "temperature": "50.0"
+        },
+        {
+          "date": "20120312",
+          "temperature": "48.6"
+        },
+        {
+          "date": "20120313",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120314",
+          "temperature": "55.2"
+        },
+        {
+          "date": "20120315",
+          "temperature": "55.9"
+        },
+        {
+          "date": "20120316",
+          "temperature": "54.6"
+        },
+        {
+          "date": "20120317",
+          "temperature": "48.2"
+        },
+        {
+          "date": "20120318",
+          "temperature": "47.1"
+        },
+        {
+          "date": "20120319",
+          "temperature": "45.8"
+        },
+        {
+          "date": "20120320",
+          "temperature": "49.7"
+        },
+        {
+          "date": "20120321",
+          "temperature": "51.4"
+        },
+        {
+          "date": "20120322",
+          "temperature": "51.4"
+        },
+        {
+          "date": "20120323",
+          "temperature": "48.4"
+        },
+        {
+          "date": "20120324",
+          "temperature": "49.0"
+        },
+        {
+          "date": "20120325",
+          "temperature": "46.4"
+        },
+        {
+          "date": "20120326",
+          "temperature": "49.7"
+        },
+        {
+          "date": "20120327",
+          "temperature": "54.1"
+        },
+        {
+          "date": "20120328",
+          "temperature": "54.6"
+        },
+        {
+          "date": "20120329",
+          "temperature": "52.3"
+        },
+        {
+          "date": "20120330",
+          "temperature": "54.5"
+        },
+        {
+          "date": "20120331",
+          "temperature": "56.2"
+        },
+        {
+          "date": "20120401",
+          "temperature": "51.1"
+        },
+        {
+          "date": "20120402",
+          "temperature": "50.5"
+        },
+        {
+          "date": "20120403",
+          "temperature": "52.2"
+        },
+        {
+          "date": "20120404",
+          "temperature": "50.6"
+        },
+        {
+          "date": "20120405",
+          "temperature": "47.9"
+        },
+        {
+          "date": "20120406",
+          "temperature": "47.4"
+        },
+        {
+          "date": "20120407",
+          "temperature": "49.4"
+        },
+        {
+          "date": "20120408",
+          "temperature": "50.0"
+        },
+        {
+          "date": "20120409",
+          "temperature": "51.3"
+        },
+        {
+          "date": "20120410",
+          "temperature": "53.8"
+        },
+        {
+          "date": "20120411",
+          "temperature": "52.9"
+        },
+        {
+          "date": "20120412",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120413",
+          "temperature": "50.2"
+        },
+        {
+          "date": "20120414",
+          "temperature": "50.9"
+        },
+        {
+          "date": "20120415",
+          "temperature": "51.5"
+        },
+        {
+          "date": "20120416",
+          "temperature": "51.9"
+        },
+        {
+          "date": "20120417",
+          "temperature": "53.2"
+        },
+        {
+          "date": "20120418",
+          "temperature": "53.0"
+        },
+        {
+          "date": "20120419",
+          "temperature": "55.1"
+        },
+        {
+          "date": "20120420",
+          "temperature": "55.8"
+        },
+        {
+          "date": "20120421",
+          "temperature": "58.0"
+        },
+        {
+          "date": "20120422",
+          "temperature": "52.8"
+        },
+        {
+          "date": "20120423",
+          "temperature": "55.1"
+        },
+        {
+          "date": "20120424",
+          "temperature": "57.9"
+        },
+        {
+          "date": "20120425",
+          "temperature": "57.5"
+        },
+        {
+          "date": "20120426",
+          "temperature": "55.3"
+        },
+        {
+          "date": "20120427",
+          "temperature": "53.5"
+        },
+        {
+          "date": "20120428",
+          "temperature": "54.7"
+        },
+        {
+          "date": "20120429",
+          "temperature": "54.0"
+        },
+        {
+          "date": "20120430",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20120501",
+          "temperature": "52.7"
+        },
+        {
+          "date": "20120502",
+          "temperature": "50.7"
+        },
+        {
+          "date": "20120503",
+          "temperature": "52.6"
+        },
+        {
+          "date": "20120504",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20120505",
+          "temperature": "53.1"
+        },
+        {
+          "date": "20120506",
+          "temperature": "56.5"
+        },
+        {
+          "date": "20120507",
+          "temperature": "55.3"
+        },
+        {
+          "date": "20120508",
+          "temperature": "52.0"
+        },
+        {
+          "date": "20120509",
+          "temperature": "52.4"
+        },
+        {
+          "date": "20120510",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20120511",
+          "temperature": "53.1"
+        },
+        {
+          "date": "20120512",
+          "temperature": "49.9"
+        },
+        {
+          "date": "20120513",
+          "temperature": "52.0"
+        },
+        {
+          "date": "20120514",
+          "temperature": "56.0"
+        },
+        {
+          "date": "20120515",
+          "temperature": "53.0"
+        },
+        {
+          "date": "20120516",
+          "temperature": "51.0"
+        },
+        {
+          "date": "20120517",
+          "temperature": "51.4"
+        },
+        {
+          "date": "20120518",
+          "temperature": "52.2"
+        },
+        {
+          "date": "20120519",
+          "temperature": "52.4"
+        },
+        {
+          "date": "20120520",
+          "temperature": "54.5"
+        },
+        {
+          "date": "20120521",
+          "temperature": "52.8"
+        },
+        {
+          "date": "20120522",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120523",
+          "temperature": "56.5"
+        },
+        {
+          "date": "20120524",
+          "temperature": "54.7"
+        },
+        {
+          "date": "20120525",
+          "temperature": "52.5"
+        },
+        {
+          "date": "20120526",
+          "temperature": "52.1"
+        },
+        {
+          "date": "20120527",
+          "temperature": "52.2"
+        },
+        {
+          "date": "20120528",
+          "temperature": "52.9"
+        },
+        {
+          "date": "20120529",
+          "temperature": "52.1"
+        },
+        {
+          "date": "20120530",
+          "temperature": "52.1"
+        },
+        {
+          "date": "20120531",
+          "temperature": "53.3"
+        },
+        {
+          "date": "20120601",
+          "temperature": "54.8"
+        },
+        {
+          "date": "20120602",
+          "temperature": "54.0"
+        },
+        {
+          "date": "20120603",
+          "temperature": "52.3"
+        },
+        {
+          "date": "20120604",
+          "temperature": "55.3"
+        },
+        {
+          "date": "20120605",
+          "temperature": "53.5"
+        },
+        {
+          "date": "20120606",
+          "temperature": "54.1"
+        },
+        {
+          "date": "20120607",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120608",
+          "temperature": "54.4"
+        },
+        {
+          "date": "20120609",
+          "temperature": "55.0"
+        },
+        {
+          "date": "20120610",
+          "temperature": "60.0"
+        },
+        {
+          "date": "20120611",
+          "temperature": "57.2"
+        },
+        {
+          "date": "20120612",
+          "temperature": "55.1"
+        },
+        {
+          "date": "20120613",
+          "temperature": "53.3"
+        },
+        {
+          "date": "20120614",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20120615",
+          "temperature": "54.6"
+        },
+        {
+          "date": "20120616",
+          "temperature": "57.0"
+        },
+        {
+          "date": "20120617",
+          "temperature": "55.6"
+        },
+        {
+          "date": "20120618",
+          "temperature": "52.5"
+        },
+        {
+          "date": "20120619",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120620",
+          "temperature": "55.3"
+        },
+        {
+          "date": "20120621",
+          "temperature": "53.3"
+        },
+        {
+          "date": "20120622",
+          "temperature": "54.1"
+        },
+        {
+          "date": "20120623",
+          "temperature": "55.2"
+        },
+        {
+          "date": "20120624",
+          "temperature": "55.8"
+        },
+        {
+          "date": "20120625",
+          "temperature": "56.8"
+        },
+        {
+          "date": "20120626",
+          "temperature": "57.5"
+        },
+        {
+          "date": "20120627",
+          "temperature": "57.7"
+        },
+        {
+          "date": "20120628",
+          "temperature": "56.6"
+        },
+        {
+          "date": "20120629",
+          "temperature": "56.4"
+        },
+        {
+          "date": "20120630",
+          "temperature": "58.4"
+        },
+        {
+          "date": "20120701",
+          "temperature": "58.8"
+        },
+        {
+          "date": "20120702",
+          "temperature": "56.4"
+        },
+        {
+          "date": "20120703",
+          "temperature": "56.5"
+        },
+        {
+          "date": "20120704",
+          "temperature": "55.8"
+        },
+        {
+          "date": "20120705",
+          "temperature": "54.8"
+        },
+        {
+          "date": "20120706",
+          "temperature": "54.9"
+        },
+        {
+          "date": "20120707",
+          "temperature": "54.7"
+        },
+        {
+          "date": "20120708",
+          "temperature": "52.8"
+        },
+        {
+          "date": "20120709",
+          "temperature": "53.7"
+        },
+        {
+          "date": "20120710",
+          "temperature": "53.1"
+        },
+        {
+          "date": "20120711",
+          "temperature": "52.7"
+        },
+        {
+          "date": "20120712",
+          "temperature": "52.0"
+        },
+        {
+          "date": "20120713",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20120714",
+          "temperature": "54.0"
+        },
+        {
+          "date": "20120715",
+          "temperature": "54.0"
+        },
+        {
+          "date": "20120716",
+          "temperature": "54.5"
+        },
+        {
+          "date": "20120717",
+          "temperature": "56.7"
+        },
+        {
+          "date": "20120718",
+          "temperature": "57.5"
+        },
+        {
+          "date": "20120719",
+          "temperature": "57.1"
+        },
+        {
+          "date": "20120720",
+          "temperature": "58.1"
+        },
+        {
+          "date": "20120721",
+          "temperature": "57.6"
+        },
+        {
+          "date": "20120722",
+          "temperature": "56.0"
+        },
+        {
+          "date": "20120723",
+          "temperature": "56.6"
+        },
+        {
+          "date": "20120724",
+          "temperature": "57.8"
+        },
+        {
+          "date": "20120725",
+          "temperature": "57.5"
+        },
+        {
+          "date": "20120726",
+          "temperature": "56.4"
+        },
+        {
+          "date": "20120727",
+          "temperature": "55.3"
+        },
+        {
+          "date": "20120728",
+          "temperature": "55.0"
+        },
+        {
+          "date": "20120729",
+          "temperature": "55.6"
+        },
+        {
+          "date": "20120730",
+          "temperature": "55.6"
+        },
+        {
+          "date": "20120731",
+          "temperature": "55.9"
+        },
+        {
+          "date": "20120801",
+          "temperature": "55.4"
+        },
+        {
+          "date": "20120802",
+          "temperature": "54.4"
+        },
+        {
+          "date": "20120803",
+          "temperature": "53.7"
+        },
+        {
+          "date": "20120804",
+          "temperature": "54.1"
+        },
+        {
+          "date": "20120805",
+          "temperature": "57.8"
+        },
+        {
+          "date": "20120806",
+          "temperature": "58.2"
+        },
+        {
+          "date": "20120807",
+          "temperature": "58.0"
+        },
+        {
+          "date": "20120808",
+          "temperature": "57.0"
+        },
+        {
+          "date": "20120809",
+          "temperature": "55.0"
+        },
+        {
+          "date": "20120810",
+          "temperature": "54.8"
+        },
+        {
+          "date": "20120811",
+          "temperature": "53.0"
+        },
+        {
+          "date": "20120812",
+          "temperature": "52.5"
+        },
+        {
+          "date": "20120813",
+          "temperature": "53.3"
+        },
+        {
+          "date": "20120814",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120815",
+          "temperature": "56.2"
+        },
+        {
+          "date": "20120816",
+          "temperature": "57.1"
+        },
+        {
+          "date": "20120817",
+          "temperature": "55.3"
+        },
+        {
+          "date": "20120818",
+          "temperature": "56.2"
+        },
+        {
+          "date": "20120819",
+          "temperature": "54.3"
+        },
+        {
+          "date": "20120820",
+          "temperature": "53.1"
+        },
+        {
+          "date": "20120821",
+          "temperature": "53.4"
+        },
+        {
+          "date": "20120822",
+          "temperature": "54.5"
+        },
+        {
+          "date": "20120823",
+          "temperature": "55.7"
+        },
+        {
+          "date": "20120824",
+          "temperature": "54.8"
+        },
+        {
+          "date": "20120825",
+          "temperature": "53.8"
+        },
+        {
+          "date": "20120826",
+          "temperature": "56.5"
+        },
+        {
+          "date": "20120827",
+          "temperature": "58.3"
+        },
+        {
+          "date": "20120828",
+          "temperature": "58.7"
+        },
+        {
+          "date": "20120829",
+          "temperature": "57.5"
+        },
+        {
+          "date": "20120830",
+          "temperature": "55.9"
+        },
+        {
+          "date": "20120831",
+          "temperature": "55.4"
+        },
+        {
+          "date": "20120901",
+          "temperature": "55.7"
+        },
+        {
+          "date": "20120902",
+          "temperature": "53.1"
+        },
+        {
+          "date": "20120903",
+          "temperature": "53.5"
+        },
+        {
+          "date": "20120904",
+          "temperature": "52.5"
+        },
+        {
+          "date": "20120905",
+          "temperature": "54.5"
+        },
+        {
+          "date": "20120906",
+          "temperature": "56.3"
+        },
+        {
+          "date": "20120907",
+          "temperature": "56.4"
+        },
+        {
+          "date": "20120908",
+          "temperature": "56.5"
+        },
+        {
+          "date": "20120909",
+          "temperature": "56.4"
+        },
+        {
+          "date": "20120910",
+          "temperature": "55.4"
+        },
+        {
+          "date": "20120911",
+          "temperature": "56.2"
+        },
+        {
+          "date": "20120912",
+          "temperature": "55.7"
+        },
+        {
+          "date": "20120913",
+          "temperature": "54.3"
+        },
+        {
+          "date": "20120914",
+          "temperature": "55.2"
+        },
+        {
+          "date": "20120915",
+          "temperature": "54.3"
+        },
+        {
+          "date": "20120916",
+          "temperature": "52.9"
+        },
+        {
+          "date": "20120917",
+          "temperature": "54.8"
+        },
+        {
+          "date": "20120918",
+          "temperature": "54.8"
+        },
+        {
+          "date": "20120919",
+          "temperature": "56.8"
+        },
+        {
+          "date": "20120920",
+          "temperature": "55.4"
+        },
+        {
+          "date": "20120921",
+          "temperature": "55.8"
+        },
+        {
+          "date": "20120922",
+          "temperature": "55.9"
+        },
+        {
+          "date": "20120923",
+          "temperature": "52.8"
+        },
+        {
+          "date": "20120924",
+          "temperature": "54.5"
+        },
+        {
+          "date": "20120925",
+          "temperature": "53.3"
+        },
+        {
+          "date": "20120926",
+          "temperature": "53.6"
+        },
+        {
+          "date": "20120927",
+          "temperature": "52.1"
+        },
+        {
+          "date": "20120928",
+          "temperature": "52.6"
+        },
+        {
+          "date": "20120929",
+          "temperature": "53.9"
+        },
+        {
+          "date": "20120930",
+          "temperature": "55.1"
+        }
+      ];
+    }
+  </script>
