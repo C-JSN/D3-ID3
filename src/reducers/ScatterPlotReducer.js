@@ -1,4 +1,4 @@
-import { SCATTER_PLOT, UPDATE_WIDTH } from '../actions/ScatterPlotActions';
+import { SCATTER_PLOT, UPDATE_WIDTH, UPDATE_HEIGHT } from '../actions/ScatterPlotActions';
 import ScatterPlotObject from '../templates/ScatterPlotObject';
 
 const initialState = {
@@ -23,13 +23,13 @@ export default function reducer(state = initialState, action) {
       return action.payload;
       // return {...state, payload: action.payload}
     case UPDATE_WIDTH:
-    console.log('--this will be the new width from the reducer', action.width)
-      // return {
-      //   width: action.width
-      // }
       return {
         ...state, width: action.width
       }
+    case UPDATE_HEIGHT:
+      return {
+        ...state, height: action.height
+      }  
     default:
       return state;
   }

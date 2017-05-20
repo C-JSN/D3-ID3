@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getScatterPlot, updateWidth } from '../actions/ScatterPlotActions';
+import { getScatterPlot, updateWidth,  updateHeight} from '../actions/ScatterPlotActions';
 import { getD3ParserObj, updateValue } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import AttrListItem from '../components/attributes/d3-parsed/AttrListItem';
@@ -117,6 +117,7 @@ class AttributesPanel extends Component {
             height={height}
             responsiveResize={responsiveResize}
             controlWidth={this.props.updateWidth}
+            controlHeight={this.props.updateHeight}
           />
           <Axes axes={axes} />
           <LocalAttributes
@@ -136,22 +137,6 @@ function mapStateToProps({ ScatterPlotReducer, D3ParserReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue }, dispatch);
+  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue, updateHeight }, dispatch);
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(Object.assign({}, getScatterPlot, updateWidth), dispatch)
-//   }
-// }
-
-//example from react-redux api
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(Object.assign({}, todoActionCreators, counterActionCreators), dispatch)
-//   }
-// }
-
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);

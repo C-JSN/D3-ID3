@@ -9,6 +9,11 @@ class Dimensions extends Component {
       checkbox: false
     };
 
+    //passing action creators
+    this.controlWidth = props.controlWidth.bind(this);
+    this.controlHeight = this.props.controlHeight;
+
+    //binding component methods
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.controlWidth = this.props.controlWidth;
@@ -20,7 +25,7 @@ class Dimensions extends Component {
     this.update_right = this.update_right.bind(this);
     this.update_left = this.update_left.bind(this);
     this.updateResponsive = this.updateResponsive.bind(this);
-    // this.controlWidth = props.controlWidth.bind(this);
+    
   }
 
   onSubmit(event) {
@@ -76,23 +81,13 @@ class Dimensions extends Component {
     })
   }
 
-  // Action Handlers
+  //When user hits enter action creators are called with all the user inputs
    handleFormSubmit(e){
-    // console.log('--inside handleFormSubmit')
-    // e.preventDefault();
-    // if(e.which === 13){
-    // this.controlWidth(this.state.width);
-    // }
-
-  console.log('--inside handleFormSubmit')
     e.preventDefault();
     if (e.which === 13) {
-      console.log('---the new state, view component', this.state)
       this.controlWidth(this.state.width);
-      // we can set
+      this.controlHeight(this.state.height);
     }
-    this.controlWidth(this.state.width);
-
   }
 
   render(){
