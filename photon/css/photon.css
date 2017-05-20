@@ -520,7 +520,7 @@ background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
 }
 
 .toolbar {
-  min-height: 55px;
+  /*min-height: 55px;*/
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 5px;

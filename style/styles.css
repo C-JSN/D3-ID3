@@ -45,7 +45,7 @@ html, body {
 #render-window {
   width: 100%;
   height: 92%;
-  background-color: #353b45;
+  background-color: white;
 }
 
 #attr-panel {
