@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
-import * as d3parser from '../../d3-parser/d3parser';
+const d3parser = require('../../d3-parser/d3parser');
 
 const path = require('path');
 const fs = require('fs');
@@ -52,6 +52,35 @@ class TextEditor extends Component {
         editor.layout();
       }
 
+      let editorView = document.getElementById('editor');
+      let webview = document.getElementById('webview-container');
+      ipcRenderer.on('updateMain', (event, arg) => {
+        let newEditorString = fs.readFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), 'utf8');
+        //console.log(newEditorString);
+        editor.setValue(newEditorString);
+        document.querySelector('webview').reload();
+        let string = JSON.stringify(d3parser.parseD3(newEditorString), null, '\t');
+        fs.writeFileSync('./src/d3ParserObj.js', string);
+        ipcRenderer.send('updateAttr');
+        if (arg === '99%') {
+          editorView.style.height = '99%';
+          webview.style.height = '0%';
+        } else if (arg === '37%') {
+          editorView.style.height = '37%';
+          webview.style.height = '62%';
+        }
+      });
+
+      ipcRenderer.on('addRender', (event, arg) => {
+        if (arg === '99%') {
+          editorView.style.height = '0%';
+          webview.style.height = '99%';
+        } else if (arg === '62%') {
+          editorView.style.height = '37%';
+          webview.style.height = '62%';
+        }
+      });
+
       // import files into text-editor
       let importBtn = document.getElementById('import-btn');
       let fileUpLoadBtn = document.getElementById('upload-file');
@@ -66,13 +95,12 @@ class TextEditor extends Component {
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = function (event) {
-          fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), event.target.result, (err) => {
-            if (err) throw err;
-          });
+          fs.writeFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), event.target.result);
           let string = JSON.stringify(d3parser.parseD3(event.target.result), null, '\t');
           fs.writeFileSync('./src/d3ParserObj.js', string);
           editor.setValue(event.target.result);
           document.querySelector('webview').reload();
+          ipcRenderer.send('fileUpload', event.target.result);
         };
         reader.readAsText(file);
       })
@@ -117,13 +145,14 @@ class TextEditor extends Component {
 
       window.addEventListener('keypress', function (event) {
         if (event.ctrlKey && event.which === 19) {
-          fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
-            if (err) throw err;
-            console.log('The file has been saved!');
-          })
+          let editorValue = editor.getValue();
+          fs.writeFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), editorValue);
+          let string = JSON.stringify(d3parser.parseD3(editorValue), null, '\t');
+          fs.writeFileSync('./src/d3ParserObj.js', string);
           document.querySelector('webview').reload();
+          ipcRenderer.send('updateAttr');
         }
-      })
+      });
 
       let scatterPlot_button = document.querySelector('#scatter-plot');
       scatterPlot_button.addEventListener('click', function (e) {
@@ -143,10 +172,10 @@ class TextEditor extends Component {
   render() {
     return (
       <div className="pane">
-        <div className="webview-container">
+        <div id="webview-container" className="webview-container">
           <header className="toolbar toolbar-header renderer-header">
             <span id="render-subheader">Renderer</span>
-            <button className="btn btn-default pop-render-btn pull-right">
+            <button id="popRender" className="btn btn-default pop-render-btn pull-right">
               <span className="icon icon-popup icon-text"></span>
               Pop Renderer
             </button>
