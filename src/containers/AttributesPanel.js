@@ -107,6 +107,9 @@ class AttributesPanel extends Component {
 
     return (
       <div className="pane-one-fourth">
+        <header className="toolbar toolbar-header attr-main-header">
+          <h1 className="title main-header">Attributes Panel</h1>
+        </header>
         <div id="attr-panel">
           <Dimensions
             margin={margin}

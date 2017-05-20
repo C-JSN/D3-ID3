@@ -25,14 +25,14 @@ class RegressionLine extends Component {
 
     const width = <div className="input-container">
                     <label>
-                      Width:
+                      width
                       <input type="number" className="form-control"></input>
                     </label>
                   </div>
 
     const color = <div className="input-container">
                     <label>
-                      Color:
+                      color
                       <input type="text" className="form-control"></input>
                     </label>
                   </div>
@@ -48,7 +48,7 @@ class RegressionLine extends Component {
 
     return(
       <div className="attr-container">
-        <header className="toolbar toolbar-header attr-header">
+        {/* <header className="toolbar toolbar-header attr-header">
           <div className="checkbox">
             <form onSubmit={this.onSubmit}>
               <label>
@@ -57,7 +57,10 @@ class RegressionLine extends Component {
               </label>
             </form>
           </div>
-        </header>
+        </header> */}
+        <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
+          <h5 className="panel-headers">Regression Line</h5>
+        </div>
         {regressionLineDisplay}
       </div>
     );

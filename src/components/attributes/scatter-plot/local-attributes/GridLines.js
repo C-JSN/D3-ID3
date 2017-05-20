@@ -26,26 +26,26 @@ class GridLines extends Component {
 
     const width = <div className="input-container">
                     <label>
-                      Width:
+                      width
                       <input type="number" className="form-control"></input>
                     </label>
                   </div>
 
     const color = <div className="input-container">
                     <label>
-                      Color:
+                      color
                       <input  type="text" className="form-control"></input>
                     </label>
                   </div>
 
     if (this.state.checkbox) {
       gridLineDisplay = <div className="attr-display">
-                          <h6 className="panel-headers">X-GridLines</h6>
+                          <h6 className="panel-subheaders">X-GridLines</h6>
                           <div className="input-group">
                             {width}
                             {color}
                           </div>
-                          <h6 className="panel-headers">Y-Gridlines</h6>
+                          <h6 className="panel-subheaders">Y-Gridlines</h6>
                           <div className="input-group">
                             {width}
                             {color}
@@ -54,7 +54,7 @@ class GridLines extends Component {
     }
     return(
       <div className="attr-container">
-        <header className="toolbar toolbar-header attr-header">
+        {/* <header className="toolbar toolbar-header attr-header">
           <div className="checkbox">
             <form onSubmit={this.onSubmit}>
               <label>
@@ -63,7 +63,10 @@ class GridLines extends Component {
               </label>
             </form>
           </div>
-        </header>
+        </header> */}
+        <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
+          <h5 className="panel-headers">Grid Lines</h5>
+        </div>
         {gridLineDisplay}
 
       </div>

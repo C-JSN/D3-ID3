@@ -6,6 +6,7 @@ import { getScatterPlot } from '../actions/ScatterPlotActions';
 import { getD3ParserObj } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import HeaderToolbar from '../components/header/HeaderToolbar';
+import {app, BrowserWindow} from 'electron';
 
 class Header extends Component {
 
@@ -21,7 +22,7 @@ class Header extends Component {
   render() {
     return (
       <header className="toolbar toolbar-header">
-        <h1 className="title">Project Name</h1>
+        <h1 className="title">ID3</h1>
         <HeaderToolbar getD3ParserObj={this.props.getD3ParserObj} getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown} />
       </header>
     );
