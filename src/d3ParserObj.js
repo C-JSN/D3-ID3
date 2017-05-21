@@ -8,7 +8,8 @@
 		"value": "d3.timeFormat(\"%Y%m%d\")",
 		"args": [
 			"d3.timeFormat(\"%Y%m%d\")"
-		]
+		],
+		"id": 1
 	},
 	{
 		"methodObject": "d3",
@@ -23,7 +24,8 @@
 		"value": "",
 		"args": [
 			""
-		]
+		],
+		"id": 4
 	},
 	"\n      .range([0, width]);\n\n    var y = d3",
 	{
@@ -34,7 +36,8 @@
 		"value": "",
 		"args": [
 			""
-		]
+		],
+		"id": 6
 	},
 	"\n      .range([height, 0]);\n\n    var line = d3",
 	{
@@ -45,7 +48,8 @@
 		"value": "",
 		"args": [
 			""
-		]
+		],
+		"id": 8
 	},
 	"\n      ",
 	{
@@ -56,7 +60,8 @@
 		"value": "d3.curveBasis",
 		"args": [
 			"d3.curveBasis"
-		]
+		],
+		"id": 10
 	},
 	"\n      ",
 	{
@@ -67,7 +72,8 @@
 		"value": "function (d) { return x(d.date); }",
 		"args": [
 			"function (d) { return x(d.date); }"
-		]
+		],
+		"id": 12
 	},
 	"\n      ",
 	{
@@ -78,7 +84,8 @@
 		"value": "function (d) { return y(d.temperature); }",
 		"args": [
 			"function (d) { return y(d.temperature); }"
-		]
+		],
+		"id": 14
 	},
 	{
 		"methodObject": "d3.area()",
@@ -93,7 +100,8 @@
 		"value": "\"body\"",
 		"args": [
 			"\"body\""
-		]
+		],
+		"id": 17
 	},
 	{
 		"methodObject": "d3.select(\"body\")",
@@ -103,7 +111,8 @@
 		"value": "\"svg\"",
 		"args": [
 			"\"svg\""
-		]
+		],
+		"id": 18
 	},
 	"\n      ",
 	{
@@ -115,7 +124,8 @@
 		"args": [
 			"\"width\"",
 			" width + margin.left + margin.right"
-		]
+		],
+		"id": 20
 	},
 	"\n      ",
 	{
@@ -127,7 +137,8 @@
 		"args": [
 			"\"height\"",
 			" height + margin.top + margin.bottom"
-		]
+		],
+		"id": 22
 	},
 	"\n      ",
 	{
@@ -138,7 +149,8 @@
 		"value": "\"g\"",
 		"args": [
 			"\"g\""
-		]
+		],
+		"id": 24
 	},
 	"\n      ",
 	{
@@ -150,7 +162,8 @@
 		"args": [
 			"\"transform\"",
 			" \"translate(\" + margin.left + \",\" + margin.top + \")\""
-		]
+		],
+		"id": 26
 	},
 	{
 		"methodObject": "d3.select(\"body\").append(\"svg\").append(\"g\")",
@@ -166,7 +179,8 @@
 		"args": [
 			"data",
 			" function (d) { return d.temperature; }"
-		]
+		],
+		"id": 29
 	},
 	"]).nice();\n    line.y0(y(0));\n\n    svg",
 	{
@@ -177,7 +191,8 @@
 		"value": "\"linearGradient\"",
 		"args": [
 			"\"linearGradient\""
-		]
+		],
+		"id": 31
 	},
 	"\n      ",
 	{
@@ -189,7 +204,8 @@
 		"args": [
 			"\"id\"",
 			" \"temperature-gradient\""
-		]
+		],
+		"id": 33
 	},
 	"\n      ",
 	{
@@ -201,7 +217,8 @@
 		"args": [
 			"\"gradientUnits\"",
 			" \"userSpaceOnUse\""
-		]
+		],
+		"id": 35
 	},
 	"\n      ",
 	{
@@ -213,7 +230,8 @@
 		"args": [
 			"\"x1\"",
 			" 0"
-		]
+		],
+		"id": 37
 	},
 	{
 		"methodObject": "svg.append(\"linearGradient\")",
@@ -224,7 +242,8 @@
 		"args": [
 			"\"y1\"",
 			" y(50)"
-		]
+		],
+		"id": 38
 	},
 	"\n      ",
 	{
@@ -236,7 +255,8 @@
 		"args": [
 			"\"x2\"",
 			" 0"
-		]
+		],
+		"id": 40
 	},
 	{
 		"methodObject": "svg.append(\"linearGradient\")",
@@ -247,7 +267,8 @@
 		"args": [
 			"\"y2\"",
 			" y(60)"
-		]
+		],
+		"id": 41
 	},
 	"\n      ",
 	{
@@ -258,7 +279,8 @@
 		"value": "\"stop\"",
 		"args": [
 			"\"stop\""
-		]
+		],
+		"id": 43
 	},
 	"\n      .data([\n        { offset: \"0%\", color: \"black\" },\n        { offset: \"50%\", color: \"black\" },\n        { offset: \"50%\", color: \"red\" },\n        { offset: \"100%\", color: \"red\" }\n      ])\n      ",
 	{
@@ -269,7 +291,8 @@
 		"value": "",
 		"args": [
 			""
-		]
+		],
+		"id": 45
 	},
 	{
 		"methodObject": ".enter()",
@@ -279,7 +302,8 @@
 		"value": "\"stop\"",
 		"args": [
 			"\"stop\""
-		]
+		],
+		"id": 46
 	},
 	"\n      ",
 	{
@@ -291,7 +315,8 @@
 		"args": [
 			"\"offset\"",
 			" function (d) { return d.offset; }"
-		]
+		],
+		"id": 48
 	},
 	"\n      ",
 	{
@@ -303,7 +328,8 @@
 		"args": [
 			"\"stop-color\"",
 			" function (d) { return d.color; }"
-		]
+		],
+		"id": 50
 	},
 	{
 		"methodObject": ".enter().append(\"stop\")",
@@ -318,7 +344,8 @@
 		"value": "\"g\"",
 		"args": [
 			"\"g\""
-		]
+		],
+		"id": 53
 	},
 	"\n      ",
 	{
@@ -330,7 +357,8 @@
 		"args": [
 			"\"class\"",
 			" \"x axis\""
-		]
+		],
+		"id": 55
 	},
 	"\n      ",
 	{
@@ -342,7 +370,8 @@
 		"args": [
 			"\"transform\"",
 			" \"translate(0,\" + height + \")\""
-		]
+		],
+		"id": 57
 	},
 	"\n      ",
 	{
@@ -353,7 +382,8 @@
 		"value": "d3.axisBottom(x)",
 		"args": [
 			"d3.axisBottom(x)"
-		]
+		],
+		"id": 59
 	},
 	{
 		"methodObject": "svg.append(\"g\")",
@@ -368,7 +398,8 @@
 		"value": "\"g\"",
 		"args": [
 			"\"g\""
-		]
+		],
+		"id": 62
 	},
 	"\n      ",
 	{
@@ -380,7 +411,8 @@
 		"args": [
 			"\"class\"",
 			" \"y axis\""
-		]
+		],
+		"id": 64
 	},
 	"\n      ",
 	{
@@ -391,7 +423,8 @@
 		"value": "d3.axisLeft(y)",
 		"args": [
 			"d3.axisLeft(y)"
-		]
+		],
+		"id": 66
 	},
 	"\n      ",
 	{
@@ -402,7 +435,8 @@
 		"value": "\"text\"",
 		"args": [
 			"\"text\""
-		]
+		],
+		"id": 68
 	},
 	"\n      ",
 	{
@@ -414,7 +448,8 @@
 		"args": [
 			"\"transform\"",
 			" \"rotate(-90)\""
-		]
+		],
+		"id": 70
 	},
 	"\n      ",
 	{
@@ -426,7 +461,8 @@
 		"args": [
 			"\"y\"",
 			" 6"
-		]
+		],
+		"id": 72
 	},
 	"\n      ",
 	{
@@ -438,7 +474,8 @@
 		"args": [
 			"\"dy\"",
 			" \".71em\""
-		]
+		],
+		"id": 74
 	},
 	"\n      ",
 	{
@@ -450,7 +487,8 @@
 		"args": [
 			"\"text-anchor\"",
 			" \"end\""
-		]
+		],
+		"id": 76
 	},
 	"\n      ",
 	{
@@ -461,7 +499,8 @@
 		"value": "\"Temperature (ºF)\"",
 		"args": [
 			"\"Temperature (ºF)\""
-		]
+		],
+		"id": 78
 	},
 	{
 		"methodObject": "svg.append(\"g\").append(\"text\")",
@@ -476,7 +515,8 @@
 		"value": "\"path\"",
 		"args": [
 			"\"path\""
-		]
+		],
+		"id": 81
 	},
 	"\n      ",
 	{
@@ -487,7 +527,8 @@
 		"value": "data",
 		"args": [
 			"data"
-		]
+		],
+		"id": 83
 	},
 	"\n      ",
 	{
@@ -499,7 +540,8 @@
 		"args": [
 			"\"class\"",
 			" \"line\""
-		]
+		],
+		"id": 85
 	},
 	"\n      ",
 	{
@@ -507,11 +549,12 @@
 		"d3MethodName": ".attr",
 		"name": "\"fill\"",
 		"type": "text",
-		"value": " \"none\"",
+		"value": " \"blue\"",
 		"args": [
 			"\"fill\"",
 			" \"none\""
-		]
+		],
+		"id": 87
 	},
 	"\n      ",
 	{
@@ -523,7 +566,8 @@
 		"args": [
 			"\"stroke\"",
 			" \"url(#temperature-gradient)\""
-		]
+		],
+		"id": 89
 	},
 	"\n      ",
 	{
@@ -535,7 +579,8 @@
 		"args": [
 			"\"stroke-width\"",
 			" \"1.5px\""
-		]
+		],
+		"id": 91
 	},
 	"\n      ",
 	{
@@ -547,7 +592,8 @@
 		"args": [
 			"\"d\"",
 			" line"
-		]
+		],
+		"id": 93
 	},
 	{
 		"methodObject": "svg.append(\"path\")",
