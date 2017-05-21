@@ -87,7 +87,7 @@ class AttributesPanel extends Component {
             </div>
           </div>
           <div className="submit-btn">
-            <button className="btn btn-primary attr-submit-btn" id="attr-submit-btn" type="submit">Save</button>
+            <button type="submit" className="btn btn-primary attr-submit-btn" form="attrFrom">Save</button>
           </div>
         </div>
       )
