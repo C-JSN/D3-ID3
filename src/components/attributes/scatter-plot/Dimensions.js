@@ -176,18 +176,9 @@ class Dimensions extends Component {
     return(
       <div>
         <div className="attr-container">
-          {/* <header className="toolbar toolbar-header attr-header"> */}
-            {/* <div className="checkbox"> */}
-              {/* <form onSubmit={this.onSubmit}> */}
-                {/* <label> */}
-                  <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
-                    <h5 className="panel-headers">SVG Dimensions</h5>
-                  </div>
-                  {/* SVG Dimensions */}
-                {/* </label> */}
-              {/* </form> */}
-            {/* </div> */}
-          {/* </header> */}
+          <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
+            <h5 className="panel-headers">SVG Dimensions</h5>
+          </div>
           <form onKeyUp={this.handleFormSubmit}>
             {dimensionsDisplay}
           </form>
