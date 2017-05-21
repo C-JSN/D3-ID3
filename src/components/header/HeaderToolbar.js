@@ -79,10 +79,6 @@ export default (props) => {
           <span className="icon icon-database icon-text"></span>
           Data Management
         </button>
-        <button id="resizeView" className="btn btn-default">
-          <span className="icon icon-popup icon-text"></span>
-          Resize View
-        </button>
         <button id="popEditor" className="btn btn-default">
           <span className="icon icon-popup icon-text"></span>
           Pop Editor

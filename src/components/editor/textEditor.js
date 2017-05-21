@@ -62,23 +62,19 @@ class TextEditor extends Component {
         let string = JSON.stringify(d3parser.parseD3(newEditorString), null, '\t');
         fs.writeFileSync('./src/d3ParserObj.js', string);
         ipcRenderer.send('updateAttr');
-        if (arg === '99%') {
-          editorView.style.height = '99%';
-          webview.style.height = '0%';
-        } else if (arg === '37%') {
-          editorView.style.height = '37%';
-          webview.style.height = '62%';
-        }
       });
 
-      ipcRenderer.on('addRender', (event, arg) => {
-        if (arg === '99%') {
-          editorView.style.height = '0%';
-          webview.style.height = '99%';
-        } else if (arg === '62%') {
-          editorView.style.height = '37%';
-          webview.style.height = '62%';
-        }
+      ipcRenderer.on('resize', (event, arg) => {
+        editorView.style.height = '37%';
+        webview.style.height = '62%';
+      });
+
+      ipcRenderer.on('openEditor', (event) => {
+        editorView.style.height = '99%';
+      });
+
+      ipcRenderer.on('openWebView', (event) => {
+        webview.style.height = '99%';
       });
 
       // import files into text-editor

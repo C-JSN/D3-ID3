@@ -22,33 +22,19 @@ export default class App extends Component {
 
     openDataWin.addEventListener('click', (event) => {
       ipcRenderer.send('openDataWin');
-    })
+    });
 
     popEditor.addEventListener('click', (event) => {
-      if (webview.style.height !== '0%') {
-        webview.style.height = '99%';
-      }
+      webview.style.height = '99%';
       editorView.style.height = '0%';
       ipcRenderer.send('popEditor', editor.getValue());
     });
 
     popRender.addEventListener('click', (event) => {
-      if (editorView.style.height !== '0%') {
-        editorView.style.height = '99%';
-      }
+      editorView.style.height = '99%';
       webview.style.height = '0%';
       ipcRenderer.send('popRender');
-    })
-
-    resizeView.addEventListener('click', (event) => {
-      editorView.style.height = editorH;
-      webview.style.height = webviewH;
-    })
-    // ipcRenderer.on('resetView', (event) => {
-    //   console.log('inside ipcRenderer receive')
-    // editorView.style.height = '50%';
-    // webview.style.height = '50%';
-    // })
+    });
   }
 
   render() {

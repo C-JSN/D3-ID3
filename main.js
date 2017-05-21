@@ -72,6 +72,11 @@ app.on('ready', () => {
   // pop out editor
   ipcMain.on('popEditor', (event, arg) => {
     if (!global.newEditor) {
+      if (global.newWebView) {
+        global.newWebView.destroy();
+        mainWindow.webContents.send('openWebView');
+      }
+
       let newEditor = new BrowserWindow({ width: 800, height: 600 });
       newEditor.loadURL(url.format({
         pathname: path.join(__dirname, 'editor.html'),
@@ -87,15 +92,12 @@ app.on('ready', () => {
 
       newEditor.on('close', (event) => {
         newEditor.webContents.send('editorClose');
+        mainWindow.webContents.send('resize');
       });
 
       newEditor.on('closed', (event) => {
         if (mainWindow) {
-          if (global.newWebView) {
-            mainWindow.webContents.send('updateMain', '99%');
-          } else {
-            mainWindow.webContents.send('updateMain', '37%');
-          }
+          mainWindow.webContents.send('updateMain');
           global.newEditor = null;
         }
       });
@@ -135,9 +137,9 @@ app.on('ready', () => {
     if (!global.dataWin) {
       let dataWin = new BrowserWindow({ width: 800, height: 600 });
       dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
-      
+
       global.dataWin = dataWin;
-      
+
       dataWin.on('closed', () => {
         global.dataWin = null;
       })
@@ -147,18 +149,22 @@ app.on('ready', () => {
   // pop out live render window
   ipcMain.on('popRender', (event, arg) => {
     if (!global.newWebView) {
+      if (global.newEditor) {
+        global.newEditor.destroy();
+        mainWindow.webContents.send('openEditor');
+      }
+
       let newWebView = new BrowserWindow({ width: 800, height: 600 });
       newWebView.loadURL('file://' + path.resolve(__dirname, 'src/components/temp/temp.html'))
-      
+
       global.newWebView = newWebView;
-      
+
+      newWebView.on('close', (event) => {
+        mainWindow.webContents.send('resize');
+      });
+
       newWebView.on('closed', (event) => {
         if (mainWindow) {
-          if (global.newEditor) {
-            mainWindow.webContents.send('addRender', '99%');
-          } else {
-            mainWindow.webContents.send('addRender', '62%');
-          }
           global.newWebView = null;
         }
       });
