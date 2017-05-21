@@ -46,6 +46,10 @@ function createWindow() {
     mainWindow.show()
   })
 
+  // mainWindow.on('close', () => {
+
+  // });
+
   // Emitted when the window is closed
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
@@ -53,7 +57,6 @@ function createWindow() {
     // when you should delete the corresponding element.
     fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), '//code here', (err) => {
       if (err) throw err;
-      // console.log('The file has been emptied!');
     })
     mainWindow = null
   })
@@ -92,7 +95,9 @@ app.on('ready', () => {
 
       newEditor.on('close', (event) => {
         newEditor.webContents.send('editorClose');
-        mainWindow.webContents.send('resize');
+        if (mainWindow) {
+          mainWindow.webContents.send('resize');
+        }
       });
 
       newEditor.on('closed', (event) => {
@@ -160,7 +165,9 @@ app.on('ready', () => {
       global.newWebView = newWebView;
 
       newWebView.on('close', (event) => {
-        mainWindow.webContents.send('resize');
+        if (mainWindow) {
+          mainWindow.webContents.send('resize');
+        }
       });
 
       newWebView.on('closed', (event) => {
