@@ -17,19 +17,28 @@ html, body {
   display: flex;
 }
 
-/* Eiditor Window */
+.btn-default {
+  height: 30px;
+  font-size: 13px;
+}
 
+/* Eiditor Window */
 .editor-container {
   width: 100%;
-  height: 41%;
+  height: calc(50% - 4px);
   border: 1px solid black;
-  border-bottom: none;
+  /*border-bottom: none;*/
   margin-top: 8px;
+}
+
+.editor-subcontainer {
+  width: 100%;
+  height: calc(100% - 40px);
 }
 
 #editor {
   width: 100%;
-  height: 87.5%;
+  height: 100%;
 }
 
 /* This may have some potential side effects but as of now don't see any */
@@ -37,9 +46,9 @@ html, body {
   overflow: hidden;
 }
 
-.webview-container {
+.renderer-container {
   width: 100%;
-  height: 58%;;
+  height: calc(50% - 4px);
   border: 1px solid black;
 }
 
@@ -52,8 +61,13 @@ html, body {
 
 #render-window {
   width: 100%;
-  height: 91%;
+  height: 100%;
   background-color: white;
+}
+
+.webview-container {
+  width: 100%;
+  height: calc(100% - 40px);
 }
 
 .pop-window-btn {
@@ -68,7 +82,7 @@ html, body {
 /* attribute panel styling */
 #attr-panel {
   width: 100%;
-  height: 94%;
+  height: calc(100% - 69px);
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -82,9 +96,26 @@ html, body {
   border-radius: 4px;
 }
 
+.generate-btn {
+  margin-left: 42px;
+  height: 29px;
+  font-size: 13px;
+}
+
 .panel-headers:hover {
   color: #21252b;
   background-color: rgb(57, 174, 112);
+}
+
+#attr-submit-btn {
+  width: 100%;
+  height: 100%;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 30px;
+  border: black;
 }
 
 /* main header toolbar styling */
@@ -207,4 +238,63 @@ html, body {
 .btn-default {
   height: 30px;
   font-size: 13px;
+}
+
+/* Footer Styling */
+.footer-status {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.status-bar-left {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 33%;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+}
+
+.file-info {
+  color: #9da5b4;
+}
+
+.error-helper-status {
+  color: #9da5b4;
+  margin-left: 20px;
+}
+
+.editor-line-info {
+  color: #9da5b4;
+  margin-left: 20px;
+}
+
+.error-helper {
+  margin-right: 3px;
+}
+
+.status-bar-right {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.window-status {
+  color: #FFDD3A;
+  margin-left: 15px;
+}
+
+.current-window {
+  margin-left: 4px;
+}
+
+.data-info {
+  color: #39AE70;
+  margin-left: 15px;
+}
+
+.data-progress {
+  margin-left: 4px;
 }
