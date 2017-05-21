@@ -8,7 +8,7 @@
     var PythonShell = require('python-shell');
 
     var app = express();
-    var publicPath = path.join(__dirname, '../src/dataWindow/');
+    var publicPath = path.join(__dirname, '/');
     var port = 6431;
 
     app.use(bodyParser.urlencoded({ extended: false }))
@@ -33,10 +33,11 @@
           send.push(result[i]);
         }
 
-        fs.writeFile(path.join(__dirname, "../src/dataWindow/app/js/data.js"), result[result.length - 1], function(err) {
+        fs.writeFile(path.join(__dirname, "app/js/data.js"), result[result.length - 1], function(err) {
           if(err) {
               return console.log(err);
           }
+          console.log(__dirname);
           console.log("The file was saved!");
         });
         res.json(JSON.stringify(send));

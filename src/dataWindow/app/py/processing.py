@@ -3,9 +3,7 @@ data = data.storage
 ### DO NOT REMOVE ABOVE. IMPORTS PARSED DATA FROM FILE.
 
 
-for d in data:
-    d['x'] += 1
-print(data)
+print('nice')
 
 
 

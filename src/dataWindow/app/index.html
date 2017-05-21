@@ -17,24 +17,25 @@
     <div class="window">
 
         <!-- .toolbar-header sits at the top of your app -->
-        <header class="toolbar toolbar-header titlebar">
+        <header class="toolbar toolbar-header titlebar main">
             <h1 class="title">Data Management</h1>
             <div class="toolbar-actions">
               <div class="btn-group">
                 <button class="btn btn-default" id="open">
-                  <span class="icon icon-folder"></span>
+                  <!-- <span class="icon icon-folder"></span> -->
                   <span class="buttonName" style="margin-left: 5px;">
                     Open File
                   </span>
                 </button>
-                <button class="btn btn-default active">
-                  <span class="icon icon-cloud"></span>
+                <button class="btn btn-default">
+                  <span class="buttonName" style="margin-left: 5px;">
+                    Save File
+                  </span>
                 </button>
                 <button class="btn btn-default">
-                  <span class="icon icon-popup"></span>
-                </button>
-                <button class="btn btn-default">
-                  <span class="icon icon-shuffle"></span>
+                  <span class="buttonName" style="margin-left: 5px;">
+                    Run Data
+                  </span>
                 </button>
               </div>
             </div>
@@ -42,76 +43,48 @@
         <!-- Your app's content goes inside .window-content -->
         <div class="window-content">
             <div class="pane-group">
-              <!-- <webview src="http://localhost:9944/notebooks/Data-notebook.ipynb" style="width: 100%"></webview> -->
                 <div class="pane">
                   <div style="height: 100%; width: 100%">
-                    <div class="editor" id="editor" style="border: 1px solid #ddd"></div>
+                    <div class="editor" id="editor"></div>
                   </div>
 
                 </div>
                 <div class="pane pane-one-third">
-                  <div style="height: 100%; width: 98%; overflow-y:scroll;">
+                  <header class="toolbar toolbar-header attr-main-header">
+                    <span class="title">
+                      Print Statement
+                    </span>
+                  </header>
+                  <div id="console">
                     <ul id="pyPrint" style="list-style-type: none; padding-left: 15px;">
                       <li style="text-align: center;"><h5>print statements</h5></li>
                     </ul>
                   </div>
-                  <!-- <table id="table_id1" class="display" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th>X</th>
-                            <th>Y</th>
-                        </tr>
-                    </thead>
-                  </table> -->
                 </div>
             </div>
         </div>
-    <!-- <footer class="toolbar toolbar-footer">
-        <h1 class="title">Footer</h1>
-    </footer> -->
     </div>
     <script src="https://unpkg.com/vue@2.2.6/dist/vue.js" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.4.0/intro.min.js"></script>
     <script>
       var $  = require( 'jquery' );
-      // const exec = require('child_process').exec;
-      // $(document).ready(function() { exec('cd app/py/ && jupyter notebook --port 9944 --no-browser && jupyter notebook list') });
-      //   const webview = document.querySelector('webview');
-      //   webview.reload();
-      // })
-      // var dt = require( 'datatables.net' )();
-      // $(document).ready(function() {
-      //     $('#table_id1').DataTable( {
-      //         "ajax": "http://localhost:6431/data",
-      //         "columns": [
-      //             { data: "x" },
-      //             { data: "y" },
-      //         ]
-      //     } );
-      // } );
-    </script>
-    <script>
-    //var path = require('path');
-    // const {dialog} = require('electron').remote;
-    document.getElementById('open').addEventListener('click',function(){
-        dialog.showOpenDialog(function (fileNames) {
-          var url = 'http://localhost:6431' + fileNames[0];
-          $.ajax({
-            type: "POST",
-            url: "http://localhost:6431/fileName",
-            data: {'url': fileNames[0]},
-            success: (req, res) => {
-              console.log(res);
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-              alert("Status: " + textStatus); alert("Error: " + errorThrown);
-            }
-          });
-        })
-
-        // });
-    },false);
+      document.getElementById('open').addEventListener('click',function(){
+          dialog.showOpenDialog(function (fileNames) {
+            var url = 'http://localhost:6431' + fileNames[0];
+            $.ajax({
+              type: "POST",
+              url: "http://localhost:6431/fileName",
+              data: {'url': fileNames[0]},
+              success: (req, res) => {
+                console.log(res);
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
+              }
+            });
+          })
+      },false);
     </script>
 </body>
 
