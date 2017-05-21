@@ -26,7 +26,7 @@ app.on('ready', function() {
     minWidth: 500,
     minHeight: 200,
     acceptFirstMouse: true,
-    titleBarStyle: 'hidden-inset',
+    titleBarStyle: 'hidden',
     frame: false
   });
 
