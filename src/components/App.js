@@ -10,7 +10,7 @@ const { ipcRenderer } = require('electron');
 export default class App extends Component {
 
   componentDidMount() {
-    let editorView = document.getElementById('editor');
+    let editorView = document.getElementById('editor-container');
     let webview = document.getElementById('webview-container');
     let openDataWin = document.getElementById('dataWin');
     let popRender = document.getElementById('popRender');
@@ -25,14 +25,14 @@ export default class App extends Component {
     });
 
     popEditor.addEventListener('click', (event) => {
-      webview.style.height = '99%';
-      editorView.style.height = '0%';
+      webview.style.height = 'calc(100% - 8px)';
+      editorView.style.height = '39px';
       ipcRenderer.send('popEditor', editor.getValue());
     });
 
     popRender.addEventListener('click', (event) => {
-      editorView.style.height = '99%';
-      webview.style.height = '0%';
+      editorView.style.height = 'calc(100% - 8px)';
+      webview.style.height = '39px';
       ipcRenderer.send('popRender');
     });
   }

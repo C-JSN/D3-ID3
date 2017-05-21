@@ -155,7 +155,7 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #9da5b4;
+  color: #fff;
   margin-top: 5px;
   margin-bottom: 5px;
   font-weight: 500;
@@ -202,7 +202,7 @@ h6 {
 
 .window-content {
   position: relative;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   display: flex;
   flex: 1;
 }
@@ -331,6 +331,7 @@ h6 {
   cursor: default;
   background-image: none;
   border: 1px solid transparent;
+  border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
   -webkit-app-region: no-drag;
 }
@@ -353,7 +354,7 @@ h6 {
 }
 
 .btn-default {
-  color: #ccc;
+  color: #fff;
   border-top-color: #21252b;
   border-right-color: #21252b;
   border-bottom-color: black;
@@ -389,8 +390,8 @@ background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
 }
 
 .btn-primary {
-  border-color: #388df8;
-  border-bottom-color: #0866dc;
+  border-color: black;
+  border-bottom-color: black;
   background-color: #6eb4f7;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6eb4f7), color-stop(100%, #1a82fb));
   background-image: -webkit-linear-gradient(top, #6eb4f7 0%, #1a82fb 100%);
@@ -454,7 +455,7 @@ background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
   height: 14px;
   margin-top: 1px;
   margin-bottom: 1px;
-  color: #d7dae0;
+  color: #fff;
   font-size: 14px;
   line-height: 1;
 }
@@ -521,9 +522,9 @@ background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
 
 .toolbar {
   /*min-height: 55px;*/
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
   box-shadow: inset 0 1px 0 #31373b;
   background-color: #2e3438;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e3438), color-stop(100%, #21252b));
@@ -675,6 +676,8 @@ textarea {
 
 .pane {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
   padding-right: 9px;
   flex: 1;

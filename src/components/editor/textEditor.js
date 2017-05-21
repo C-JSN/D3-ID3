@@ -52,7 +52,7 @@ class TextEditor extends Component {
         editor.layout();
       }
 
-      let editorView = document.getElementById('editor');
+      let editorView = document.getElementById('editor-container');
       let webview = document.getElementById('webview-container');
       ipcRenderer.on('updateMain', (event, arg) => {
         let newEditorString = fs.readFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), 'utf8');
@@ -65,16 +65,16 @@ class TextEditor extends Component {
       });
 
       ipcRenderer.on('resize', (event, arg) => {
-        editorView.style.height = '37%';
-        webview.style.height = '62%';
+        editorView.style.height = 'calc(50% - 4px)';
+        webview.style.height = 'calc(50% - 4px)';
       });
 
       ipcRenderer.on('openEditor', (event) => {
-        editorView.style.height = '99%';
+        editorView.style.height = 'calc(100% - 8px)';
       });
 
       ipcRenderer.on('openWebView', (event) => {
-        webview.style.height = '99%';
+        webview.style.height = 'calc(100% - 8px)';
       });
 
       // import files into text-editor
@@ -168,17 +168,28 @@ class TextEditor extends Component {
   render() {
     return (
       <div className="pane">
-        <div id="webview-container" className="webview-container">
+        <div id="webview-container" className="renderer-container">
           <header className="toolbar toolbar-header renderer-header">
             <span id="render-subheader">Renderer</span>
-            <button id="popRender" className="btn btn-default pop-render-btn pull-right">
+            <button id="popRender" className="btn btn-primary pop-window-btn pull-right">
               <span className="icon icon-popup icon-text"></span>
-              Pop Renderer
             </button>
           </header>
-          <webview id="render-window" src={this.state.url}></webview>
+          <div className="webview-container">
+            <webview id="render-window" src={this.state.url}></webview>
+          </div>
         </div>
-        <div id="editor"></div>
+        <div id="editor-container" className="editor-container">
+          <header className="toolbar toolbar-header renderer-header">
+            <span id="render-subheader">Editor</span>
+            <button id="popEditor" className="btn btn-primary pop-window-btn pull-right">
+              <span className="icon icon-popup icon-text"></span>
+            </button>
+          </header>
+          <div className="editor-subcontainer">
+            <div id="editor"></div>
+          </div>
+        </div>
       </div>
     );
   }

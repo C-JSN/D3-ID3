@@ -26,18 +26,12 @@ export default (props) => {
   return (
     <div className="toolbar-action titlebar">
       <div className="btn-group">
-        <button className="btn btn-default">
-          <span className="icon icon-folder icon-text"></span>
-          New
-        </button>
         <button className="btn btn-default" id="import-btn">
           <input type="file" id="upload-file" hidden></input>
-          <span className="icon icon-download icon-text"></span>
           Upload D3
         </button>
         <a className="btn btn-default" id="export-btn">
-          <span className="icon icon-upload icon-text"></span>
-          Export
+          Export D3
         </a>
         <div className="dropdown">
           <button className="btn btn-default btn-dropdown" onClick={toggleDropDown}>
@@ -71,17 +65,8 @@ export default (props) => {
       </div>
 
       <div className="btn-group pull-right">
-        <button className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
-          <span className="icon icon-login icon-text"></span>
-          Generate Attr
-        </button>
         <button className="btn btn-default" id="dataWin">
-          <span className="icon icon-database icon-text"></span>
           Data Management
-        </button>
-        <button id="popEditor" className="btn btn-default">
-          <span className="icon icon-popup icon-text"></span>
-          Pop Editor
         </button>
       </div>
     </div>

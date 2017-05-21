@@ -2,13 +2,33 @@ import React from 'react';
 
 export default (props) => {
   return(
-    <div className="toolbar-actions">
-      <div style={{backgroundColor: '#333', width: "80%", height: "80%", display: 'inline'}}>
-        information
+    <div className="footer-status toolbar-actions">
+      <div className="status-bar-left">
+        <div className="file-info">
+          <a className="current-path">ID3-React/src/components/footer/FooterToolbar.js</a>
+        </div>
+        <div className="error-helper-status">
+          <span className="error-helper icon icon-info-circled"></span>
+          <span className="error-helper info-circle">0</span>
+          <span className="error-helper icon icon-attention"></span>
+          <span className="error-helper attention-alert">0</span>
+          <span className="error-helper icon icon-info-circled"></span>
+          <span className="error-helper info-circle">0</span>
+        </div>
+        <div className="editor-line-info">
+          <span className="line-char-count">8:71</span>
+        </div>
       </div>
-      <button className="btn btn-primary pull-right">
-        Save
-      </button>
+      <div className="status-bar-right">
+        <div className="window-status">
+          <span className="icon icon-popup"></span>
+          <span className="current-window">Render Window</span>
+        </div>
+        <div className="data-info">
+          <span className="icon icon-database"></span>
+          <a className="data-progress">Data Loaded</a>
+        </div>
+      </div>
     </div>
   );
 }
