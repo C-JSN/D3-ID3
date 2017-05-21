@@ -26,15 +26,12 @@ export default (props) => {
   return (
     <div className="toolbar-action titlebar">
       <div className="btn-group">
-        <button className="btn btn-default">
-          New
-        </button>
         <button className="btn btn-default" id="import-btn">
           <input type="file" id="upload-file" hidden></input>
           Upload D3
         </button>
         <a className="btn btn-default" id="export-btn">
-          Export
+          Export D3
         </a>
         <div className="dropdown">
           <button className="btn btn-default btn-dropdown" onClick={toggleDropDown}>
@@ -68,15 +65,8 @@ export default (props) => {
       </div>
 
       <div className="btn-group pull-right">
-        <button className="btn btn-default" id="d3parser" onClick={(e)=>getD3ParserObj()}>
-          Generate Attr
-        </button>
         <button className="btn btn-default" id="dataWin">
           Data Management
-        </button>
-        <button id="resizeView" className="btn btn-default">
-          <span className="icon icon-popup icon-text"></span>
-          Resize View
         </button>
       </div>
     </div>
