@@ -52,7 +52,7 @@ class TextEditor extends Component {
         editor.layout();
       }
 
-      let editorView = document.getElementById('editor');
+      let editorView = document.getElementById('editor-container');
       let webview = document.getElementById('webview-container');
       ipcRenderer.on('updateMain', (event, arg) => {
         let newEditorString = fs.readFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), 'utf8');
@@ -62,23 +62,19 @@ class TextEditor extends Component {
         let string = JSON.stringify(d3parser.parseD3(newEditorString), null, '\t');
         fs.writeFileSync('./src/d3ParserObj.js', string);
         ipcRenderer.send('updateAttr');
-        if (arg === '99%') {
-          editorView.style.height = '99%';
-          webview.style.height = '0%';
-        } else if (arg === '37%') {
-          editorView.style.height = '37%';
-          webview.style.height = '62%';
-        }
       });
 
-      ipcRenderer.on('addRender', (event, arg) => {
-        if (arg === '99%') {
-          editorView.style.height = '0%';
-          webview.style.height = '99%';
-        } else if (arg === '62%') {
-          editorView.style.height = '37%';
-          webview.style.height = '62%';
-        }
+      ipcRenderer.on('resize', (event, arg) => {
+        editorView.style.height = 'calc(50% - 4px)';
+        webview.style.height = 'calc(50% - 4px)';
+      });
+
+      ipcRenderer.on('openEditor', (event) => {
+        editorView.style.height = 'calc(100% - 8px)';
+      });
+
+      ipcRenderer.on('openWebView', (event) => {
+        webview.style.height = 'calc(100% - 8px)';
       });
 
       // import files into text-editor
@@ -172,10 +168,10 @@ class TextEditor extends Component {
   render() {
     return (
       <div className="pane">
-        <div className="renderer-container">
+        <div id="webview-container" className="renderer-container">
           <header className="toolbar toolbar-header renderer-header">
             <span id="render-subheader">Renderer</span>
-            <button className="btn btn-primary pop-window-btn pull-right">
+            <button id="popRender" className="btn btn-primary pop-window-btn pull-right">
               <span className="icon icon-popup icon-text"></span>
             </button>
           </header>
@@ -183,10 +179,10 @@ class TextEditor extends Component {
             <webview id="render-window" src={this.state.url}></webview>
           </div>
         </div>
-        <div className="editor-container">
+        <div id="editor-container" className="editor-container">
           <header className="toolbar toolbar-header renderer-header">
             <span id="render-subheader">Editor</span>
-            <button className="btn btn-primary pop-window-btn pull-right">
+            <button id="popEditor" className="btn btn-primary pop-window-btn pull-right">
               <span className="icon icon-popup icon-text"></span>
             </button>
           </header>

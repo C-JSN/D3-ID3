@@ -87,7 +87,7 @@ class AttributesPanel extends Component {
             </div>
           </div>
           <div className="submit-btn">
-            <button type="submit" className="btn btn-primary attr-submit-btn" form="attrFrom">Save</button>
+            <button type="submit" className="btn btn-primary attr-submit-btn" form="attrForm">Save</button>
           </div>
         </div>
       )
@@ -97,7 +97,7 @@ class AttributesPanel extends Component {
       <div className="pane-one-fourth">
         <header className="toolbar toolbar-header attr-main-header">
           <h1 className="title main-header">Attributes Panel</h1>
-          <button className="btn btn-primary generate-btn" id="d3parser" onClick={(e)=>getD3ParserObj()}>
+          <button className="btn btn-primary generate-btn" id="d3parser" onClick={(e) => getD3ParserObj()}>
             Generate
           </button>
         </header>
