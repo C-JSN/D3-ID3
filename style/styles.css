@@ -107,7 +107,7 @@ html, body {
   background-color: rgb(57, 174, 112);
 }
 
-#attr-submit-btn {
+.attr-submit-btn {
   width: 100%;
   height: 100%;
 }

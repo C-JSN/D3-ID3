@@ -70,19 +70,24 @@ class AttributesPanel extends Component {
       const attrList = attrObj.map(obj => {
         return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={obj} />
       });
+
       return (
         <div className="pane-one-fourth">
-          <div>
-            <header className="toolbar toolbar-header attr-main-header">
-              <h1 className="title main-header">Attribute Panel</h1>
-            </header>
-          </div>
+          <header className="toolbar toolbar-header attr-main-header">
+            <h1 className="title main-header">Attributes Panel</h1>
+            <button className="btn btn-primary generate-btn" id="d3parser" onClick={(e)=>getD3ParserObj()}>
+              Generate
+            </button>
+          </header>
           <div id="attr-panel">
             <div className="parsed-attr-container">
               <form id="attrForm" onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
                 {attrList}
               </form>
             </div>
+          </div>
+          <div className="submit-btn">
+            <button type="submit" className="btn btn-primary attr-submit-btn" form="attrFrom">Save</button>
           </div>
         </div>
       )
@@ -113,7 +118,7 @@ class AttributesPanel extends Component {
           <Data />
         </div>
         <div className="submit-btn">
-          <button className="btn btn-primary" id="attr-submit-btn" type="submit">Save</button>
+          <button className="btn btn-primary attr-submit-btn" type="submit">Save</button>
         </div>
       </div>
     );
