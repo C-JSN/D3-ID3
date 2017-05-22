@@ -148,7 +148,7 @@ class Dimensions extends Component {
                   </label>
                 </div>
     const responsiveSize = <div className="checkbox">
-                <label style={{color: '#fff'}}>
+                <label style={{color: '#CACFD2'}}>
                   {/* this checkbox will still need it's own handler */}
                   <input type="checkbox" />
                   responsive resize
