@@ -21,7 +21,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="toolbar toolbar-header">
+      <header className="toolbar toolbar-header titlebar">
         <h1 className="title">ID3</h1>
         <HeaderToolbar getD3ParserObj={this.props.getD3ParserObj} getScatterPlotAction={this.props.getScatterPlot} toggleDropDown={this.toggleDropDown} />
       </header>

@@ -16,11 +16,11 @@
     app.use(express.static(publicPath));
 
     app.post('/fileName', (req, res, next) => {
-      var pyshell = new PythonShell('py/parser.py', { scriptPath: publicPath } );
+      var pyshell = new PythonShell('app/py/parser.py', { scriptPath: publicPath } );
       pyshell.send(req.body.url);
       pyshell.end(function (err) {
         if (err) throw err;
-        console.log('finished');
+        // console.log('finished');
       });
       res.end();
     });
@@ -37,14 +37,14 @@
           if(err) {
               return console.log(err);
           }
-          console.log("The file was saved!");
+          // console.log("The file was saved!");
         });
         res.json(JSON.stringify(send));
       });
     });
 
     var server = app.listen(port, function () {
-        console.log('Express server listening on port ' + server.address().port);
+        // console.log('Express server listening on port ' + server.address().port);
     });
 
     module.exports = app;

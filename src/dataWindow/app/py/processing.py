@@ -1,8 +1,8 @@
 import data
-data = data.storage
+# import json
+# data = json.load(data.storage)
 ### DO NOT REMOVE ABOVE. IMPORTS PARSED DATA FROM FILE.
-
-print('nice')
+print(data.storage[0])
 
 
 
