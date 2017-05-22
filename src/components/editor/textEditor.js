@@ -90,6 +90,9 @@ class TextEditor extends Component {
       fileUpLoadBtn.addEventListener('change', (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
+        var currPath = document.getElementById('currPath');
+        currPath.innerHTML = file.path;
+        console.log(file.path)
         reader.onload = function (event) {
           fs.writeFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), event.target.result);
           let string = JSON.stringify(d3parser.parseD3(event.target.result), null, '\t');
