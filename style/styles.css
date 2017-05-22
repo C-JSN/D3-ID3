@@ -2,6 +2,8 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0;
+  font-family: Verdana, Geneva, sans-serif;
+  /*font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;*/
 }
 
 .container {
@@ -70,7 +72,7 @@ html, body {
 .renderer-header {
   color: #9da5b4;
   height: 39px;
-  padding: 6px 5px 0 5px;
+  padding: 4px 5px 0 5px;
 }
 
 #render-window {
@@ -93,6 +95,10 @@ html, body {
   font-size: 15px;
 }
 
+.pop-window-btn .icon-popup:hover {
+  color: #9da5b4;
+}
+
 /* attribute panel styling */
 #attr-panel {
   width: 100%;
@@ -104,21 +110,21 @@ html, body {
 }
 
 .panel-headers {
-  color: #fff;
+  color: #CACFD2;
   margin: 5px 10px 5px 0;
   margin-left: 10px;
   border-radius: 4px;
 }
 
 .generate-btn {
-  margin-left: 42px;
+  margin-left: 20px;
   height: 29px;
   font-size: 13px;
 }
 
 .panel-headers:hover {
   color: #21252b;
-  background-color: rgb(57, 174, 112);
+  background-color: #4d78cc;
 }
 
 .attr-submit-btn {
@@ -157,15 +163,15 @@ html, body {
   position: absolute;
   border: 1px solid black;
   top: 29px;
-  left: 0.6px;
+  left: -0.4px;
   background-color: rgb(53, 59, 69);
-  min-width: 107px;
+  min-width: 117px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 .dropdown-menu p {
-  color: #fff;
+  color: #CACFD2;
   margin: 0;
   padding: 7px;
   text-decoration: none;
@@ -174,7 +180,7 @@ html, body {
 
 .dropdown-menu p:hover {
   color: #21252b;
-  background-color: #39AE70;
+  background-color: #4d78cc;
   border-radius: 4px;
 }
 
@@ -216,7 +222,7 @@ html, body {
 }
 
 .main-header {
-  color: #fff;
+  color: #CACFD2;
   margin-left: 5px;
   font-size: 20px;
 }
@@ -226,7 +232,7 @@ html, body {
 }
 
 .attr-header {
-  color: #fff;
+  color: #CACFD2;
   height: 30px;
   display: flex;
   align-items: center;
@@ -246,7 +252,7 @@ html, body {
 }
 
 .input-container label {
-  color: #fff;
+  color: #CACFD2;
 }
 
 .btn-default {

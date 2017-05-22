@@ -5,7 +5,7 @@ export default (props) => {
     <div className="footer-status toolbar-actions">
       <div className="status-bar-left">
         <div className="file-info">
-          <a className="current-path">ID3-React/src/components/footer/FooterToolbar.js</a>
+          <a className="current-path">user/smeads/Bubble.js</a>
         </div>
         <div className="error-helper-status">
           <span className="error-helper icon icon-info-circled"></span>
