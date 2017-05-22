@@ -288,6 +288,7 @@ html, body {
 .editor-line-info {
   color: #9da5b4;
   margin-left: 20px;
+  margin-right: 5px;
 }
 
 .error-helper {
@@ -317,4 +318,9 @@ html, body {
 
 .data-progress {
   margin-left: 4px;
+}
+
+.current-path {
+  margin-left: 6px;
+  display: inline-block;
 }
