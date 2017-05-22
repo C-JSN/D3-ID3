@@ -1,1 +1,1 @@
-[{'x': 1.0, 'y': 2.0}, {'x': 3.0, 'y': 4.0}, {'x': 5.0, 'y': 6.0}, {'x': 7.0, 'y': 8.0}, {'x': 9.0, 'y': 10.0}]
+<module 'data' from '/Users/eveafeline/Documents/Codesmith/senior/D3-ID3-Naomi/src/dataWindow/app/py/data.py'>

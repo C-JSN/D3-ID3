@@ -38,10 +38,12 @@ def readJsonFile(fileName):
 
 if fileName[-4:] == '.csv':
     output = readCsvFile(fileName)
+    output = json.dumps(output)
 elif fileName[-4:] == 'json':
     output = readJsonFile(fileName)
 
-writeText = 'storage =' + json.dumps(output)
-with open('app/py/data.py', 'w') as f:
+writeText = 'storage =' + output
+with open('src/dataWindow/app/py/data.py', 'w') as f:
+    print('inside write data')
     f.write(writeText)
     f.close()
