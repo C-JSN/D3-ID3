@@ -50,7 +50,7 @@ Note: Refresh the Attribute Panel by clicking `Generate Attr` when you upload a 
   <img alt="iD3 Data Management" src="assets/id3_data_management.jpg">
 </p>
 
-### Data Management
+### Manage your data
 Use your custom data processing algorithms on top of D3's built-in functions with our integrated Python based data management system. This system allows you to feed your .csv or .json files through your personal Python script and check your data in the print statement window before sending it back to the main application to render in your visualization.
 
 ## Resources
