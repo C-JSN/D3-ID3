@@ -8,7 +8,7 @@ iD3 is an open-source, cross-platform desktop application geared to simplify dat
 
 ##
 <p align="center">
-  <img alt="iD3 Screenshot" src="assets/id3_logo_full.png">
+  <img alt="iD3 Screenshot" src="assets/id3_screenshot.png">
 </p>
 
 ## To Use
