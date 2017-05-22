@@ -47,11 +47,11 @@ Note: Refresh the Attribute Panel by clicking `Generate Attr` when you upload a 
 
 ##
 <p align="center">
-  <img alt="iD3 Data Management" src="assets/id3_data_management.png">
+  <img alt="iD3 Data Management" src="assets/id3_data_management.jpg">
 </p>
 
 ### Data Management
-D3 is Data Driven Document. Data is a big part of what makes D3 so powerful. 
+Use your custom data processing algorithms on top of D3's built-in functions with our integrated Python based data management system. This system allows you to feed your .csv or .json files through your personal Python script and check your data in the print statement window before sending it back to the main application to render in your visualization.
 
 ## Resources
 Find us on www.d3-id3.com  
@@ -59,6 +59,3 @@ Special thanks to Mike Bostock for creating [D3.js](https://d3js.org/)
 
 ## Contributors
 [Christian Pascual](https://github.com/crp2002) | [Jeffrey Ma](https://github.com/jjeffreyma) | [Steve Meads](https://github.com/smeads) | [Naomi Lai](https://github.com/eveafeline)
-
-## License
-[MIT](https://spdx.org/licenses/MIT.html#licenseText)
