@@ -22,7 +22,21 @@ html, body {
   font-size: 13px;
 }
 
-/* Eiditor Window */
+/*main logo*/
+.headerlogo {
+  height: 28px;
+  width: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: -8px;
+}
+
+/*top tool bar*/
+.main {
+  height: 62px !important;
+}
+
+/* Editor Window */
 .editor-container {
   width: 100%;
   height: calc(50% - 4px);

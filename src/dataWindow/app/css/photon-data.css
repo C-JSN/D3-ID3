@@ -194,14 +194,29 @@ h6 {
 
 #console {
   width: 100%;
-  height: 93%;
+  height: 92%;
   display: flex;
   flex-direction: column;
   /*border-radius: 5px;*/
   background-color: #1E1E1E;
   border: 1px solid black;
-  /*overflow-y: scroll;*/
+  overflow: auto;
 }
+
+#console::-webkit-scrollbar {
+    width: 1em;
+}
+
+#console::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#console::-webkit-scrollbar-thumb {
+  background-color: black;
+  outline: 1px solid slategrey;
+}
+
+
 
 .window {
   position: absolute;
@@ -217,19 +232,17 @@ h6 {
 
 .window-content {
   position: relative;
-  overflow-y: auto;
+  overflow-y: hidden;
   display: flex;
   flex: 1;
   margin-bottom: 10px;
 }
 
 .editor {
-  height: 100%;
+  height: 99%;
   width: 100%;
   overflow: hidden;
-  /*margin-top: 8px;*/
   border: 1px solid black;
-  /*border-bottom: none;*/
 }
 
 .attr-main-header {
@@ -590,6 +603,7 @@ color: #9da5b4;
   -webkit-app-region: drag;
   height: 30px;
   vertical-align: middle;
+  margin-top: -10px;
 }
 
 .title {
