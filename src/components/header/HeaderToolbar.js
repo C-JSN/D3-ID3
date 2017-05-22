@@ -66,7 +66,7 @@ export default (props) => {
       </div>
 
       <div className="btn-group pull-right">
-        <button className="btn btn-default" id="dataWin">
+        <button className="btn btn-default data-mgn-btn" id="dataWin">
           Data Management
         </button>
       </div>
