@@ -171,7 +171,7 @@ class TextEditor extends Component {
         <div id="webview-container" className="renderer-container">
           <header className="toolbar toolbar-header renderer-header">
             <span id="render-subheader">Renderer</span>
-            <button id="popRender" className="btn btn-primary pop-window-btn pull-right">
+            <button id="popRender" className="btn btn-default pop-window-btn pull-right">
               <span className="icon icon-popup icon-text"></span>
             </button>
           </header>
@@ -182,7 +182,7 @@ class TextEditor extends Component {
         <div id="editor-container" className="editor-container">
           <header className="toolbar toolbar-header renderer-header">
             <span id="render-subheader">Editor</span>
-            <button id="popEditor" className="btn btn-primary pop-window-btn pull-right">
+            <button id="popEditor" className="btn btn-default pop-window-btn pull-right">
               <span className="icon icon-popup icon-text"></span>
             </button>
           </header>

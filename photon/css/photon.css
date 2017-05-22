@@ -377,8 +377,8 @@ background-image: linear-gradient(to bottom, #2e3438 0%, #23272a 100%);*/
 }
 
 .btn-default:active {
-  color: #39AE70;
-  background-color: #2e3438;
+  color: #fff;
+  background-color: #4d78cc;
   background-image: none;
 }
 
