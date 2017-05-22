@@ -2,8 +2,16 @@ import data
 data = data.storage
 ### DO NOT REMOVE ABOVE. IMPORTS PARSED DATA FROM FILE.
 
+# print(data)
 
-print('nice')
+def getMonth(val):
+    for d in data:
+        month = d['AAPL_x'][5:7]
+        if int(month) == val:
+            print(d)
+
+getMonth(1)
+
 
 
 

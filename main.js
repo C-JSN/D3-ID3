@@ -142,7 +142,12 @@ app.on('ready', () => {
 
   ipcMain.on('openDataWin', (event, arg) => {
     if (!global.dataWin) {
-      let dataWin = new BrowserWindow({ width: 800, height: 600 });
+      let dataWin = new BrowserWindow({
+        width: 800,
+        height: 600,
+        titleBarStyle: 'hidden',
+        frame: false,
+      });
       dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
 
       global.dataWin = dataWin;

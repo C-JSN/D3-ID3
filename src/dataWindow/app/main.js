@@ -1,3 +1,4 @@
+// for dev only
 const {app, BrowserWindow} = require('electron')
 
 // require('electron-reload')(__dirname);
