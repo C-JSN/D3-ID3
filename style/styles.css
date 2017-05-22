@@ -124,7 +124,7 @@ html, body {
 
 .panel-headers:hover {
   color: #21252b;
-  background-color: #FF5733;
+  background-color: #4d78cc;
 }
 
 .attr-submit-btn {
@@ -180,7 +180,7 @@ html, body {
 
 .dropdown-menu p:hover {
   color: #21252b;
-  background-color: #FF5733;
+  background-color: #4d78cc;
   border-radius: 4px;
 }
 
