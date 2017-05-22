@@ -14,36 +14,44 @@ iD3 is an open-source, cross-platform desktop application geared to simplify dat
 ## To Use
 Fork or download
 ```
+# Clone this repository
+git clone https://github.com/C-JSN/D3-ID3.git
+# Go into the repository
+cd D3-ID3
+# Install dependencies
 npm install  
-npm run webpack  
+# Run webpack
+npm run webpack
+# Run the app  
 npm start  
 ```
 Please make sure you have Python 3.6 installed.
-Click here [python](https://www.python.org/downloads/) to install Python 3.6
+Click [here](https://www.python.org/downloads/) to install [Python 3.6](https://www.python.org/downloads/)
 
-### Import D3 code
-Click on `Upload D3` on the top nav-bar on the left side.  
-Select a html file. Your data visualization will populate automatically
+### Keyboard shortcuts:
+```
+ctrl + s (main app editor) = run code and render
+ctrl + s (data management editor) = run code
+```
 
-### Templates
-Click on `Templates` on the top nav-bar on the left side    
-Select a template from the dropdown. The data viz and code will be displayed
+### Take control of your visualization
+Upload your own D3 code and see it visualized immediately on the Renderer. Modify your data visualization straight in the editor, or through the custom generated attribute controls to your right and see your changes reflected in the Renderer as you go.
 
-### Attribute Panel
-User the `Attribute Panel` on the right nav-bar to udpate dimensions and attributes  
-You may also change the code directly  
+#### New to D3? Use a Template
+Select a template from our library and start creating right away.
 
-Reference the data managment section if you have .csv .tsv or .json files to import data  
-To Export the final code, click on `Export` on the top nav-bar on the left
+#### Export files
+Export your finalized code to be used on your other projects!
 
-Keyboard shortcuts:
-control + s = render code
+Note: Refresh the Attribute Panel by clicking `Generate Attr` when you upload a new file or run a new template
 
-Note: you might need to refresh the Attribute Panel by clicking `Generate Attr` when you switching  
-from uploading a file and using templates
+##
+<p align="center">
+  <img alt="iD3 Data Management" src="assets/id3_data_management.png">
+</p>
 
 ### Data Management
-****
+D3 is Data Driven Document. Data is a big part of what makes D3 so powerful. 
 
 ## Resources
 Find us on www.d3-id3.com  
