@@ -5,8 +5,6 @@
     <title>Photon</title>
 
     <!-- Stylesheets -->
-
-    <link rel="stylesheet" href="https://cdn.rawgit.com/andrewcourtice/vuetiful/46294dcb0852e2f13324f186908aa7e62251f7aa/dist/components/app.style.css">
     <link rel="stylesheet" href="./css/photon-data.css">
     <!-- Javascript -->
     <!-- <script src="js/menu.js" charset="utf-8"></script> -->
@@ -17,7 +15,7 @@
     <div class="window">
 
         <!-- .toolbar-header sits at the top of your app -->
-        <header class="toolbar toolbar-header titlebar main">
+        <header class="toolbar toolbar-header titlebar">
             <h1 class="title">Data Management</h1>
             <div class="toolbar-actions">
               <div class="btn-group">
@@ -50,21 +48,24 @@
 
                 </div>
                 <div class="pane pane-one-third">
-                  <header class="toolbar toolbar-header attr-main-header">
+                  <header class="toolbar toolbar-header attr-main-header" style="border: 1px solid black;">
                     <span class="title">
                       Print Statement
                     </span>
                   </header>
                   <div id="console">
                     <ul id="pyPrint" style="list-style-type: none; padding-left: 15px;">
-                      <li style="text-align: center;"><h5>print statements</h5></li>
+                      <li></li>
                     </ul>
                   </div>
                 </div>
             </div>
         </div>
+        <footer class="toolbar toolbar-footer">
+          <span class="fileName">file name: </span>
+          <span id="fileNameDisplay" class="fileName"></span>
+        </footer>
     </div>
-    <script src="https://unpkg.com/vue@2.2.6/dist/vue.js" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.4.0/intro.min.js"></script>
     <script>
@@ -83,6 +84,8 @@
                 alert("Status: " + textStatus); alert("Error: " + errorThrown);
               }
             });
+            var fnd = document.getElementById('fileNameDisplay');
+            fnd.innerHTML = fileNames[0];
           })
       },false);
     </script>

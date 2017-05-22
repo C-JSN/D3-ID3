@@ -139,10 +139,12 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
+  font-family: Verdana, Geneva, sans-serif;
+  /*font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;*/
   font-size: 13px;
   line-height: 1.6;
-  color: #1b1d23;
+  color: #CACFD2;
+  /*color: #1b1d23;*/
   background-color: transparent;
 }
 
@@ -155,7 +157,8 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #9da5b4;
+  /*color: #9da5b4;*/
+  color: #CACFD2;
   margin-bottom: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -238,7 +241,7 @@ h6 {
 }
 
 .main-header {
-  color: white;
+  color: #E5E7E9;
   margin-left: 5px;
   font-size: 20px;
 }
@@ -585,16 +588,19 @@ color: #9da5b4;
 .toolbar-footer {
   border-top: 1px solid black;
   -webkit-app-region: drag;
+  height: 30px;
+  vertical-align: middle;
 }
 
 .title {
   margin: 0;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
   text-align: center;
-  color: white;
+  color: #CACFD2;
   cursor: default;
   padding-left: 5px;
+  padding-bottom: 5px;
 }
 
 .toolbar-borderless {
@@ -2400,4 +2406,9 @@ td:last-child {
 .tab-item-fixed {
   flex: none;
   padding: 3px 10px;
+}
+
+.fileName {
+  color: #797D7F;
+  font-size: 12px;
 }
