@@ -1,4 +1,76 @@
-import React from 'react';
+import React, {Component} from 'react';
+//
+// As soon as we have the attribute object parsed the code commented out below is
+// the over layout and styling.
+
+// class AttrListItem extends Component {
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       checkbox: false
+//     };
+//
+//     this.handleCheckbox = this.handleCheckbox.bind(this);
+//     this.onSubmit = this.onSubmit.bind(this);
+//   }
+//
+//   onSubmit(event) {
+//     event.preventDefault();
+//   }
+//
+//   handleCheckbox(event) {
+//     this.setState({
+//       checkbox: !this.state.checkbox
+//     });
+//   }
+//
+//   render() {
+//
+//     let attributesDisplay = <div className="attr-display"></div>
+//
+//     if (this.state.checkbox) {
+//       attributesDisplay = <div className="attr-display">
+//         <div className="input-group">
+//           <div className="input-container">
+//             <label>
+//               width
+//               <input type="number" className="form-control" onChange={this.updateWidth} />
+//             </label>
+//           </div>
+//           <div className="input-container">
+//             <label>
+//               width
+//               <input type="number" className="form-control" onChange={this.updateWidth} />
+//             </label>
+//           </div>
+//         </div>
+//         <div className="input-group">
+//           <div className="input-container">
+//             <label>
+//               width
+//               <input type="number" className="form-control" onChange={this.updateWidth} />
+//             </label>
+//           </div>
+//           <div className="input-container">
+//             <label>
+//               width
+//               <input type="number" className="form-control" onChange={this.updateWidth} />
+//             </label>
+//           </div>
+//         </div>
+//       </div>
+//     }
+//
+//     return(
+//       <div className="attr-container">
+//         <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
+//           <h5 className="panel-headers">graphContainer.svg</h5>
+//         </div>
+//         {attributesDisplay}
+//       </div>
+//     );
+//   }
+// }
 
 const AttrListItem = ({info, updateValue}) => {
   return (

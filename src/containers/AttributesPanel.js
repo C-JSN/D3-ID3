@@ -59,10 +59,6 @@ class AttributesPanel extends Component {
 
     const D3ParserObj = this.props.D3ParserReducer;
 
-    // if (D3ParserObj.length === 0) {
-    //   return <div className="pane-one-fourth">Upload some data!</div>;
-    // }
-
     if (D3ParserObj.length > 0) {
       const attrObj = D3ParserObj.filter((el, i) => {
         if (typeof el === 'object' && el.hasOwnProperty('args')) {
@@ -74,32 +70,24 @@ class AttributesPanel extends Component {
       const attrList = attrObj.map(obj => {
         return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={obj} />
       });
+
       return (
         <div className="pane-one-fourth">
-          <div>
-            <header className="toolbar toolbar-header attr-main-header">
-              <h1 className="title main-header">Attribute Panel</h1>
-            </header>
-          </div>
+          <header className="toolbar toolbar-header attr-main-header">
+            <h1 className="title main-header">Attributes Panel</h1>
+            <button className="btn btn-primary generate-btn" id="d3parser" onClick={(e)=>getD3ParserObj()}>
+              Generate
+            </button>
+          </header>
           <div id="attr-panel">
-            {/* <header className="toolbar toolbar-header attr-header">
-              <div className="d3legend">
-                <div className="legend-header">
-                  <span className="icon icon-stop icon-purple"></span>
-                  <h5 className="title method-object-legend">Method Object</h5>
-                </div>
-                <div className="legend-header">
-                  <span className="icon icon-stop icon-green"></span>
-                  <h5 className="title method-name-legend">Method Name</h5>
-                </div>
-              </div>
-            </header> */}
             <div className="parsed-attr-container">
               <form id="attrForm" onSubmit={(e) => this.handleSubmit(e, D3ParserObj)}>
                 {attrList}
-                <button className="btn btn-default parser-submit-btn" type="submit">Save</button>
               </form>
             </div>
+          </div>
+          <div className="submit-btn">
+            <button type="submit" className="btn btn-primary attr-submit-btn" form="attrForm">Save</button>
           </div>
         </div>
       )
@@ -109,6 +97,9 @@ class AttributesPanel extends Component {
       <div className="pane-one-fourth">
         <header className="toolbar toolbar-header attr-main-header">
           <h1 className="title main-header">Attributes Panel</h1>
+          <button className="btn btn-primary generate-btn" id="d3parser" onClick={(e) => getD3ParserObj()}>
+            Generate
+          </button>
         </header>
         <div id="attr-panel">
           <Dimensions
@@ -125,6 +116,9 @@ class AttributesPanel extends Component {
             tooTip={toolTip}
             scatterPlot={scatterPlot} />
           <Data />
+        </div>
+        <div className="submit-btn">
+          <button className="btn btn-primary attr-submit-btn" type="submit">Save</button>
         </div>
       </div>
     );
