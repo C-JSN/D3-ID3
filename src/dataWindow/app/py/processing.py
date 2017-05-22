@@ -2,8 +2,9 @@ import data
 data = data.storage
 ### DO NOT REMOVE ABOVE. IMPORTS PARSED DATA FROM FILE.
 
-
 print('nice')
+
+
 
 
 
