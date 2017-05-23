@@ -1175,7 +1175,7 @@ module.exports = {
             }
             i += 1;
           }
-          args = str.slice(start, i).split(/,(.+)/, 2);
+          args = str.slice(start, i).split(',');
 
           // move i past closing parens
           i += 1;
@@ -1228,6 +1228,24 @@ module.exports = {
               name: ')',
               type: 'text',
               value: args[1],
+              args: args,
+            });
+          }
+          if (args.length > 2) {
+            let string = '';
+            for (let i = 1; i < args.length; i += 1) {
+              if (i !== args.length - 1) {
+                string += args[i] + ',';
+              } else {
+                string += args[i];
+              }
+            }
+            cache.push({
+              methodObject: methodObject,
+              d3MethodName: method,
+              name: args[0],
+              type: 'text',
+              value: string,
               args: args,
             });
           }
