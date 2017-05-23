@@ -4,9 +4,6 @@ export default (props) => {
   return(
     <div className="footer-status toolbar-actions">
       <div className="status-bar-left">
-        <div className="file-info">
-          <a className="current-path">ID3-React/src/components/footer/FooterToolbar.js</a>
-        </div>
         <div className="error-helper-status">
           <span className="error-helper icon icon-info-circled"></span>
           <span className="error-helper info-circle">0</span>
@@ -17,6 +14,10 @@ export default (props) => {
         </div>
         <div className="editor-line-info">
           <span className="line-char-count">8:71</span>
+        </div>
+        <div className="file-info">
+          <span className="current-path">file name: </span>
+          <a className="current-path" id="currPath"></a>
         </div>
       </div>
       <div className="status-bar-right">

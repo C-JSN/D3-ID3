@@ -29,7 +29,11 @@ module.exports = {
       }, {
         test: /\.(eot|woff)$/,
         loader: 'file-loader',
+      }, {
+        test: /\.svg$/,
+        loader: 'raw-loader',
       },
+
     ],
   },
   devServer: {

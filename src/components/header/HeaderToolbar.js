@@ -25,7 +25,7 @@ export default (props) => {
 
   return (
     <div className="toolbar-action titlebar">
-      <img src="assets/id3_logo_sm.png" className="headerlogo"></img>
+      <img src="assets/id3_logo.svg" className="headerlogo"></img>
       <div className="btn-group">
         <button className="btn btn-default" id="import-btn">
           <input type="file" id="upload-file" hidden></input>
@@ -66,7 +66,7 @@ export default (props) => {
       </div>
 
       <div className="btn-group pull-right">
-        <button className="btn btn-default" id="dataWin">
+        <button className="btn btn-default data-mgn-btn" id="dataWin">
           Data Management
         </button>
       </div>
