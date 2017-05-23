@@ -439,7 +439,7 @@
 		"d3MethodName": ".style",
 		"name": "'fill'",
 		"type": "text",
-		"value": " (d, i) => ['none', 'none'][i]",
+		"value": " (d, i) => ['orange', 'none'][i]",
 		"args": [
 			"'fill'",
 			" (d",
