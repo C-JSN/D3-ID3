@@ -16,7 +16,6 @@ export default (props) => {
           <span className="line-char-count">8:71</span>
         </div>
         <div className="file-info">
-          <span className="current-path">file name: </span>
           <a className="current-path" id="currPath"></a>
         </div>
       </div>

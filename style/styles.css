@@ -324,3 +324,7 @@ html, body {
   margin-left: 6px;
   display: inline-block;
 }
+
+.parsed-input {
+  width: fit-content;
+}
