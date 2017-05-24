@@ -67,8 +67,25 @@ class AttributesPanel extends Component {
         }
       });
 
-      const attrList = attrObj.map(obj => {
-        return <AttrListItem key={obj.id} updateValue={this.props.updateValue} info={obj} />
+      let sortedAttr = [];
+      for (let i = 0; i < attrObj.length; i += 1) {
+        let objholder = [attrObj[i]];
+        if (attrObj[i+1] && objholder[0].methodObject !== "d3" && objholder[0].methodObject === attrObj[i+1].methodObject) {
+          for (let j = i + 1; j < attrObj.length; j += 1) {
+            if (objholder[0].methodObject === attrObj[j].methodObject) {
+              objholder.push(attrObj[j]);
+            } else {
+              break;
+            }
+            i = j;
+          }
+        }
+        sortedAttr.push(objholder);
+      }
+      console.log(sortedAttr);
+
+      const attrList = sortedAttr.map((arr, i) => {
+        return <AttrListItem key={i} updateValue={this.props.updateValue} info={arr} />
       });
 
       return (

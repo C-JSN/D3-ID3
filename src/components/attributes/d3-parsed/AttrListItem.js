@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 //
 // As soon as we have the attribute object parsed the code commented out below is
 // the over layout and styling.
 
 class AttrListItem extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       checkbox: false
@@ -31,18 +31,24 @@ class AttrListItem extends Component {
 
     let attributesDisplay = <div className="attr-display"></div>
 
+    const nest = info.map(x => {
+      return (
+        <div className="input-group" key={x.id}>
+          <div className="input-container" >
+            <label style={{display: "inline"}}>
+              {x.name ? x.name : x.type !== 'hidden' ? x.d3MethodName : null}
+              <input className="form-control parsed-input" type={x.type} value={x.value} onChange={(e) => updateValue(x.id, e.target.value)} />
+            </label>
+          </div>
+        </div>
+      );
+    });
+
     if (this.state.checkbox) {
       attributesDisplay = <div className="attr-display">
-                            <div className="input-group">
-                              <div className="input-container">
-                                <label>
-                                 {info.name ? info.name : null}
-                                 <input className="form-control parsed-input" type={info.type} value={info.value} onChange={(e) => updateValue(info.id, e.target.value)} />
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-{/* //         <div className="input-group">
+        {nest}
+      </div>
+      {/* //         <div className="input-group">
 //           <div className="input-container">
 //             <label>
 //               width
@@ -72,11 +78,11 @@ class AttrListItem extends Component {
 //         </div>
 //       </div> */}
     }
-//
-    return(
+    //
+    return (
       <div className="attr-container">
         <div onClick={this.handleCheckbox} checked={this.state.checkbox}>
-          <h5 className="panel-headers">{info.methodObject}{info.d3MethodName}</h5>
+          <h5 className="panel-headers">{info[0].methodObject}{info[0].d3MethodName}</h5>
         </div>
         {attributesDisplay}
       </div>
