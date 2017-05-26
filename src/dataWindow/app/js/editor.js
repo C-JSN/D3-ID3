@@ -48,14 +48,13 @@ amdRequire(['vs/editor/editor.main'], function () {
             var newData = JSON.parse(data);
             for(let i = 0; i < newData.length; i += 1) {
               var data2 = '[' + len + ']: ' + newData[i];
-              len += 1;
               var li = document.createElement("li");
-              li.appendChild(document.createTextNode(data2));
+              li.innerHTML = '<span style="color: #CD6155">out [' + len + ']:</span> <span style="color: #CACFD2;">' + newData[i] + '</span>';
               ul.appendChild(li);
+              len += 1;
             }
           }
         }).catch(function() {
-          // console.log("Booo");
         });
     }
   })

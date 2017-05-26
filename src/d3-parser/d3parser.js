@@ -1175,7 +1175,7 @@ module.exports = {
             }
             i += 1;
           }
-          args = str.slice(start, i).split(/,(.+)/, 2);
+          args = str.slice(start, i).split(',');
 
           // move i past closing parens
           i += 1;
@@ -1228,6 +1228,24 @@ module.exports = {
               name: ')',
               type: 'text',
               value: args[1],
+              args: args,
+            });
+          }
+          if (args.length > 2) {
+            let string = '';
+            for (let i = 1; i < args.length; i += 1) {
+              if (i !== args.length - 1) {
+                string += args[i] + ',';
+              } else {
+                string += args[i];
+              }
+            }
+            cache.push({
+              methodObject: methodObject,
+              d3MethodName: method,
+              name: args[0],
+              type: 'text',
+              value: string,
               args: args,
             });
           }
@@ -1293,17 +1311,22 @@ module.exports = {
       if (typeof el === 'object') {
         if (el['d3MethodName']) {
           code += el['d3MethodName'] + '(';
-          el['args'].forEach((args, i, c) => {
-            if (args === '' && c.length > 1) code += ')(';
-            else {
-              if (c.length - 1 === i && el.value.includes('\n')) {
-                let start = el.value.indexOf('\n');
-                code += el.value.slice(0, start) + ')' + el.value.slice(start);
+          if (el['args'].length <= 2) {
+            el['args'].forEach((args, i, c) => {
+              if (args === '' && c.length > 1) code += ')(';
+              else {
+                if (c.length - 1 === i && el.value.includes('\n')) {
+                  let start = el.value.indexOf('\n');
+                  code += el.value.slice(0, start) + ')' + el.value.slice(start);
+                }
+                else if (c.length - 1 === i && !el.value.includes('\n')) code += el.value + ')';
+                else code += args + ',';
               }
-              else if (c.length - 1 === i && !el.value.includes('\n')) code += el.value + ')';
-              else code += args + ',';
-            }
-          });
+            });
+          }
+          else if (el['args'].length > 2) {
+            code += el['args'][0] + ',' + el.value + ')';
+          }
         }
       } else {
         code += el;

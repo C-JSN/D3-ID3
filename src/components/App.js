@@ -10,7 +10,7 @@ const { ipcRenderer } = require('electron');
 export default class App extends Component {
 
   componentDidMount() {
-    let editorView = document.getElementById('editor');
+    let editorView = document.getElementById('editor-container');
     let webview = document.getElementById('webview-container');
     let openDataWin = document.getElementById('dataWin');
     let popRender = document.getElementById('popRender');
@@ -22,33 +22,19 @@ export default class App extends Component {
 
     openDataWin.addEventListener('click', (event) => {
       ipcRenderer.send('openDataWin');
-    })
+    });
 
     popEditor.addEventListener('click', (event) => {
-      if (webview.style.height !== '0%') {
-        webview.style.height = '99%';
-      }
-      editorView.style.height = '0%';
+      webview.style.height = 'calc(100% - 8px)';
+      editorView.style.height = '39px';
       ipcRenderer.send('popEditor', editor.getValue());
     });
 
     popRender.addEventListener('click', (event) => {
-      if (editorView.style.height !== '0%') {
-        editorView.style.height = '99%';
-      }
-      webview.style.height = '0%';
+      editorView.style.height = 'calc(100% - 8px)';
+      webview.style.height = '39px';
       ipcRenderer.send('popRender');
-    })
-
-    resizeView.addEventListener('click', (event) => {
-      editorView.style.height = editorH;
-      webview.style.height = webviewH;
-    })
-    // ipcRenderer.on('resetView', (event) => {
-    //   console.log('inside ipcRenderer receive')
-    // editorView.style.height = '50%';
-    // webview.style.height = '50%';
-    // })
+    });
   }
 
   render() {

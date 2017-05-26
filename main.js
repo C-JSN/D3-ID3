@@ -46,15 +46,20 @@ function createWindow() {
     mainWindow.show()
   })
 
+  // mainWindow.on('close', () => {
+
+  // });
+
   // Emitted when the window is closed
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), '//code here', (err) => {
-      if (err) throw err;
-      // console.log('The file has been emptied!');
-    })
+    // fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), '//code here', (err) => {
+    //   if (err) throw err;
+    // })
+    var file = fs.readFileSync('./src/components/temp/onload.html');
+    fs.writeFileSync('./src/components/temp/temp.html', file);
     mainWindow = null
   })
 }
@@ -72,6 +77,11 @@ app.on('ready', () => {
   // pop out editor
   ipcMain.on('popEditor', (event, arg) => {
     if (!global.newEditor) {
+      if (global.newWebView) {
+        global.newWebView.destroy();
+        mainWindow.webContents.send('openWebView');
+      }
+
       let newEditor = new BrowserWindow({ width: 800, height: 600 });
       newEditor.loadURL(url.format({
         pathname: path.join(__dirname, 'editor.html'),
@@ -87,15 +97,14 @@ app.on('ready', () => {
 
       newEditor.on('close', (event) => {
         newEditor.webContents.send('editorClose');
+        if (mainWindow) {
+          mainWindow.webContents.send('resize');
+        }
       });
 
       newEditor.on('closed', (event) => {
         if (mainWindow) {
-          if (global.newWebView) {
-            mainWindow.webContents.send('updateMain', '99%');
-          } else {
-            mainWindow.webContents.send('updateMain', '37%');
-          }
+          mainWindow.webContents.send('updateMain');
           global.newEditor = null;
         }
       });
@@ -133,11 +142,16 @@ app.on('ready', () => {
 
   ipcMain.on('openDataWin', (event, arg) => {
     if (!global.dataWin) {
-      let dataWin = new BrowserWindow({ width: 800, height: 600 });
+      let dataWin = new BrowserWindow({
+        width: 800,
+        height: 600,
+        titleBarStyle: 'hidden',
+        frame: false,
+      });
       dataWin.loadURL('file://' + path.join(__dirname, 'src/dataWindow/app/index.html'))
-      
+
       global.dataWin = dataWin;
-      
+
       dataWin.on('closed', () => {
         global.dataWin = null;
       })
@@ -147,18 +161,24 @@ app.on('ready', () => {
   // pop out live render window
   ipcMain.on('popRender', (event, arg) => {
     if (!global.newWebView) {
+      if (global.newEditor) {
+        global.newEditor.destroy();
+        mainWindow.webContents.send('openEditor');
+      }
+
       let newWebView = new BrowserWindow({ width: 800, height: 600 });
       newWebView.loadURL('file://' + path.resolve(__dirname, 'src/components/temp/temp.html'))
-      
+
       global.newWebView = newWebView;
-      
+
+      newWebView.on('close', (event) => {
+        if (mainWindow) {
+          mainWindow.webContents.send('resize');
+        }
+      });
+
       newWebView.on('closed', (event) => {
         if (mainWindow) {
-          if (global.newEditor) {
-            mainWindow.webContents.send('addRender', '99%');
-          } else {
-            mainWindow.webContents.send('addRender', '62%');
-          }
           global.newWebView = null;
         }
       });
@@ -172,10 +192,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit(() => {
-      var file = fs.readFileSync('./src/components/temp/onload.html');
-      fs.writeFileSync('./src/components/temp/temp.html', file);
-    })
+    app.quit();
   }
 })
 

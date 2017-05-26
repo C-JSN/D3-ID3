@@ -1,3 +1,4 @@
+// for dev only
 (function () {
     'use strict';
 
@@ -8,7 +9,7 @@
     var PythonShell = require('python-shell');
 
     var app = express();
-    var publicPath = path.join(__dirname, '../src/dataWindow/');
+    var publicPath = path.join(__dirname, '/');
     var port = 6431;
 
     app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,11 +17,11 @@
     app.use(express.static(publicPath));
 
     app.post('/fileName', (req, res, next) => {
-      var pyshell = new PythonShell('app/py/parser.py', { scriptPath: publicPath } );
+      var pyshell = new PythonShell('py/parser.py', { scriptPath: publicPath } );
       pyshell.send(req.body.url);
       pyshell.end(function (err) {
         if (err) throw err;
-        // console.log('finished');
+        console.log('finished');
       });
       res.end();
     });
@@ -33,18 +34,19 @@
           send.push(result[i]);
         }
 
-        fs.writeFile(path.join(__dirname, "../src/dataWindow/app/js/data.js"), result[result.length - 1], function(err) {
+        fs.writeFile(path.join(__dirname, "app/js/data.js"), result[result.length - 1], function(err) {
           if(err) {
               return console.log(err);
           }
-          // console.log("The file was saved!");
+          console.log(__dirname);
+          console.log("The file was saved!");
         });
         res.json(JSON.stringify(send));
       });
     });
 
     var server = app.listen(port, function () {
-        // console.log('Express server listening on port ' + server.address().port);
+        console.log('Express server listening on port ' + server.address().port);
     });
 
     module.exports = app;
