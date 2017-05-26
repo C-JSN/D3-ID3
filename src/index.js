@@ -11,9 +11,10 @@ import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk, logger)(createStore);
 
+export let store = createStoreWithMiddleware(reducers)
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <App />
   </Provider>
   , document.querySelector('.main-container'));

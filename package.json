@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "d3-id3",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "The IDE for D3.js",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -18,8 +18,8 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "the ID3 team",
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^3.4.0",
     "electron": "~1.6.2"
@@ -55,6 +55,7 @@
     "redux-logger": "^3.0.1",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
+    "redux-watch": "^1.1.1",
     "sass": "^0.5.0",
     "sass-loader": "^6.0.3",
     "sinon": "^2.1.0",

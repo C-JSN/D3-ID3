@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { ipcRenderer } from 'electron';
+import { headerHTML } from './tools';
+import { atBottom } from './tools';
+import { store } from '../../index';
+import watch from 'redux-watch';
 const d3parser = require('../../d3-parser/d3parser');
 
 const path = require('path');
@@ -142,6 +146,7 @@ class TextEditor extends Component {
       //   })
       // }
 
+      // Click control save to render code from text editor
       window.addEventListener('keypress', function (event) {
         if (event.ctrlKey && event.which === 19) {
           let editorValue = editor.getValue();
@@ -152,18 +157,21 @@ class TextEditor extends Component {
           ipcRenderer.send('updateAttr');
         }
       });
-
-      let scatterPlot_button = document.querySelector('#scatter-plot');
-      scatterPlot_button.addEventListener('click', function (e) {
-        console.log('---ok you are calling a second method on click')
-        var scatterPlot_code = fs.readFileSync(path.resolve(__dirname, 'src/templates/ScatterPlot.html'), 'utf8');
-        editor.setValue(scatterPlot_code);
-        fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
-          if (err) throw err;
-        })
-        document.querySelector('webview').reload();
-
-      });
+      
+      //implementing redux-watch to listen for store changes
+      var w = watch(store.getState, 'ScatterPlotReducer');
+      store.subscribe(w((newVal, oldVal, objectPath) => {
+      var userChanges = store.getState();
+      console.log('==== this is the old value', oldVal);
+      console.log('==== this is the new value', newVal)
+      if(newVal !== oldVal){
+        fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), headerHTML + JSON.stringify(userChanges.ScatterPlotReducer) + atBottom,'utf8', (err) => {
+            if (err) throw err;
+          })
+      }
+      editor.setValue(headerHTML + JSON.stringify(userChanges.ScatterPlotReducer) + atBottom);
+      document.querySelector('webview').reload();
+      }))
 
     });
   }
