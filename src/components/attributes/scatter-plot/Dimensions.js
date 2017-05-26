@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-// import { updateWidth } from '../../../actions/ScatterPlotActions'
-
 class Dimensions extends Component {
   constructor(props){
     super(props);
@@ -10,8 +8,10 @@ class Dimensions extends Component {
     };
 
     //passing action creators
-    this.controlWidth = props.controlWidth.bind(this);
+    this.controlWidth = this.props.controlWidth;
     this.controlHeight = this.props.controlHeight;
+    this.controlTop = this.props.controlTop;
+    this.controlBottom = this.props.controlBottom;
 
     //binding component methods
     this.handleCheckbox = this.handleCheckbox.bind(this);
@@ -50,32 +50,48 @@ class Dimensions extends Component {
     })
   }
   update_top(e){
-    console.log('--inside update_top');
+    
+    // this.setState({
+    //   margin: {
+    //     top: parseInt(e.target.value)
+    //   }
+    // })
+    
     this.setState({
-      top: parseInt(e.target.value)
+      margin:{
+        ...this.state.margin,
+        top: parseInt(e.target.value)
+      }
     })
   }
 
   update_bottom(e){
-    console.log('--inside bottom');
+    
+    // this.setState({
+    //  margin: {
+    //     bottom: parseInt(e.target.value)
+    //   }
+    // })
     this.setState({
-      bottom: parseInt(e.target.value)
+      margin:{
+        ...this.state.margin,
+        bottom: parseInt(e.target.value)
+      }
     })
+
   }
   update_right(e){
-    console.log('--inside right');
     this.setState({
       right: parseInt(e.target.value)
     })
   }
   update_left(e){
-    console.log('--inside left');
     this.setState({
       left: parseInt(e.target.value)
     })
   }
   updateResponsive(e){
-    console.log('the responsive size value',e.target.checked)
+    
     this.setState({
       responsiveSize: e.target.checked
     })
@@ -83,22 +99,27 @@ class Dimensions extends Component {
 
   //When user hits enter action creators are called with all the user inputs
    handleFormSubmit(e){
-    e.preventDefault();
+
     if (e.which === 13) {
-      this.controlWidth(this.state.width);
-      this.controlHeight(this.state.height);
+      console.log('this is the local state passed', this.state);
+ 
+      if(this.state.margin && this.state.margin.top){
+        this.controlTop(this.state.margin.top);
+      } 
+      if(this.state.margin && this.state.margin.bottom){
+        this.controlBottom(this.state.margin.bottom);
+      } 
+
+      if(this.state.width){
+        this.controlWidth(this.state.width);
+      } 
+      if(this.state.height){
+        this.controlHeight(this.state.height);
+      }
     }
   }
 
   render(){
-    // const margin = Object.keys(this.props.margin).map((attr, i) => {
-    //   let func = 'update_'+ attr;
-    //   return <div className="form-group" key={i}>
-    //             <label>{attr}</label>
-    //             <input key={i} type="text" className="form-control margin-input" placeholder={attr}  onChange={this[func]}></input>
-    //           </div>
-    // });
-
     let dimensionsDisplay = <div className="attr-display"></div>
 
     const width = <div className="input-container">

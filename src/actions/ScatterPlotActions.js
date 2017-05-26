@@ -1,9 +1,10 @@
 export const SCATTER_PLOT = "SCATTER_PLOT";
 export const UPDATE_WIDTH = "UPDATE_WIDTH";
 export const UPDATE_HEIGHT = "UPDATE_HEIGHT";
+export const UPDATE_TOP = "UPDATE_TOP";
+export const UPDATE_BOTTOM = "UPDATE_BOTTOM";
 
 export const getScatterPlot = (payload) => dispatch => {
-  console.log('get scatter plot action');
   dispatch({
     type: SCATTER_PLOT,
     payload: payload
@@ -21,4 +22,17 @@ export const updateHeight =  (height) => {
     height
   }
 }
+export const updateTop =  (top) => {
+  return {
+    type: UPDATE_TOP,
+    top
+  }
+}
+export const updateBottom =  (bottom) => {
+  return {
+    type: UPDATE_BOTTOM,
+    bottom
+  }
+}
+
 

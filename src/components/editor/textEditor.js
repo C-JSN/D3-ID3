@@ -163,6 +163,8 @@ class TextEditor extends Component {
       var w = watch(store.getState, 'ScatterPlotReducer');
       store.subscribe(w((newVal, oldVal, objectPath) => {
       var userChanges = store.getState();
+      console.log('==== this is the old value', oldVal);
+      console.log('==== this is the new value', newVal)
       if(newVal !== oldVal){
         fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), headerHTML + JSON.stringify(userChanges.ScatterPlotReducer) + atBottom,'utf8', (err) => {
             if (err) throw err;
