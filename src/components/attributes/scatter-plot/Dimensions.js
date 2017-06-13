@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import AttributeInput from '../AttributeInput';
 
 class Dimensions extends Component {
   constructor(props){
@@ -25,7 +26,7 @@ class Dimensions extends Component {
     this.update_right = this.update_right.bind(this);
     this.update_left = this.update_left.bind(this);
     this.updateResponsive = this.updateResponsive.bind(this);
-    
+
   }
 
   onSubmit(event) {
@@ -50,13 +51,13 @@ class Dimensions extends Component {
     })
   }
   update_top(e){
-    
+
     // this.setState({
     //   margin: {
     //     top: parseInt(e.target.value)
     //   }
     // })
-    
+
     this.setState({
       margin:{
         ...this.state.margin,
@@ -66,7 +67,7 @@ class Dimensions extends Component {
   }
 
   update_bottom(e){
-    
+
     // this.setState({
     //  margin: {
     //     bottom: parseInt(e.target.value)
@@ -91,7 +92,7 @@ class Dimensions extends Component {
     })
   }
   updateResponsive(e){
-    
+
     this.setState({
       responsiveSize: e.target.checked
     })
@@ -102,17 +103,17 @@ class Dimensions extends Component {
 
     if (e.which === 13) {
       console.log('this is the local state passed', this.state);
- 
+
       if(this.state.margin && this.state.margin.top){
         this.controlTop(this.state.margin.top);
-      } 
+      }
       if(this.state.margin && this.state.margin.bottom){
         this.controlBottom(this.state.margin.bottom);
-      } 
+      }
 
       if(this.state.width){
         this.controlWidth(this.state.width);
-      } 
+      }
       if(this.state.height){
         this.controlHeight(this.state.height);
       }
@@ -122,47 +123,6 @@ class Dimensions extends Component {
   render(){
     let dimensionsDisplay = <div className="attr-display"></div>
 
-    const width = <div className="input-container">
-                    <label>
-                      width
-                      <input type="number" className="form-control" onChange={this.updateWidth} />
-                    </label>
-                  </div>
-
-    const height = <div className="input-container">
-                      <label>
-                        height
-                        <input type="number" className="form-control" onChange={this.updateHeight} />
-                      </label>
-                    </div>
-
-    const top = <div className="input-container">
-                  <label>
-                    top
-                    <input type="number" className="form-control" onChange={this.update_top} />
-                  </label>
-                </div>
-
-    const right = <div className="input-container">
-                    <label>
-                      right
-                      <input type="number" className="form-control" onChange={this.update_right} />
-                    </label>
-                  </div>
-
-    const bottom = <div className="input-container">
-                    <label>
-                      bottom
-                      <input type="number" className="form-control" onChange={this.update_bottom} />
-                    </label>
-                  </div>
-
-    const left = <div className="input-container">
-                  <label>
-                    left
-                    <input type="number" className="form-control" onChange={this.update_left} />
-                  </label>
-                </div>
     const responsiveSize = <div className="checkbox">
                 <label style={{color: '#CACFD2'}}>
                   {/* this checkbox will still need it's own handler */}
@@ -174,17 +134,17 @@ class Dimensions extends Component {
     if (this.state.checkbox) {
       dimensionsDisplay = <div className="attr-display">
         <div className="input-group">
-            {width}
-            {height}
+            <AttributeInput label='width' type='number' handler={this.updateWidth} />
+            <AttributeInput label='height' type='number' handler={this.updateHeight} />
         </div>
         <h6 className="panel-subheaders">Margin</h6>
         <div className="input-group">
-            {top}
-            {right}
+            <AttributeInput label='top' type='number' handler={this.update_top} />
+            <AttributeInput label='right' type='number' handler={this.update_right} />
         </div>
         <div className="input-group">
-            {bottom}
-            {left}
+            <AttributeInput label='bottom' type='number' handler={this.update_bottom} />
+            <AttributeInput label='left' type='number' handler={this.update_left} />
         </div>
         {responsiveSize}
       </div>
