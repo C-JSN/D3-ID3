@@ -620,7 +620,7 @@
     document.addEventListener("DOMContentLoaded", function (event) {
       const settingsArea = document.createElement("textarea");
       settingsArea.setAttribute("id", "settingsArea");
-      settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+      settingsArea.value = JSON.stringify(scatter, null, 2);
       settingsArea.setAttribute("style", "width:250px;height:250px;");
 
       const updateButton = document.createElement("button");
@@ -640,7 +640,7 @@
         updatePlot(svg, scatter, plot);
         createGridLines(svg, scatter);
         checkRegressionLine(svg, scatter, plot);
-        settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+        settingsArea.value = JSON.stringify(scatter, null, 2);
       });
 
       document.body.appendChild(document.createElement("br"));
@@ -678,7 +678,7 @@
             yArray.push(values[1]);
           }
           scatter.data = create_data(xArray, yArray);
-          settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+          settingsArea.value = JSON.stringify(scatter, null, 2);
           // document.body.removeChild(document.getElementById("svgContainer"));
           // svg = createSvg(scatter);
           // plot = createScatterPlot(svg, scatter);
@@ -763,7 +763,7 @@
           });
 
           scatter.data = create_data(xArray, yArray);
-          settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+          settingsArea.value = JSON.stringify(scatter, null, 2);
           // document.body.removeChild(document.getElementById("svgContainer"));
           // svg = createSvg(scatter);
           // plot = createScatterPlot(svg, scatter);
@@ -815,7 +815,7 @@
             scatter.data = create_data(xArray, yArray);
           }
 
-          settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+          settingsArea.value = JSON.stringify(scatter, null, 2);
           // document.body.removeChild(document.getElementById("svgContainer"));
           // svg = createSvg(scatter);
           // plot = createScatterPlot(svg, scatter);
@@ -848,7 +848,7 @@
       settingsButton.setAttribute("value", "Submit settings");
       // const settingsArea = document.createElement("textarea");
       // settingsArea.setAttribute("id", "settingsArea");
-      // settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+      // settingsArea.value = JSON.stringify(scatter, null, 2);
       // settingsArea.setAttribute("style", "width:250px;height:250px;");
       document.body.appendChild(settingsForm);
       settingsForm.appendChild(settingsLabel);
@@ -920,7 +920,7 @@
       dataForm.addEventListener("submit", (e) => {
         e.preventDefault();
         scatter.data = create_data(xDataInput.value.replace(/\s/g, '').split(','), yDataInput.value.replace(/\s/g, '').split(','));
-        settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+        settingsArea.value = JSON.stringify(scatter, null, 2);
         // document.body.removeChild(document.getElementById("svgContainer"));
         // svg = createSvg(scatter);
         // plot = createScatterPlot(svg, scatter);
@@ -954,7 +954,7 @@
           scatter.regressionLine.exist = true;
         }
         checkRegressionLine(svg, scatter, plot);
-        settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+        settingsArea.value = JSON.stringify(scatter, null, 2);
       });
 
       let xAxisBool = scatter.axes.xAxis.exist;
@@ -979,7 +979,7 @@
         if (!scatter.gridLines.exist) {
           svg.selectAll(".grid-line").remove();
         }
-        settingsArea.innerHTML = JSON.stringify(scatter, null, 2);
+        settingsArea.value = JSON.stringify(scatter, null, 2);
       });
 
       document.body.appendChild(document.createElement("br"));
