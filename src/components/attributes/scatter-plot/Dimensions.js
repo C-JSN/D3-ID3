@@ -13,6 +13,8 @@ class Dimensions extends Component {
     this.controlHeight = this.props.controlHeight;
     this.controlTop = this.props.controlTop;
     this.controlBottom = this.props.controlBottom;
+    this.controlRight = this.props.controlRight;
+    this.controlLeft = this.props.controlLeft;
 
     //binding component methods
     this.handleCheckbox = this.handleCheckbox.bind(this);
@@ -51,13 +53,6 @@ class Dimensions extends Component {
     })
   }
   update_top(e){
-
-    // this.setState({
-    //   margin: {
-    //     top: parseInt(e.target.value)
-    //   }
-    // })
-
     this.setState({
       margin:{
         ...this.state.margin,
@@ -67,53 +62,63 @@ class Dimensions extends Component {
   }
 
   update_bottom(e){
-
-    // this.setState({
-    //  margin: {
-    //     bottom: parseInt(e.target.value)
-    //   }
-    // })
     this.setState({
       margin:{
         ...this.state.margin,
         bottom: parseInt(e.target.value)
       }
     })
-
   }
   update_right(e){
     this.setState({
-      right: parseInt(e.target.value)
+      margin:{
+        ...this.state.margin,
+        right: parseInt(e.target.value)
+      }
     })
   }
   update_left(e){
     this.setState({
-      left: parseInt(e.target.value)
+      margin:{
+        ...this.state.margin,
+        left: parseInt(e.target.value)
+      }
     })
   }
   updateResponsive(e){
-
     this.setState({
       responsiveSize: e.target.checked
     })
   }
 
-  //When user hits enter action creators are called with all the user inputs
+  //When user press enter, action creators are called with all the user inputs
    handleFormSubmit(e){
 
     if (e.which === 13) {
       console.log('this is the local state passed', this.state);
 
+      //update the top margin
       if(this.state.margin && this.state.margin.top){
         this.controlTop(this.state.margin.top);
       }
+      //update the bottom margin
       if(this.state.margin && this.state.margin.bottom){
         this.controlBottom(this.state.margin.bottom);
       }
+      //update the right margin
+      if(this.state.margin && this.state.margin.right){
+        this.controlRight(this.state.margin.right);
+      }
+      //update the left margin
+      if(this.state.margin && this.state.margin.left){
+        this.controlLeft(this.state.margin.left);
+      }
 
+      //update the svg width
       if(this.state.width){
         this.controlWidth(this.state.width);
       }
+      //update the svg height
       if(this.state.height){
         this.controlHeight(this.state.height);
       }

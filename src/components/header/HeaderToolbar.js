@@ -40,6 +40,14 @@ export default (props) => {
             Templates
           </button>
           <div id="template-menu" className="dropdown-menu">
+            <p id="scatter-plot" onClick={(e)=>getScatterPlotAction(ScatterPlotObject)}>
+              {/* <span className="icon icon-chart-line icon-text"></span> */}
+              Scatter Plot
+            </p>
+            <p>
+              {/* <span className="icon icon-chart-bar icon-text"></span> */}
+              Bar Chart
+            </p>
 
             <p>
               {/* <span className="icon icon-chart-area icon-text"></span> */}
@@ -48,14 +56,6 @@ export default (props) => {
             <p>
               {/* <span className="icon icon-chart-line icon-text"></span> */}
               Line Graph
-            </p>
-            <p>
-              {/* <span className="icon icon-chart-bar icon-text"></span> */}
-              Bar Chart
-            </p>
-            <p id="scatter-plot" onClick={(e)=>getScatterPlotAction(ScatterPlotObject)}>
-              {/* <span className="icon icon-chart-line icon-text"></span> */}
-              Scatter Plot
             </p>
             <p>
               {/* <span className="icon icon-chart-pie icon-text"></span> */}

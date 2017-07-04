@@ -162,8 +162,8 @@ class TextEditor extends Component {
       var w = watch(store.getState, 'ScatterPlotReducer');
       store.subscribe(w((newVal, oldVal, objectPath) => {
       var userChanges = store.getState();
-      console.log('==== this is the old value', oldVal);
-      console.log('==== this is the new value', newVal)
+      //if there is a change in the redux store, then write the new code into the temp file and re-render
+      // this will apply to when a template is clicked too
       if(newVal !== oldVal){
         fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), headerHTML + JSON.stringify(userChanges.ScatterPlotReducer) + atBottom,'utf8', (err) => {
             if (err) throw err;

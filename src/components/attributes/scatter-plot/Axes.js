@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import AttributeInput from '../AttributeInput';
+import update from 'immutability-helper';
 
 export default class Axes extends Component {
   constructor(props){
@@ -33,21 +35,25 @@ export default class Axes extends Component {
   }
 
   handleFormSubmit(e){
-    e.preventDefault();
+    if(e.which === 13){
+    console.log('this is the state from axes', this.state)
+
+    }
+
   }
   update_x_exist(e){
     this.setState({
-      x_exist: event.target.value
+      x_exist: e.target.value
     })
   }
   update_x_name(e){
     this.setState({
-      x_name: event.target.value
+      x_name: e.target.value
     })
   }
   update_x_nameColor(e){
     this.setState({
-      x_nameColor: event.target.value
+      x_nameColor: e.target.value
     })
   }
   update_x_ticks(e){
@@ -95,19 +101,39 @@ export default class Axes extends Component {
     //   })
 
     let axesDisplay = <div className="attr-display"></div>
-    const name = <div className="input-container">
+    const nameX = <div className="input-container">
                     <label>
                       name
-                      <input type="text" className="form-control"></input>
+                      <input type="text" className="form-control" onChange={this.update_x_name}></input>
                     </label>
+                    
                   </div>
+    const nameY = <div className="input-container">
+                    <label>
+                      name
+                      <input type="text" className="form-control" onChange={this.update_y_name}></input>
+                    </label>
+                    
+                  </div>              
 
-    const color = <div className="input-container">
+    const colorX = <div className="input-container" onChange={this.update_x_nameColor}>
                     <label>
                       color
                       <input type="text" className="form-control"></input>
                     </label>
                   </div>
+    const colorY = <div className="input-container">
+                    <label>
+                      color
+                      <input type="text" className="form-control"></input>
+                    </label>
+                  </div>
+    const color = <div className="input-container">
+                    <label>
+                      color
+                      <input type="text" className="form-control"></input>
+                    </label>
+                  </div>                              
 
     const ticks = <div className="input-container">
                     <label>
@@ -119,8 +145,8 @@ export default class Axes extends Component {
 
     const xAxis = <div className="x-axis-display">
       <div className="input-group">
-        {name}
-        {color}
+        {nameX}
+        {colorX}
       </div>
       <div className="input-group">
         {ticks}
@@ -130,8 +156,8 @@ export default class Axes extends Component {
 
     const yAxis = <div className="y-axis-display">
       <div className="input-group">
-        {name}
-        {color}
+        {nameY}
+        {colorY}
       </div>
       <div className="input-group">
         {ticks}
@@ -141,7 +167,7 @@ export default class Axes extends Component {
 
     if (this.state.checkbox) {
       axesDisplay = <div className="attr-display">
-        <form onSubmit={this.handleFormSubmit} >
+        <form onKeyUp={this.handleFormSubmit} >
           <h6 className="panel-subheaders">X-Axis</h6>
           {xAxis}
           <h6 className="panel-subheaders">Y-Axis</h6>

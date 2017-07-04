@@ -39,6 +39,7 @@
     "expect": "^1.20.2",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
+    "immutability-helper": "^2.2.2",
     "jquery": "^3.2.1",
     "monaco-editor": "^0.8.3",
     "node-sass": "^4.5.2",

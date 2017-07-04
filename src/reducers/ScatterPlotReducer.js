@@ -1,4 +1,4 @@
-import { SCATTER_PLOT, UPDATE_WIDTH, UPDATE_HEIGHT, UPDATE_TOP, UPDATE_BOTTOM } from '../actions/ScatterPlotActions';
+import { SCATTER_PLOT, UPDATE_WIDTH, UPDATE_HEIGHT, UPDATE_TOP, UPDATE_BOTTOM, UPDATE_RIGHT, UPDATE_LEFT } from '../actions/ScatterPlotActions';
 import ScatterPlotObject from '../templates/ScatterPlotObject';
 
 const initialState = {
@@ -43,7 +43,21 @@ export default function reducer(state = initialState, action) {
       margin: {
         ...state.margin, bottom:action.bottom
       } 
-    }       
+    }
+    case UPDATE_RIGHT:
+    return {
+      ...state, 
+      margin: {
+        ...state.margin, right:action.right
+      } 
+    }
+    case UPDATE_LEFT:
+    return {
+      ...state, 
+      margin: {
+        ...state.margin, left:action.left
+      } 
+    }               
     default:
       return state;
   }
