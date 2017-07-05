@@ -7,6 +7,8 @@ export const UPDATE_RIGHT = "UPDATE_RIGHT";
 export const UPDATE_LEFT = "UPDATE_LEFT";
 export const UPDATE_X_NAME = "UPDATE_X_NAME";
 export const UPDATE_X_NAME_COLOR = "UPDATE_X_NAME_COLOR";
+export const UPDATE_X_TICKS = "UPDATE_X_TICKS";
+export const UPDATE_X_AXIS_COLOR = "UPDATE_X_AXIS_COLOR";
 
 export const getScatterPlot = (payload) => dispatch => {
   dispatch({
@@ -63,6 +65,19 @@ export const update_x_nameColor = (xNameColor) =>{
   return {
     type: UPDATE_X_NAME_COLOR,
     xNameColor
+  }
+}
+export const update_x_ticks = (xTicks) =>{
+  return {
+    type: UPDATE_X_TICKS,
+    xTicks
+  }
+}
+
+export const update_x_axisColor = (color) =>{
+  return {
+    type: UPDATE_X_AXIS_COLOR,
+    color
   }
 }
 

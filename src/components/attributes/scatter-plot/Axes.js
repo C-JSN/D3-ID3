@@ -11,17 +11,18 @@ export default class Axes extends Component {
     //passing action creators
     this.controlNameX = this.props.controlNameX;
     this.controlXnameColor = this.props.controlXnameColor;
+    this.controlXticks = this.props.controlXticks;
+    this.controlColorAxisX = this.props.controlColorAxisX;
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.update_x_exist  = this.update_x_exist.bind(this);
     this.update_x_name = this.update_x_name.bind(this);
     this.update_x_nameColor = this.update_x_nameColor.bind(this);
     this.update_x_ticks = this.update_x_ticks.bind(this);
+    this.update_x_axisColor = this.update_x_axisColor.bind(this);
 
-    this.update_y_exist  = this.update_y_exist.bind(this);
     this.update_y_name = this.update_y_name.bind(this);
     this.update_y_nameColor = this.update_y_nameColor.bind(this);
     this.update_y_ticks = this.update_y_ticks.bind(this);
@@ -47,16 +48,17 @@ export default class Axes extends Component {
     if(this.state.x_nameColor){
       this.controlXnameColor(this.state.x_nameColor);
     }
+    if(this.state.x_ticks){
+      this.controlXticks(this.state.x_ticks);
+    }
+    if(this.state.x_AxisColor){
+      this.controlColorAxisX(this.state.x_AxisColor);
+    }
 
     }
 
   }
   //===================  x functions
-  update_x_exist(e){
-    this.setState({
-      x_exist: e.target.value
-    })
-  }
   update_x_name(e){
     this.setState({
       x_name: e.target.value
@@ -69,15 +71,16 @@ export default class Axes extends Component {
   }
   update_x_ticks(e){
     this.setState({
-      x_ticks: event.target.value
+      x_ticks: e.target.value
+    })
+  }
+  update_x_axisColor(e){
+    this.setState({
+      x_AxisColor: e.target.value
     })
   }
   ///----------------------
-  update_y_exist(e){
-    this.setState({
-      x_exist: event.target.value
-    });
-  }
+
   update_y_name(e){
     this.setState({
       y_name: event.target.value
@@ -112,19 +115,6 @@ export default class Axes extends Component {
     //   })
 
     let axesDisplay = <div className="attr-display"></div>
-
-    const nameXcolor = <div className="input-container" onChange={this.update_x_nameColor}>
-                    <label>
-                      label color
-                      <input type="text" className="form-control"></input>
-                    </label>
-                  </div>
-    const axisXcolor = <div className="input-container" onChange={this.update_x_nameColor}>
-                    <label>
-                      axis color
-                      <input type="text" className="form-control"></input>
-                    </label>
-                  </div>
     const nameY = <div className="input-container">
                     <label>
                       name
@@ -152,7 +142,7 @@ export default class Axes extends Component {
                     </label>
                   </div>
 
-
+    // X Axis input boxes
     const xAxis = <div className="x-axis-display">
       <div className="input-group">
         <AttributeInput 
@@ -168,8 +158,17 @@ export default class Axes extends Component {
         />
       </div>
       <div className="input-group">
-        {ticks}
-        {axisXcolor}
+        <AttributeInput 
+        label="ticks"
+        handler={this.update_x_ticks}
+        type="number"
+        />
+
+        <AttributeInput 
+        label="axis color"
+        handler={this.update_x_axisColor}
+        type="text"
+        />
       </div>
     </div>
 
