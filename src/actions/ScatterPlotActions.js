@@ -5,6 +5,7 @@ export const UPDATE_TOP = "UPDATE_TOP";
 export const UPDATE_BOTTOM = "UPDATE_BOTTOM";
 export const UPDATE_RIGHT = "UPDATE_RIGHT";
 export const UPDATE_LEFT = "UPDATE_LEFT";
+export const UPDATE_X_NAME = "UPDATE_X_NAME";
 
 export const getScatterPlot = (payload) => dispatch => {
   dispatch({
@@ -47,6 +48,13 @@ export const updateLeft =  (left) => {
   return {
     type: UPDATE_LEFT,
     left
+  }
+}
+
+export const update_x_name = (xName) => {
+  return {
+    type: UPDATE_X_NAME,
+    xName
   }
 }
 

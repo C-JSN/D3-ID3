@@ -8,6 +8,8 @@ export default class Axes extends Component {
     this.state={
       checkbox: false
     }
+    //passing action creators
+    this.controlNameX = this.props.controlNameX;
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -37,6 +39,10 @@ export default class Axes extends Component {
   handleFormSubmit(e){
     if(e.which === 13){
     console.log('this is the state from axes', this.state)
+    //=============
+    if(this.state.x_name){
+      this.controlNameX(this.state.x_name);
+    }
 
     }
 

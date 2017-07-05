@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getScatterPlot, updateWidth,  updateHeight, updateTop, updateBottom, updateRight, updateLeft } from '../actions/ScatterPlotActions';
+import { getScatterPlot, updateWidth,  updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name } from '../actions/ScatterPlotActions';
 import { getD3ParserObj, updateValue } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import AttrListItem from '../components/attributes/d3-parsed/AttrListItem';
@@ -132,7 +132,11 @@ class AttributesPanel extends Component {
             controlRight={this.props.updateRight}
             controlLeft={this.props.updateLeft}
           />
-          <Axes axes={axes} />
+          <Axes 
+            axes={axes} 
+            controlNameX={this.props.update_x_name}
+            
+            />
           <LocalAttributes
             gridLines={gridLines}
             regressionLine={regressionLine}
@@ -153,6 +157,6 @@ function mapStateToProps({ ScatterPlotReducer, D3ParserReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue, updateHeight, updateTop, updateBottom, updateRight, updateLeft }, dispatch);
+  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue, updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);
