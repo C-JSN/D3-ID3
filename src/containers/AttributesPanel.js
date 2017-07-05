@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getScatterPlot, updateWidth,  updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor } from '../actions/ScatterPlotActions';
+import { getScatterPlot, updateWidth,  updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor, update_x_ticks, update_x_axisColor } from '../actions/ScatterPlotActions';
 import { getD3ParserObj, updateValue } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import AttrListItem from '../components/attributes/d3-parsed/AttrListItem';
@@ -136,6 +136,8 @@ class AttributesPanel extends Component {
             axes={axes} 
             controlNameX={this.props.update_x_name}
             controlXnameColor={this.props.update_x_nameColor}
+            controlXticks={this.props.update_x_ticks}
+            controlColorAxisX={this.props.update_x_axisColor}
             
             />
           <LocalAttributes
@@ -158,6 +160,6 @@ function mapStateToProps({ ScatterPlotReducer, D3ParserReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue, updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor }, dispatch);
+  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue, updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor, update_x_ticks, update_x_axisColor }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);

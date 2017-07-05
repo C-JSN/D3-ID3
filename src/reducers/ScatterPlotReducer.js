@@ -1,4 +1,4 @@
-import { SCATTER_PLOT, UPDATE_WIDTH, UPDATE_HEIGHT, UPDATE_TOP, UPDATE_BOTTOM, UPDATE_RIGHT, UPDATE_LEFT, UPDATE_X_NAME, UPDATE_X_NAME_COLOR } from '../actions/ScatterPlotActions';
+import { SCATTER_PLOT, UPDATE_WIDTH, UPDATE_HEIGHT, UPDATE_TOP, UPDATE_BOTTOM, UPDATE_RIGHT, UPDATE_LEFT, UPDATE_X_NAME, UPDATE_X_NAME_COLOR, UPDATE_X_TICKS, UPDATE_X_AXIS_COLOR } from '../actions/ScatterPlotActions';
 import ScatterPlotObject from '../templates/ScatterPlotObject';
 
 const initialState = {
@@ -75,6 +75,28 @@ export default function reducer(state = initialState, action) {
         ...state.axes,
         xAxis:{
           ...state.axes.xAxis, nameColor: action.xNameColor
+        }
+      }
+    }
+
+    case UPDATE_X_TICKS:
+    return {
+      ...state,
+      axes: {
+        ...state.axes,
+        xAxis: {
+          ...state.axes.xAxis, ticks: action.xTicks
+        }
+      }
+      
+    }
+    case UPDATE_X_AXIS_COLOR:
+    return {
+      ...state, 
+      axes: {
+        ...state.axes,
+        xAxis: {
+          ...state.axes.xAxis, axisColor: action.color
         }
       }
     }
