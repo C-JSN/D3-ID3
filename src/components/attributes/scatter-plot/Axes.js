@@ -10,6 +10,7 @@ export default class Axes extends Component {
     }
     //passing action creators
     this.controlNameX = this.props.controlNameX;
+    this.controlXnameColor = this.props.controlXnameColor;
 
     this.handleCheckbox = this.handleCheckbox.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -43,10 +44,14 @@ export default class Axes extends Component {
     if(this.state.x_name){
       this.controlNameX(this.state.x_name);
     }
+    if(this.state.x_nameColor){
+      this.controlXnameColor(this.state.x_nameColor);
+    }
 
     }
 
   }
+  //===================  x functions
   update_x_exist(e){
     this.setState({
       x_exist: e.target.value
@@ -107,12 +112,18 @@ export default class Axes extends Component {
     //   })
 
     let axesDisplay = <div className="attr-display"></div>
-    const nameX = <div className="input-container">
+
+    const nameXcolor = <div className="input-container" onChange={this.update_x_nameColor}>
                     <label>
-                      name
-                      <input type="text" className="form-control" onChange={this.update_x_name}></input>
+                      label color
+                      <input type="text" className="form-control"></input>
                     </label>
-                    
+                  </div>
+    const axisXcolor = <div className="input-container" onChange={this.update_x_nameColor}>
+                    <label>
+                      axis color
+                      <input type="text" className="form-control"></input>
+                    </label>
                   </div>
     const nameY = <div className="input-container">
                     <label>
@@ -120,14 +131,7 @@ export default class Axes extends Component {
                       <input type="text" className="form-control" onChange={this.update_y_name}></input>
                     </label>
                     
-                  </div>              
-
-    const colorX = <div className="input-container" onChange={this.update_x_nameColor}>
-                    <label>
-                      color
-                      <input type="text" className="form-control"></input>
-                    </label>
-                  </div>
+                  </div>                               
     const colorY = <div className="input-container">
                     <label>
                       color
@@ -151,12 +155,21 @@ export default class Axes extends Component {
 
     const xAxis = <div className="x-axis-display">
       <div className="input-group">
-        {nameX}
-        {colorX}
+        <AttributeInput 
+        label="name" 
+        handler={this.update_x_name} 
+        type="text"
+        />
+
+        <AttributeInput 
+        label="color" 
+        handler={this.update_x_nameColor} 
+        type="text"
+        />
       </div>
       <div className="input-group">
         {ticks}
-        {color}
+        {axisXcolor}
       </div>
     </div>
 

@@ -6,6 +6,7 @@ export const UPDATE_BOTTOM = "UPDATE_BOTTOM";
 export const UPDATE_RIGHT = "UPDATE_RIGHT";
 export const UPDATE_LEFT = "UPDATE_LEFT";
 export const UPDATE_X_NAME = "UPDATE_X_NAME";
+export const UPDATE_X_NAME_COLOR = "UPDATE_X_NAME_COLOR";
 
 export const getScatterPlot = (payload) => dispatch => {
   dispatch({
@@ -57,5 +58,13 @@ export const update_x_name = (xName) => {
     xName
   }
 }
+
+export const update_x_nameColor = (xNameColor) =>{
+  return {
+    type: UPDATE_X_NAME_COLOR,
+    xNameColor
+  }
+}
+
 
 
