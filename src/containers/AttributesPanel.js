@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getScatterPlot, updateWidth,  updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor, update_x_ticks, update_x_axisColor } from '../actions/ScatterPlotActions';
+import { getScatterPlot, updateWidth,  updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor, update_x_ticks, update_x_axisColor, update_y_name, update_y_nameColor, update_y_ticks, update_y_axisColor } from '../actions/ScatterPlotActions';
 import { getD3ParserObj, updateValue } from '../actions/D3ParserActions';
 import { ScatterPlotReducer, D3ParserReducer } from '../reducers/index';
 import AttrListItem from '../components/attributes/d3-parsed/AttrListItem';
@@ -83,7 +83,6 @@ class AttributesPanel extends Component {
         }
         sortedAttr.push(objholder);
       }
-      console.log(sortedAttr);
 
       const attrList = sortedAttr.map((arr, i) => {
         return <AttrListItem key={i} updateValue={this.props.updateValue} info={arr} />
@@ -138,7 +137,10 @@ class AttributesPanel extends Component {
             controlXnameColor={this.props.update_x_nameColor}
             controlXticks={this.props.update_x_ticks}
             controlColorAxisX={this.props.update_x_axisColor}
-            
+            controlNameY={this.props.update_y_name}
+            controlYNameColor={this.props.update_y_nameColor}
+            controlYticks={this.props.update_y_ticks}
+            controlColorAxisY={this.props.update_y_axisColor}
             />
           <LocalAttributes
             gridLines={gridLines}
@@ -160,6 +162,6 @@ function mapStateToProps({ ScatterPlotReducer, D3ParserReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue, updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor, update_x_ticks, update_x_axisColor }, dispatch);
+  return bindActionCreators({ getScatterPlot, updateWidth, getD3ParserObj, updateValue, updateHeight, updateTop, updateBottom, updateRight, updateLeft, update_x_name, update_x_nameColor, update_x_ticks, update_x_axisColor, update_y_name, update_y_nameColor, update_y_ticks, update_y_axisColor }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AttributesPanel);
