@@ -24,7 +24,6 @@ class TextEditor extends Component {
   }
 
   componentDidMount() {
-    console.log('check the props at the beginning of componentWillReceiveprops ', this.props)
     let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
 
     function uriFromPath(_path) {
