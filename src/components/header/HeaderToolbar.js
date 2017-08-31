@@ -5,6 +5,7 @@ import ScatterPlotObject from '../../templates/ScatterPlotObject';
 export default (props) => {
   const toggleDropDown = props.toggleDropDown;
   const getScatterPlotAction = props.getScatterPlotAction;
+  const toTemplate = props.toTemplate;
   const getD3ParserObj = props.getD3ParserObj;
   const openDataWin = props.openDataWin;
   // const testfunc = props.testfunc;
@@ -40,7 +41,7 @@ export default (props) => {
             Templates
           </button>
           <div id="template-menu" className="dropdown-menu">
-            <p id="scatter-plot" onClick={(e)=>getScatterPlotAction(ScatterPlotObject)}>
+            <p id="scatter-plot" onClick={(e)=>{getScatterPlotAction(ScatterPlotObject); toTemplate()}}>
               {/* <span className="icon icon-chart-line icon-text"></span> */}
               Scatter Plot
             </p>
