@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Header from '../containers/Header';
-import { TextEditor, editor } from './editor/textEditor';
+import TextEditor, { editor } from './editor/textEditor';
 import AttributesPanel from '../containers/AttributesPanel';
 import Footer from './footer/Footer';
 
@@ -43,7 +43,7 @@ export default class App extends Component {
         <Header />
         <div className="window-content">
           <div className="pane-group">
-            <TextEditor />
+            <TextEditor toUserCode={this.props.toUserCode}/>
             <AttributesPanel />
           </div>
         </div>
@@ -52,7 +52,6 @@ export default class App extends Component {
     );
   };
 }
-
 // Possilbe resize window pane solution
 
 // componentDidMount() {

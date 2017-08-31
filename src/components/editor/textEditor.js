@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { ipcRenderer } from 'electron';
 import { headerHTML } from './tools';
 import { atBottom } from './tools';
 import { store } from '../../index';
+
+import { toUserCode } from '../../actions/ProjectTypeActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import watch from 'redux-watch';
+
 const d3parser = require('../../d3-parser/d3parser');
 
 const path = require('path');
@@ -19,6 +24,7 @@ class TextEditor extends Component {
   }
 
   componentDidMount() {
+    console.log('check the props at the beginning of componentWillReceiveprops ', this.props)
     let amdRequire = global.require('monaco-editor/min/vs/loader.js').require;
 
     function uriFromPath(_path) {
@@ -60,7 +66,6 @@ class TextEditor extends Component {
       let webview = document.getElementById('webview-container');
       ipcRenderer.on('updateMain', (event, arg) => {
         let newEditorString = fs.readFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), 'utf8');
-        //console.log(newEditorString);
         editor.setValue(newEditorString);
         document.querySelector('webview').reload();
         let string = JSON.stringify(d3parser.parseD3(newEditorString), null, '\t');
@@ -96,7 +101,7 @@ class TextEditor extends Component {
         const reader = new FileReader();
         var currPath = document.getElementById('currPath');
         currPath.innerHTML = file.path;
-        console.log(file.path)
+        // console.log(file.path)
         reader.onload = function (event) {
           fs.writeFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), event.target.result);
           let string = JSON.stringify(d3parser.parseD3(event.target.result), null, '\t');
@@ -106,6 +111,8 @@ class TextEditor extends Component {
           ipcRenderer.send('fileUpload', event.target.result);
         };
         reader.readAsText(file);
+        // Update the store projetcType to userCode
+        this.props.toUserCode();
       })
 
       importBtn.addEventListener('click', (event) => {
@@ -115,46 +122,32 @@ class TextEditor extends Component {
       // export to html
       const exportBtn = document.getElementById('export-btn');
       exportBtn.addEventListener("click", (e) => {
-        let d3string = fs.readFileSync('./src/d3ParserObj.js');
-        let htmlString = d3parser.reCode(JSON.parse(d3string));
+        // let d3string = fs.readFileSync('./src/d3ParserObj.js');
+        // let htmlString = d3parser.reCode(JSON.parse(d3string));
+        let htmlString = editor.getValue();
         const htmlFile = new Blob([htmlString], { type: 'text/html' });
         exportBtn.href = URL.createObjectURL(htmlFile);
         exportBtn.download = 'ID3_export.html';
       });
 
-      // setInterval(function(){
-      //   fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
-      //     if (err) throw err;
-      //     // console.log('The file has been saved!');
-      //   })
-      // }, 300);
-      //
-      // setInterval(function(){
-      //   const webview = document.querySelector('webview');
-      //   webview.reload();
-      // }, 300);
-
-
-      // document.getElementById("editor").onkeyup = () => {
-
-      //   fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), startHtml + editor.getValue() + endHtml, (err) => {
-
-      //   // fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editor.getValue(), (err) => {
-
-      //     if (err) throw err;
-      //     console.log('The file has been saved!');
-      //   })
-      // }
-
       // Click control save to render code from text editor
       window.addEventListener('keypress', function (event) {
         if (event.ctrlKey && event.which === 19) {
           let editorValue = editor.getValue();
-          fs.writeFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), editorValue);
-          let string = JSON.stringify(d3parser.parseD3(editorValue), null, '\t');
-          fs.writeFileSync('./src/d3ParserObj.js', string);
-          document.querySelector('webview').reload();
-          ipcRenderer.send('updateAttr');
+          // if (this.props.projectType === 'userCode'){
+          //   fs.writeFileSync(path.resolve(__dirname, 'src/components/temp/temp.html'), editorValue);
+          //   let string = JSON.stringify(d3parser.parseD3(editorValue), null, '\t');
+          //   fs.writeFileSync('./src/d3ParserObj.js', string);
+          //   document.querySelector('webview').reload();
+          //   ipcRenderer.send('updateAttr');
+          // }
+          // if(this.props.projectType === 'template'){
+            fs.writeFile(path.resolve(__dirname, 'src/components/temp/temp.html'), editorValue, (err) => {
+              if (err) throw err;
+            })
+            const webview = document.querySelector('webview')
+            webview.reload();
+          //}
         }
       });
       
@@ -206,4 +199,17 @@ class TextEditor extends Component {
   }
 }
 
-export { TextEditor, editor }
+export { editor };
+
+// Need to pasps the action creators to the props on this compoent in order to update store -> projecType
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ toUserCode }, dispatch);
+}
+
+// Need to connect the state to this component for the functionality of the event of keys control and s
+function mapStateToProps({projectType}) { //same as state.projectType, it can also be only 'state, and return state.projectType
+  return {
+    projectType: projectType
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
